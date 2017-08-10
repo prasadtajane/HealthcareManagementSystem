@@ -1,0 +1,55 @@
+<label for="imageName">Name</label>
+<input class="form-control"
+       id="imageName"
+       name="imageName"
+       placeholder="Wingsuit Stunts"
+       ng-model="model.widget.name"/>
+
+<label for="imageText">Text</label>
+<input class="form-control"
+       id="imageText"
+       name="imageText"
+       type="text"
+       placeholder="Man in wingsuits dives through fire ring"
+       ng-model="model.widget.text"/>
+
+<label for="imageUrl">URL</label>
+<input class="form-control"
+       id="imageUrl"
+       name="imageUrl"
+       type="url"
+       placeholder="https://www.google.com/lycamobile/images/1.jpg"
+       ng-model="model.widget.url"/>
+
+<label for="imageWidth">Width</label>
+<input class="form-control"
+       id="imageWidth"
+       name="imageWidth"
+       placeholder="100%"
+       type="tetx"s
+       ng-model="model.widget.width"/>
+
+<div class="taj-bottom-margin">
+    <a class="btn btn-block btn-info"
+       href="#!/profile/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widget._id}}/search">
+        Search Image
+    </a>
+</div>
+
+<form action="/api/assignment/uploads"    method="post"        enctype="multipart/form-data">
+<input  name="myFile"    type="file" class="form-control taj-bottom-padding" required="required"/>
+    <input  name="width"     value="{{model.widget.width}}" style="display: none"/>
+    <input  name="userId"    value="{{model.userId}}"       style="display: none"/>
+    <input  name="websiteId" value="{{model.websiteId}}"    style="display: none"/>
+    <input  name="pageId"    value="{{model.pageId}}"       style="display: none"/>
+    <input  name="widgetId"  value="{{model.widget._id}}"   style="display: none"/>
+
+    <input  name="name"  value="{{model.widget.name}}"   style="display: none"/>
+    <input  name="text"  value="{{model.widget.text}}"   style="display: none"/>
+
+    <button type="submit"    class="btn btn-block btn-primary taj-bottom-margin">
+        Upload Image
+    </button>
+</form>
+
+

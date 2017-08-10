@@ -1,0 +1,86 @@
+
+
+<div ng-include="'views/common/header.view.client.html'"></div>
+
+
+<div class="container-fluid">
+
+    <div class="col-xs-3 visible-lg taj-col-xs-3">
+
+        <!--<div ng-include="'views/page/templates/page-list.view.client.html'"></div>-->
+        <ul class="list-group">
+            <li class="list-group-item active">
+                <div class="row">
+                    <div class="col-xs-10">
+                        Name
+                    </div>
+                    <div class="col-xs-2">
+                        <a class="navbar-link pull-right"
+                           ng-click="model.createNewPage()">
+                            <span class="glyphicon glyphicon-plus white"></span>
+                        </a>
+                    </div>
+                </div>
+            </li>
+
+
+            <li class="list-group-item"
+                ng-repeat="page in model.pageList">
+                <div class="row">
+                    <div class="col-sm-10">
+                        <a ng-click="model.goToWidgets(page.name)">
+                            {{page.name}}
+                        </a>
+                    </div>
+                    <div class="col-xs-2">
+                        <a class="navbar-link pull-right"
+                           ng-click="model.editPage(page.name)">
+                            <span class="glyphicon glyphicon-cog"></span>
+                        </a>
+                    </div>
+                </div>
+            </li>
+
+        </ul>
+    </div>
+
+    <div class="col-xs-12 col-lg-9 taj-col-lg-9">
+        <form>
+
+            <div class="form-group">
+                <label for="pageName"> Name</label>
+                <input class="form-control"
+                       id="pageName"
+                       name="pageName"
+                       ng-model="model.page.name"/>
+            </div>
+
+            <div class="form-group">
+                <label for="pageDescription">Title</label>
+                <textarea class="form-control"
+                          id="pageDescription"
+                          name="pageDescription"
+                          ng-model="model.page.description"
+                          rows="1"></textarea>
+            </div>
+        </form>
+        <a class="btn btn-default btn-primary btn-block"
+           ng-click="model.updatePage(model.page)"
+           role="button">Update</a>
+
+        <a class="btn btn-default btn-success btn-block"
+           ng-click="model.goToWidgetList()"
+           role="button">Widgets</a>
+
+        <a class="btn btn-default btn-danger btn-block"
+           ng-click="model.deletePage()"
+           role="button">Delete</a>
+
+    </div>
+
+</div>
+
+
+<div ng-include="'views/common/footer.view.client.html'"></div>
+
+

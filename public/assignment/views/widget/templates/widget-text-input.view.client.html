@@ -1,0 +1,32 @@
+<label for="inputName">Name</label>
+<input class="form-control"
+       id="inputName"
+       name="inputName"
+       palceholder="US News"
+       ng-model="model.widget.name"/>
+
+<label for="text">Text</label>
+<input ng-model="model.widget.text"
+       class="form-control"
+       id="text"/>
+
+<label for="row">Rows</label>
+<input ng-model="model.widget.rows"
+       class="form-control"
+       type="number"
+       id="row"/>
+
+<label for="placeholder">Placeholder</label>
+<input ng-model="model.widget.placeholder"
+       class="form-control"
+       id="placeholder"/>
+
+<label for="format">Formatted</label>
+<div class="input-group taj-bottom-margin">
+    <input type="text" class="form-control">
+    <span class="input-group-addon">
+        <input ng-model="model.widget.formatted"
+                type="checkbox"
+                id="format"/>
+      </span>
+</div>

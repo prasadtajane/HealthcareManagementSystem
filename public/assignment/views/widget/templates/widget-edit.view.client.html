@@ -1,0 +1,89 @@
+
+
+<nav class="navbar taj-navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+
+        <div class="navbar-text pull-left">
+            <a class="navbar-link"
+               ng-click="model.backToWidgets()">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+        </div>
+
+        <div class="navbar-header col-xs-11 col-sm-5">
+            <a class="navbar-brand">
+                Widget Edit
+            </a>
+        </div>
+
+        <div class="navbar-text pull-right">
+            <a class="navbar-link" ng-click="model.updateWidget(model.widget)">
+                <span class="glyphicon glyphicon-ok"></span>
+            </a>
+        </div>
+    </div>
+</nav>
+
+<!--<div ng-repeat="widget in model.widgets">-->
+
+
+<div class="container-fluid">
+    <div class="row wd-row">
+
+    <div class="taj-col-xs-3 visible-lg">
+        <div class="container-fluid">
+            <div ng-repeat="widget in model.widgetList" class="wd-widget">
+                <div class="wd-widget-toolbar pull-right">
+                    <a ng-click="model.goToEditWidget(widget)">
+                        <span class="glyphicon glyphicon-cog"></span>
+                    </a>
+                    <a>
+                        <span class="glyphicon glyphicon-align-justify"></span>
+                    </a>
+                </div>
+
+                <div ng-include="model.getSnippetUrl(widget.widgetType)"></div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-xs-12 taj-col-lg-9">
+
+    <div ng-switch="model.widget.widgetType">
+        <div ng-switch-when="IMAGE">
+            <ng-include src="'views/widget/templates/widget-image.view.client.html'"/>
+        </div>
+        <div ng-switch-when="HEADING">
+            <ng-include src="'views/widget/templates/widget-heading.view.client.html'"/>
+        </div>
+        <div ng-switch-when="YOUTUBE">
+            <ng-include src="'views/widget/templates/widget-youtube.view.client.html'"/>
+        </div>
+        <div ng-switch-when="HTML">
+            <ng-include src="'views/widget/templates/widget-html.view.client.html'"/>
+        </div>
+        <div ng-switch-when="TEXT-INPUT">
+            <ng-include src="'views/widget/templates/widget-text-input.view.client.html'"/>
+        </div>
+        <div ng-switch-default class="container-fluid">
+            <div class="alert alert-info" ng-click="model.backToWidgets()">
+                Page Under Construction !<br/>
+                Click here to go back.
+            </div>
+        </div>
+    </div>
+
+    <a class="btn btn-default btn-danger btn-block"
+       ng-click="model.deleteWidget()"
+       role="button">Delete</a>
+    </div>
+    </div>
+
+</div>
+
+
+<!--</div>-->
+
+<div ng-include="'views/common/footer.view.client.html'"></div>

@@ -1,0 +1,281 @@
+
+
+    <nav class="navbar taj-navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+
+            <div class="navbar-text pull-left">
+                <a class="navbar-link"
+                   ng-click="model.backToWidgets()">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+            </div>
+
+            <div class="navbar-header col-xs-11 col-sm-5">
+                <a class="navbar-brand">
+                    Choose Widget
+                </a>
+            </div>
+
+            <div class="navbar-text pull-right">
+                <a class="navbar-link">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+
+        <div class="row wd-row">
+
+            <div class="taj-col-xs-3 visible-lg">
+                <div class="container-fluid">
+                    <div ng-repeat="widget in model.widgetList" class="wd-widget">
+                        <div class="wd-widget-toolbar pull-right">
+                            <a ng-click="model.goToEditWidget(widget)">
+                                <span class="glyphicon glyphicon-cog"></span>
+                            </a>
+                            <a>
+                                <span class="glyphicon glyphicon-align-justify"></span>
+                            </a>
+                        </div>
+
+                        <div ng-include="model.getSnippetUrl(widget.widgetType)"></div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 taj-col-lg-9">
+                <ul class="list-group">
+                    <li class="list-group-item active">
+                        <div class="row">
+                            <div class="col-xs-4 col-sm-5">
+                                Name
+                            </div>
+                            <div class="col-sm-3 col-xs-6">
+                                Updated
+                            </div>
+                            <div class="col-sm-2 hidden-xs">
+                                Visists
+                            </div>
+                            <div class="col-xs-2">
+                                <a class="navbar-link pull-right">
+                                    <span class="glyphicon glyphicon-plus white"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-4 col-sm-5">
+                                <a ng-click="model.goToNewWidget('header')">
+                                    Header
+                                </a>
+                            </div>
+                            <div class="col-sm-3 col-xs-6">
+                                2017-07-11
+                            </div>
+                            <div class="col-sm-2 hidden-xs">
+                                100890
+                            </div>
+                            <div class="col-xs-2">
+                                <a ng-click="model.goToNewWidget('header')"
+                                   class="navbar-link pull-right">
+                                    <span class="glyphicon glyphicon-cog"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-4 col-sm-5">
+                                Label
+                            </div>
+                            <div class="col-sm-3 col-xs-6">
+                                2017-07-11
+                            </div>
+                            <div class="col-sm-2 hidden-xs">
+                                100890
+                            </div>
+                            <div class="col-xs-2">
+                                <a ng-click="model.goToNewWidget('label')"
+                                   class="navbar-link pull-right">
+                                    <span class="glyphicon glyphicon-cog"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-4 col-sm-5">
+                                <a ng-click="model.goToNewWidget('html')">
+                                    HTML
+                                </a>
+                            </div>
+                            <div class="col-sm-3 col-xs-6">
+                                2017-07-11
+                            </div>
+                            <div class="col-sm-2 hidden-xs">
+                                100890
+                            </div>
+                            <div class="col-xs-2">
+                                <a ng-click="model.goToNewWidget('html')"
+                                   class="navbar-link pull-right">
+                                    <span class="glyphicon glyphicon-cog"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-4 col-sm-5">
+                                <a ng-click="model.goToNewWidget('text-input')">
+                                    Text Input
+                                </a>
+                            </div>
+                            <div class="col-sm-3 col-xs-6">
+                                2017-07-11
+                            </div>
+                            <div class="col-sm-2 hidden-xs">
+                                100890
+                            </div>
+                            <div class="col-xs-2">
+                                <a ng-click="model.goToNewWidget('text-input')"
+                                   class="navbar-link pull-right">
+                                    <span class="glyphicon glyphicon-cog"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-4 col-sm-5">
+                                Link
+                            </div>
+                            <div class="col-sm-3 col-xs-6">
+                                2017-07-11
+                            </div>
+                            <div class="col-sm-2 hidden-xs">
+                                100890
+                            </div>
+                            <div class="col-xs-2">
+                                <a ng-click="model.goToNewWidget('link')"
+                                   class="navbar-link pull-right">
+                                    <span class="glyphicon glyphicon-cog"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-4 col-sm-5">
+                                Button
+                            </div>
+                            <div class="col-sm-3 col-xs-6">
+                                2017-07-11
+                            </div>
+                            <div class="col-sm-2 hidden-xs">
+                                100890
+                            </div>
+                            <div class="col-xs-2">
+                                <a ng-click="model.goToNewWidget('button')"
+                                   class="navbar-link pull-right">
+                                    <span class="glyphicon glyphicon-cog"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-4 col-sm-5">
+                                <a ng-click="model.goToNewWidget('image')">
+                                    Image
+                                </a>
+                            </div>
+                            <div class="col-sm-3 col-xs-6">
+                                2017-07-11
+                            </div>
+                            <div class="col-sm-2 hidden-xs">
+                                100890
+                            </div>
+                            <div class="col-xs-2">
+                                <a ng-click="model.goToNewWidget('image')"
+                                   class="navbar-link pull-right">
+                                    <span class="glyphicon glyphicon-cog"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-4 col-sm-5">
+                                <a ng-click="model.goToNewWidget('youtube')">
+                                    Youtube
+                                </a>
+                            </div>
+                            <div class="col-sm-3 col-xs-6">
+                                2017-07-11
+                            </div>
+                            <div class="col-sm-2 hidden-xs">
+                                100890
+                            </div>
+                            <div class="col-xs-2">
+                                <a ng-click="model.goToNewWidget('youtube')"
+                                   class="navbar-link pull-right">
+                                    <span class="glyphicon glyphicon-cog"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-4 col-sm-5">
+                                Data Table
+                            </div>
+                            <div class="col-sm-3 col-xs-6">
+                                2017-07-11
+                            </div>
+                            <div class="col-sm-2 hidden-xs">
+                                100890
+                            </div>
+                            <div class="col-xs-2">
+                                <a ng-click="model.goToNewWidget('table')"
+                                   class="navbar-link pull-right">
+                                    <span class="glyphicon glyphicon-cog"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-4 col-sm-5">
+                                Repeater
+                            </div>
+                            <div class="col-sm-3 col-xs-6">
+                                2017-07-11
+                            </div>
+                            <div class="col-sm-2 hidden-xs">
+                                100890
+                            </div>
+                            <div class="col-xs-2">
+                                <a ng-click="model.goToNewWidget('repeater')"
+                                   class="navbar-link pull-right">
+                                    <span class="glyphicon glyphicon-cog"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+
+
+    </div>
+
+
+<div ng-include="'views/common/footer.view.client.html'"></div>

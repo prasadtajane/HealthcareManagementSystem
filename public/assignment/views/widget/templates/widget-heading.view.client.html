@@ -1,0 +1,27 @@
+<label for="headerName">Name</label>
+<input class="form-control"
+       id="headerName"
+       name="headerName"
+       palceholder="US News"
+       ng-model="model.widget.name"/>
+
+<label for="headerText">Text</label>
+<input class="form-control"
+       id="headerText"
+       name="headerText"
+       type="text"
+       placeholder="Sudden surge in Nasdaq index"
+       ng-model="model.widget.text"/>
+
+<label for="headerSize">Size</label>
+<select class="form-control"
+        id="headerSize"
+        name="headerSize"
+        ng-model="model.widget.size">
+    <option value="1">1 (XX-Large)</option>
+    <option value="2">2 (X-Large)</option>
+    <option value="3">3 (Medium)</option>
+    <option value="4">4 (Small)</option>
+    <option value="5">5 (X-Small)</option>
+    <option value="6">6 (XX-Small)</option>
+</select>

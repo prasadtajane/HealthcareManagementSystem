@@ -1,0 +1,73 @@
+
+
+<div ng-include="'views/common/header.view.client.html'"></div>
+
+<div class="container-fluid ">
+
+    <div class="col-xs-3 visible-lg taj-col-xs-3">
+        <ul class="list-group">
+            <li class="list-group-item active">
+                <div class="row">
+                    <div class="col-xs-10">
+                        Name
+                    </div>
+                    <div class="col-xs-2">
+                        <a ng-click="model.createNewWebsite()"
+                           class="navbar-link pull-right">
+                            <span class="glyphicon glyphicon-plus white"></span>
+                        </a>
+                    </div>
+                </div>
+            </li>
+
+
+            <li ng-repeat="website in model.websiteList"
+                class="list-group-item">
+                <div class="row">
+                    <div class="col-sm-10">
+                        <a ng-click="model.goToPages(website.name)">
+                            {{website.name}}
+                        </a>
+                    </div>
+                    <div class="col-xs-2">
+                        <a class="navbar-link pull-right"
+                           ng-click="model.editWebsite(website.name)">
+                            <span class="glyphicon glyphicon-cog"></span>
+                        </a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="col-xs-12 col-lg-9 taj-col-lg-9">
+        <form>
+            <label for="websiteName">  Name</label>
+            <input class="form-control"
+                   id="websiteName"
+                   name="websiteName"
+                   ng-model="model.website.name"
+                   placeholder="Facebook"/>
+
+            <label for="description">  Description</label>
+            <textarea class="form-control"
+                      id="description"
+                      name="description"
+                      ng-model="model.website.description"
+                      rows="5"
+                      placeholder="Write something about the page."></textarea>
+        </form>
+        <a class="btn btn-default btn-primary btn-block"
+           ng-click="model.create(model.website)"
+           role="button">Create</a>
+
+        <a class="btn btn-default btn-danger btn-block"
+           ng-click="model.backToWebsiteList()"
+           role="button">Cancel</a>
+    </div>
+
+</div>
+
+
+<div ng-include="'views/common/footer.view.client.html'">
+</div>

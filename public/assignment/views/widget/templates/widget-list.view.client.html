@@ -1,0 +1,49 @@
+
+    <nav class="navbar taj-navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+
+            <div class="navbar-text pull-left">
+                <a class="navbar-link"
+                   ng-click="model.backToPageList()">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+            </div>
+
+            <div class="navbar-header col-xs-11 col-sm-5">
+                <a class="navbar-brand">
+                    Widgets
+                </a>
+            </div>
+
+            <div class="navbar-text pull-right">
+                <a class="navbar-link"
+                   ng-click="model.goToNewWidgetChooser()">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <div class="container-fluid" wd-sortable>
+
+        <div ng-repeat="widget in model.widgetList" class="wd-widget">
+
+            <div class="wd-widget-toolbar pull-right">
+                <a ng-click="model.goToEditWidget(widget)">
+                    <span class="glyphicon glyphicon-cog"></span>
+                </a>
+
+                <a>
+                    <span class="glyphicon glyphicon-align-justify"></span>
+                </a>
+            </div>
+
+            <div ng-include="model.getSnippetUrl(widget.widgetType)"></div>
+
+        </div>
+
+    </div>
+
+    <div ng-include="'views/common/footer.view.client.html'"></div>

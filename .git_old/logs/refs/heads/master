@@ -1,0 +1,71 @@
+0000000000000000000000000000000000000000 c440dd99383cc4a4c0ec415e611556b59a059592 Prasad Tajane <tajane.pr@husky.neu.edu> 1499366351 -0400	commit (initial): first commit
+c440dd99383cc4a4c0ec415e611556b59a059592 2ad6fa54459d536f635722f7d804064effef3b4c Prasad Tajane <tajane.pr@husky.neu.edu> 1499368634 -0400	commit: changed port in server.js
+2ad6fa54459d536f635722f7d804064effef3b4c 38ddc18e08bcb1c7b69e3778993a56143c2c03a5 Prasad Tajane <tajane.pr@husky.neu.edu> 1499821043 -0400	commit: Second commit
+38ddc18e08bcb1c7b69e3778993a56143c2c03a5 90a24f34cd0d26ae0f25d938ec4fa050ceb81437 Prasad Tajane <tajane.pr@husky.neu.edu> 1499822843 -0400	commit: updated ReadMe file
+90a24f34cd0d26ae0f25d938ec4fa050ceb81437 3ca40917c50b5aa911b3d965afc8fd8554216562 Prasad Tajane <tajane.pr@husky.neu.edu> 1499823913 -0400	commit: Added link of project and assignment
+3ca40917c50b5aa911b3d965afc8fd8554216562 e274e61ad9cac41cec29f94dfe959a7399cb62a8 Prasad Tajane <tajane.pr@husky.neu.edu> 1499960602 -0400	commit: Added profile page
+e274e61ad9cac41cec29f94dfe959a7399cb62a8 c8061706f5de85b81ff93d8989764ae8fbce45e3 Prasad Tajane <tajane.pr@husky.neu.edu> 1500001078 -0400	commit: Added header website-list and website-new
+c8061706f5de85b81ff93d8989764ae8fbce45e3 d32f34f8abe6aae5f43e9037c9ebed34c7575ffb Prasad Tajane <tajane.pr@husky.neu.edu> 1500011894 -0400	commit: Added website-edit
+d32f34f8abe6aae5f43e9037c9ebed34c7575ffb 51cb09705cc5670f44623e2161fd00a6c221d114 Prasad Tajane <tajane.pr@husky.neu.edu> 1500037757 -0400	commit: Added page-list edit new and links in the footer
+51cb09705cc5670f44623e2161fd00a6c221d114 5fcd7f2769e8a0b9bd51ec676fc982d536c27d7f Prasad Tajane <tajane.pr@husky.neu.edu> 1500083904 -0400	commit: Added files related to pages and widgets
+5fcd7f2769e8a0b9bd51ec676fc982d536c27d7f ffbf35abdf8da5b674cc65c48c5e2c81a9114063 Prasad Tajane <tajane.pr@husky.neu.edu> 1500084953 -0400	commit: Added split screen in the widget pages
+ffbf35abdf8da5b674cc65c48c5e2c81a9114063 47e2ef43310564cfd1b80d98494c162803e88bcd Prasad Tajane <tajane.pr@husky.neu.edu> 1500086949 -0400	commit: Added responsiveness for youtube widget
+47e2ef43310564cfd1b80d98494c162803e88bcd c7a153599e968cfd91daf7816be5c81e97b8b3a3 Prasad Tajane <tajane.pr@husky.neu.edu> 1500087504 -0400	commit: Changed background color
+c7a153599e968cfd91daf7816be5c81e97b8b3a3 23ac4cae4e4473706fc5b861b6c2fba1ff1c614f Prasad Tajane <tajane.pr@husky.neu.edu> 1500166872 -0400	commit: Added demo file
+23ac4cae4e4473706fc5b861b6c2fba1ff1c614f 4dbb3e287ab1abf2f5a5af9e6f59bf48f9f18a0b Prasad Tajane <tajane.pr@husky.neu.edu> 1500246174 -0400	commit: Added href to the left arrow
+4dbb3e287ab1abf2f5a5af9e6f59bf48f9f18a0b d68d43575d8a64fa8595c2b262f8516d4c7b968b Prasad Tajane <tajane.pr@husky.neu.edu> 1500353682 -0400	commit: resolving index conflicts
+d68d43575d8a64fa8595c2b262f8516d4c7b968b c2141580d7e7ebee2f6ccda2eda83e6f750bb510 Prasad Tajane <tajane.pr@husky.neu.edu> 1500353687 -0400	pull: Merge made by the 'recursive' strategy.
+c2141580d7e7ebee2f6ccda2eda83e6f750bb510 2c7adf4b604bc28aa27009ebcc9c21b86bacf9d8 Prasad Tajane <tajane.pr@husky.neu.edu> 1500357981 -0400	commit: Added form tag at required places
+2c7adf4b604bc28aa27009ebcc9c21b86bacf9d8 a4a328fc308dedcf8dc5a2bd226eabe20f9f61e3 Prasad Tajane <tajane.pr@husky.neu.edu> 1500390675 -0400	commit: Added back sign in the profile page
+a4a328fc308dedcf8dc5a2bd226eabe20f9f61e3 0b2d89c30ec349ceeff85107c8c7070965bc310c Prasad Tajane <tajane.pr@husky.neu.edu> 1500502049 -0400	commit: Assignment3 part1
+0b2d89c30ec349ceeff85107c8c7070965bc310c af9491aeea1c8c7a582abcb9cd046ae815547dcd Prasad Tajane <tajane.pr@husky.neu.edu> 1500504724 -0400	commit: Assignment3 part2
+af9491aeea1c8c7a582abcb9cd046ae815547dcd df7cfde85f80a52343d83daebb03e051ebc30180 Prasad Tajane <tajane.pr@husky.neu.edu> 1500586128 -0400	commit: Assignment3 part3
+df7cfde85f80a52343d83daebb03e051ebc30180 edf0843b259ac69d3394105eea49daa6cc4bbb2c Prasad Tajane <tajane.pr@husky.neu.edu> 1500587717 -0400	commit: Assignment3 part4 changed directory structure
+edf0843b259ac69d3394105eea49daa6cc4bbb2c ea824918b5f0a1faa830c338245057f3e90c6666 Prasad Tajane <tajane.pr@husky.neu.edu> 1500594787 -0400	commit: Assignment3 part5 - Added weblist controller
+ea824918b5f0a1faa830c338245057f3e90c6666 30756243af8622df87e0172c6e66ead088d7e603 Prasad Tajane <tajane.pr@husky.neu.edu> 1500601450 -0400	commit: Assignment3 part6 - Added weblist controller
+30756243af8622df87e0172c6e66ead088d7e603 c2cd8567574c47546cc92e72288365f113522cd7 Prasad Tajane <tajane.pr@husky.neu.edu> 1500620237 -0400	commit: Assignment3 part7 - Added new website
+c2cd8567574c47546cc92e72288365f113522cd7 c30f60c9759ec0274257534b2f727b42b0644137 Prasad Tajane <tajane.pr@husky.neu.edu> 1500623218 -0400	commit: Assignment3 part8 - Added edit controller start
+c30f60c9759ec0274257534b2f727b42b0644137 823c85de194580a9647c3cded7df191f98ac2958 Prasad Tajane <tajane.pr@husky.neu.edu> 1500661300 -0400	commit: Assignment3 part9 - Added page list controller
+823c85de194580a9647c3cded7df191f98ac2958 e0b45b347a54c283a9280262833a7faaefcf7b67 Prasad Tajane <tajane.pr@husky.neu.edu> 1500670171 -0400	commit: Assignment3 part10 - Added page edit and new controller
+e0b45b347a54c283a9280262833a7faaefcf7b67 0dd486e0dca6fbf854c705a270568f2f73ef43dd Prasad Tajane <tajane.pr@husky.neu.edu> 1500672364 -0400	commit: Assignment3 part11 - Added widget list
+0dd486e0dca6fbf854c705a270568f2f73ef43dd 52838bdef80c687a1e0a512068681b5130fb9d65 Prasad Tajane <tajane.pr@husky.neu.edu> 1500687358 -0400	commit: Assignment3 part12 - Added widget list controller start
+52838bdef80c687a1e0a512068681b5130fb9d65 59ad7682540d5f61b039993df7db376f1e2f3735 Prasad Tajane <tajane.pr@husky.neu.edu> 1500690133 -0400	commit: Assignment3 part13 - Added widget service start
+59ad7682540d5f61b039993df7db376f1e2f3735 0276f1f81e2a4057dfcc3dc270ee35e5e76248e4 Prasad Tajane <tajane.pr@husky.neu.edu> 1500699793 -0400	commit: Assignment3 part14 - Made the widget list page dynamic part 1
+0276f1f81e2a4057dfcc3dc270ee35e5e76248e4 a90076c113599038db965e9863c6027be9bcbf48 Prasad Tajane <tajane.pr@husky.neu.edu> 1500700412 -0400	commit: Assignment3 part15 - Fixed footer
+a90076c113599038db965e9863c6027be9bcbf48 6d13fd37c7de3cc7f9f1e53edb41c724224d18ed Prasad Tajane <tajane.pr@husky.neu.edu> 1500701440 -0400	commit: Assignment3 part16 - Made the widget list page dynamic part 2
+6d13fd37c7de3cc7f9f1e53edb41c724224d18ed 10a54cb27bc490b557565c17ec7c2fd7585ac503 Prasad Tajane <tajane.pr@husky.neu.edu> 1500702411 -0400	commit: Assignment3 part17 - Made the widget list page dynamic part 3
+10a54cb27bc490b557565c17ec7c2fd7585ac503 b43333e19d9466bfc24517d9c72c38090189005a Prasad Tajane <tajane.pr@husky.neu.edu> 1500756354 -0400	commit: Assignment3 part18 - Added Edit functionality
+b43333e19d9466bfc24517d9c72c38090189005a 4ce9d882ed1663b8eef38f22424d99f7b6295671 Prasad Tajane <tajane.pr@husky.neu.edu> 1500756805 -0400	commit: Assignment3 part19 - Added Deletet functionality in the edit widget pages
+4ce9d882ed1663b8eef38f22424d99f7b6295671 9a88efdd20dbc11abff1803cd3eaca4d6b36e863 Prasad Tajane <tajane.pr@husky.neu.edu> 1500762285 -0400	commit: Assignment3 part20 - Added edit functionality for the widget list
+9a88efdd20dbc11abff1803cd3eaca4d6b36e863 118db98cb841ed827327ea0e23fe4a8ace934daf Prasad Tajane <tajane.pr@husky.neu.edu> 1500775083 -0400	commit: Assignment3 part21 - embeded header
+118db98cb841ed827327ea0e23fe4a8ace934daf 38fc2f2c2015dc0f100f0f146989030acaa14b40 Prasad Tajane <tajane.pr@husky.neu.edu> 1500850129 -0400	commit: Assignment3 part22 - Made left hand side dynamic
+38fc2f2c2015dc0f100f0f146989030acaa14b40 914a7f189ae945429d609d17099e874ff29daadd Prasad Tajane <tajane.pr@husky.neu.edu> 1500938217 -0400	commit: Assignment3 part23 - Changed the directory structure and added home page
+914a7f189ae945429d609d17099e874ff29daadd 51f85d4628ae4c2e6a9ff1bdbc789a1c7f30292b Prasad Tajane <tajane.pr@husky.neu.edu> 1500946063 -0400	commit: Assignment3 part24 - Fixed the directory structure
+51f85d4628ae4c2e6a9ff1bdbc789a1c7f30292b 317ec791c5f3affd352c812a9876591bf8816303 Prasad Tajane <tajane.pr@husky.neu.edu> 1500996214 -0400	commit: Assignment3 part25 - Fixed bugs
+317ec791c5f3affd352c812a9876591bf8816303 f6e4931c5c1c25fa4fcfce04694e5e174d7eb44f Prasad Tajane <tajane.pr@husky.neu.edu> 1501033667 -0400	commit: Assignment3 part26 - Fixed back button issue in the widget
+f6e4931c5c1c25fa4fcfce04694e5e174d7eb44f a4090053e393f75268a4a36798ea366c01090823 Prasad Tajane <tajane.pr@husky.neu.edu> 1501037954 -0400	commit: Assignment3 part27 - Fixed issues
+a4090053e393f75268a4a36798ea366c01090823 716769b9cb3bf5b98f68535843e72bf4783a6bd5 Prasad Tajane <tajane.pr@husky.neu.edu> 1501039013 -0400	commit: Assignment3 part28 - Fixed issues
+716769b9cb3bf5b98f68535843e72bf4783a6bd5 ffd6eb741d2c88679a848bfa635cc10ff3541a34 Prasad Tajane <tajane.pr@husky.neu.edu> 1501200970 -0400	commit: Assignment 4.1 - Hiding buttons with help of rootScope
+ffd6eb741d2c88679a848bfa635cc10ff3541a34 c6775fd8fc73a92cdd48bcac9800a93880278490 Prasad Tajane <tajane.pr@husky.neu.edu> 1501302610 -0400	commit: Assignment 4.2 - Added server side services for user and website
+c6775fd8fc73a92cdd48bcac9800a93880278490 c7953e4d01a25cc560f1b3035cdce282b6170bc9 Prasad Tajane <tajane.pr@husky.neu.edu> 1501313795 -0400	commit: Assignment 4.3 - Added server side services for page
+c7953e4d01a25cc560f1b3035cdce282b6170bc9 8c05161836af818b5b686801838c7eb3124635c3 Prasad Tajane <tajane.pr@husky.neu.edu> 1501350354 -0400	commit: Assignment 4.4 - Added server side services for widgets
+8c05161836af818b5b686801838c7eb3124635c3 e73e255e95aa4b9c94cdf94f68800988a22d9f1e Prasad Tajane <tajane.pr@husky.neu.edu> 1501565654 -0400	commit: Assignment 4.5 - Added upload image functionality
+e73e255e95aa4b9c94cdf94f68800988a22d9f1e 130909db4850edd5d7579d5ea98d3d4df5c72343 Prasad Tajane <tajane.pr@husky.neu.edu> 1501613512 -0400	commit: Assignment 4.6 - Adding sortable functionality
+130909db4850edd5d7579d5ea98d3d4df5c72343 83669d8d50dfceffa34e6a6dfbbb5303a9d332b8 Prasad Tajane <tajane.pr@husky.neu.edu> 1501627299 -0400	commit: Assignment 4.7 - Added sortable functionality
+83669d8d50dfceffa34e6a6dfbbb5303a9d332b8 0412390b9778f42580cd1878b641dc8e2cfcdc62 Prasad Tajane <tajane.pr@husky.neu.edu> 1501645646 -0400	commit: Assignment 4.8 - Added separate files for controller and directive
+0412390b9778f42580cd1878b641dc8e2cfcdc62 f685e010ac2d57df5430c7519e2e8287a70a2261 Prasad Tajane <tajane.pr@husky.neu.edu> 1501649922 -0400	commit: Assignment 4.9 - Fixed the beck button issue
+f685e010ac2d57df5430c7519e2e8287a70a2261 9d2317d0dbb4b01b8e09fd76cf82d7e4320a1d64 Prasad Tajane <tajane.pr@husky.neu.edu> 1501696199 -0400	commit: Assignment 4.10 - Added images
+9d2317d0dbb4b01b8e09fd76cf82d7e4320a1d64 4dc90f2bed2a126327a0a216df790f4420095987 Prasad Tajane <tajane.pr@husky.neu.edu> 1501720882 -0400	commit: Assignment 4.11 - Added dropdown in the heading size
+4dc90f2bed2a126327a0a216df790f4420095987 01fdc09783020cfa8cdb531d4bd9cd1e9bc82df7 Prasad Tajane <tajane.pr@husky.neu.edu> 1501722660 -0400	commit: Assignment 4.12 - Added Touch Punch library
+01fdc09783020cfa8cdb531d4bd9cd1e9bc82df7 6b8738fdf8855e50df53f7a441f0d27901c83720 Prasad Tajane <tajane.pr@husky.neu.edu> 1501921019 -0400	commit: assignment 5 - Added initial versions of model and schema for the application
+6b8738fdf8855e50df53f7a441f0d27901c83720 ab13acb10e9227e4c241b56a72cc8b0da59a55d4 Prasad Tajane <tajane.pr@husky.neu.edu> 1501994143 -0400	commit: assignment 5.2 - Added Second
+ab13acb10e9227e4c241b56a72cc8b0da59a55d4 e8036663015fe3bca7d5095fd71f85d7fd427b74 Prasad Tajane <tajane.pr@husky.neu.edu> 1502067863 -0400	commit: assignment 5.3 - Added rest connections to the database
+e8036663015fe3bca7d5095fd71f85d7fd427b74 111a231c48d5cf59f2148909c0cbce2df726ad17 Prasad Tajane <tajane.pr@husky.neu.edu> 1502086900 -0400	commit: assignment 5.4 - Fixed the page and widget issues
+111a231c48d5cf59f2148909c0cbce2df726ad17 02403880077bd029f33e3fd598dcbecc7a57b1b5 Prasad Tajane <tajane.pr@husky.neu.edu> 1502241091 -0400	commit: assignment 5.5 - Added reference data
+02403880077bd029f33e3fd598dcbecc7a57b1b5 d54f653a2a51b03214045b17c11d567e18bd8a4d Prasad Tajane <tajane.pr@husky.neu.edu> 1502244960 -0400	commit: assignment 5.6 - Added the reorder function
+d54f653a2a51b03214045b17c11d567e18bd8a4d 0a1c1874e2fd04b65f60e25171fc0b54a7c00df5 Prasad Tajane <tajane.pr@husky.neu.edu> 1502253774 -0400	commit: assignment 5.7 - Added html page
+0a1c1874e2fd04b65f60e25171fc0b54a7c00df5 3df7fc263697d4be1ae07da56a55321c900abe1f Prasad Tajane <tajane.pr@husky.neu.edu> 1502305339 -0400	commit: assignment 5.8 - Added text-input page
+3df7fc263697d4be1ae07da56a55321c900abe1f f167a5c29713d5b08ca83bd3d4e125f84fbd04a0 Prasad Tajane <tajane.pr@husky.neu.edu> 1502307265 -0400	commit: assignment 5.9 - Added text-input placeholder
+f167a5c29713d5b08ca83bd3d4e125f84fbd04a0 3ab709f5fcf7bfd755c138686f644b7897f52822 Prasad Tajane <tajane.pr@husky.neu.edu> 1502324132 -0400	commit: assignment 5.10 - Changed flicker credentials
+3ab709f5fcf7bfd755c138686f644b7897f52822 1900862719205ec1ec3d4e788715898c5bffd674 Prasad Tajane <tajane.pr@husky.neu.edu> 1502326429 -0400	commit: assignment 5.11 - Fixed checkbox format
+1900862719205ec1ec3d4e788715898c5bffd674 a3d4ec51bd4b57e3156520c2ba6563dd8730c26f Prasad Tajane <tajane.pr@husky.neu.edu> 1502326632 -0400	commit: assignment 5.12 - Text Input Issue

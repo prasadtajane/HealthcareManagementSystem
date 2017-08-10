@@ -1,0 +1,47 @@
+
+    <nav class="navbar taj-navbar-default navbar-fixed-top">
+        <div class="navbar-brand">
+            Register
+        </div>
+    </nav>
+
+
+    <div class="container-fluid">
+
+        <label for="username">Userame</label>
+        <input class="form-control"
+               id="username"
+               ng-model="user.username"
+               name="username"
+               placeholder="alice"/>
+
+        <label for="password">Password</label>
+        <input class="form-control"
+               id="password"
+               name="password"
+               ng-model="user.password1"
+               type="password"
+               placeholder="qwe123"/>
+
+        <label for="re_password">Rewrite Password</label>
+        <input class="form-control"
+               id="re_password"
+               name="re_password"
+               ng-model="user.password2"
+               type="password"
+               placeholder="qwe123"/>
+
+        <a class="btn btn-default btn-primary btn-block"
+           ng-click="model.register(user)"
+           role="button">Register</a>
+
+        <a class="btn btn-default btn-danger btn-block"
+           href="#!/login"
+           role="button">Cancel</a>
+    </div>
+
+    <nav class="navbar taj-navbar-default navbar-fixed-bottom">
+        <div class="navbar-brand">
+            Neu App
+        </div>
+    </nav>

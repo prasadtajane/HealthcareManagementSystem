@@ -1,0 +1,110 @@
+
+
+    <nav class="navbar taj-navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+
+            <div class="navbar-text pull-left ">
+                <a class="navbar-link" >
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+            </div>
+
+            <div class="navbar-header col-xs-11 col-sm-5">
+                <a class="navbar-brand">
+                    Profile
+                </a>
+            </div>
+
+            <div class="navbar-text pull-right">
+                <a class="navbar-link"
+                   ng-click="model.updateUser(model.user)">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <form>
+            <!--<div ng-controller="profileController">-->
+            <div>
+                <div class="form-group">
+                    <label for="username">Userame</label>
+                    <input class="form-control"
+                           id="username"
+                           ng-model="model.user.username"
+                           name="username"
+                           placeholder="alice"
+                           readonly/>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input class="form-control"
+                           id="email"
+                           name="email"
+                           type="email"
+                           placeholder="alice@wonderland.com"
+                           ng-model="model.user.email"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input class="form-control"
+                           id="firstName"
+                           name="firstName"
+                           ng-model="model.user.firstName"
+                           type="text"
+                           placeholder="Alice"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input class="form-control"
+                           id="lastName"
+                           name="lastname"
+                           ng-model="model.user.lastName"
+                           type="text"
+                           placeholder="Wonderland"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="contact">Contact Number</label>
+                    <input class="form-control"
+                           id="contact"
+                           name="contact"
+                           type="number"
+                           placeholder="9867501309"
+                           ng-model="model.user.contact"/>
+                </div>
+            </div>
+        </form>
+        <a class="btn btn-default btn-primary btn-block"
+           ng-click="model.findWebsites()"
+           role="button">Websites</a>
+
+        <a class="btn btn-default btn-danger btn-block"
+           ng-click="model.logout()"
+           role="button">Logout</a>
+
+        <a class="btn btn-default btn-info btn-block"
+           role="button"
+           ng-click="model.updateUser(model.user)">
+            Update</a>
+
+        <a class="btn btn-default btn-danger btn-block"
+           ng-click="model.deleteUser(model.user)"
+           role="button">Unregister</a>
+    </div>
+
+    <nav class="navbar taj-navbar-default navbar-fixed-bottom">
+        <div class="container-fluid">
+            <div class="navbar-text pull-right">
+                <a class="navbar-link"
+                   ng-click="model.update(model.user)">
+                    <span class="glyphicon glyphicon-user"></span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
