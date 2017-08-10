@@ -1,0 +1,28 @@
+<h1>BETTER DOCTOR API</h1>
+<h2>Search By Doctor Name</h2>
+<input placeholder="John"
+       ng-model="doctorName"
+       class="form-control"/>
+<button ng-click="model.searchDoctorByName(doctorName)" class="btn btn-primary btn-block">
+    Search Doctor
+</button>
+
+<table class="table">
+        <tr ng-repeat="doctor in model.docnames.data">
+
+            <td>
+                {{doctor.profile.last_name}},{{doctor.profile.first_name}}
+            </td>
+            <td>
+                <img src="{{doctor.profile.image_url}}"/>
+            </td>
+            <!--<td>-->
+                <!--<a href="#!/details/{{movie.imdbID}}">-->
+                    <!--{{movie.Title}}-->
+                <!--</a>-->
+            <!--</td>-->
+            <!--<td>-->
+               <!--<img ng-src="{{movie.Poster}}"/>-->
+            <!--</td>-->
+        </tr>
+    </table>
