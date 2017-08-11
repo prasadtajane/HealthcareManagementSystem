@@ -3,16 +3,51 @@ input, textarea, select   {
 }
 
 .taj-bottom-margin  {
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+.dl-horizontal dt, dd {
+    text-align: left;
+    padding-top: 7.5px;
+}
+
+.reschedule-btn {
+    line-height: 0.6;
 }
 
 .taj-top-margin {
-    margin-top: 5px;
+    margin-top: 10px;
 }
 
 body {
     padding-top: 60px;
     padding-bottom: 60px;
+}
+
+.navbar-brand {
+    float: left;
+    height: 50px;
+    padding: 15px 15px;
+    font-size: 16px;
+    line-height: 20px;
+    color: floralwhite;
+}
+
+/*.header-navbar-back-image {
+    !*background-color:  #09bde8;*!
+    border-color: #18f306;
+    !*height: 100%;*!
+    background: url("../uploads/heart-pulse-light.jpeg") no-repeat 0 fixed;
+    !*background-size: contain;*!
+    margin: 0 auto;
+    !*background-position: center;*!
+}*/
+
+.header-navbar-back-image {
+    border-color: #18f306;
+    background-image: url("../uploads/heart-pulse-light.jpeg");
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .navbar-default {
@@ -21,8 +56,8 @@ body {
 }
 
 .taj-navbar-default {
-    background-color:  #09bde8;
-    border-color: #18f306;
+    background-color:  #2f865a;
+    border-color: #f3053f;
 }
 
 .white  {
