@@ -6,6 +6,16 @@ input, textarea, select   {
     margin-bottom: 10px;
 }
 
+.panel-padding-left   {
+    padding-left: 10px;
+}
+
+.taj-name-margin  {
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
 .dl-horizontal dt, dd {
     text-align: left;
     padding-top: 7.5px;
