@@ -39,6 +39,12 @@ input, textarea, select   {
     margin-bottom: 10px;
 }
 
+.fit-left-right-top {
+    background-size:contain;
+    height: 70%;
+    height: auto;
+    width: 100%;
+}
 
 .dl-horizontal dt, dd {
     text-align: left;
