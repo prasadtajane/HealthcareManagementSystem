@@ -37,6 +37,16 @@
                 controller: "patientProfileController",
                 controllerAs: "model"
             })
+            .when("/profile/:userId/agent", {
+                templateUrl: "./views/user/templates/agent-profile.view.client.html",
+                controller: "agentProfileController",
+                controllerAs: "model"
+            })
+            .when("/profile/:userId/doctor", {
+                templateUrl: "./views/user/templates/doctor-profile.view.client.html",
+                controller: "doctorProfileController",
+                controllerAs: "model"
+            })
             .when("/register", {
                 templateUrl: "./views/user/templates/register.view.client.html",
                 controller: "registerController",
