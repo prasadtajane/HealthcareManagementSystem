@@ -57,6 +57,11 @@
                 controller: "doctorController",
                 controllerAs: "model"
             })
+            .when("/profile/:userId/review", {
+                templateUrl: "./views/user/templates/review-list.view.client.html",
+                controller: "reviewController",
+                controllerAs: "model"
+            })
 
 
             .when("/profile/:userId/website", {
