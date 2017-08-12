@@ -10,11 +10,17 @@ input, textarea, select   {
     padding-left: 10px;
 }
 
+.left-margin-45 {
+    margin-left: 45px;
+}
+
+
 .taj-name-margin  {
     margin-left: 10px;
     margin-right: 10px;
     margin-bottom: 10px;
 }
+
 
 .dl-horizontal dt, dd {
     text-align: left;
