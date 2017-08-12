@@ -6,6 +6,11 @@ input, textarea, select   {
     margin-bottom: 10px;
 }
 
+.div-width  {
+    width: 400px;
+    margin: auto;
+}
+
 .panel-padding-left   {
     padding-left: 10px;
 }
@@ -24,6 +29,10 @@ input, textarea, select   {
     color:white;
 }
 
+.back-color-white    {
+    background-color:white;
+}
+
 .taj-name-margin  {
     margin-left: 10px;
     margin-right: 10px;
@@ -38,6 +47,11 @@ input, textarea, select   {
 
 .reschedule-btn {
     line-height: 0.6;
+}
+
+.margin-top-20-bottom-25   {
+    margin-top: 20px;
+    margin-bottom: 25px;
 }
 
 .taj-top-margin {

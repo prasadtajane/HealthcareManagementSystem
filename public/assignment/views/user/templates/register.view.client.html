@@ -8,36 +8,104 @@
 
     <div class="container-fluid">
 
-        <label for="username">Userame</label>
-        <input class="form-control"
-               id="username"
-               ng-model="user.username"
-               name="username"
-               placeholder="alice"/>
+        <div class="div-width container-fluid">
+            <h4 class="taj-bottom-margin">
+                Sign up with Facebook or Google
+            </h4>
+        </div>
 
-        <label for="password">Password</label>
-        <input class="form-control"
-               id="password"
-               name="password"
-               ng-model="user.password1"
-               type="password"
-               placeholder="qwe123"/>
+        <div class="div-width container-fluid">
+            <h5 class="margin-top-20-bottom-25">
+                ------------------------ or ------------------------
+            </h5>
+        </div>
 
-        <label for="re_password">Rewrite Password</label>
-        <input class="form-control"
-               id="re_password"
-               name="re_password"
-               ng-model="user.password2"
-               type="password"
-               placeholder="qwe123"/>
+        <div class="input-group taj-bottom-margin">
+            <input type="text"
+                   class="form-control"
+                   aria-describedby="basic-addon2"
+                   id="email"
+                   ng-model="user.email"
+                   name="email"
+                   placeholder="Email Address">
+            <span class="input-group-addon back-color-white"
+                  id="basic-addon1">
+                <span class="glyphicon glyphicon-envelope"></span>
+            </span>
+        </div>
+
+        <div class="input-group taj-bottom-margin">
+            <input type="text"
+                   class="form-control"
+                   aria-describedby="basic-addon2"
+                   id="firstname"
+                   ng-model="user.firstname"
+                   name="firstname"
+                   placeholder="First Name">
+            <span class="input-group-addon back-color-white"
+                  id="basic-addon2">
+                <span class="glyphicon glyphicon-user"></span>
+            </span>
+        </div>
+
+        <div class="input-group taj-bottom-margin">
+            <input type="text"
+                   class="form-control"
+                   aria-describedby="basic-addon2"
+                   id="lastname"
+                   ng-model="user.lastname"
+                   name="lastname"
+                   placeholder="Last Name">
+            <span class="input-group-addon back-color-white"
+                  id="basic-addon3">
+                <span class="glyphicon glyphicon-user"></span>
+            </span>
+        </div>
+
+        <div class="input-group taj-bottom-margin">
+            <input type="text"
+                   class="form-control"
+                   aria-describedby="basic-addon2"
+                   id="password"
+                   name="password"
+                   ng-model="user.password1"
+                   type="password"
+                   placeholder="Create a Password">
+            <span class="input-group-addon back-color-white"
+                  id="basic-addon4">
+                <span class="glyphicon glyphicon-lock"></span>
+            </span>
+        </div>
+
+        <div class="row container-fluid">
+            <div class="col-xs-2 hidden-xs"></div>
+            <div class="col-xs-6 col-sm-3 panel-padding-left">
+                <input type="date"
+                       ng-model="user.dob"
+                       class="form-control"/>
+            </div>
+            <div class="col-xs-6 col-sm-5 panel-padding-left">
+                <select class="form-control"
+                        placeholder="Create a Password"
+                        ng-model="user.type">
+                    <option value="" disabled selected>Select Type</option>
+                    <option value="patient">Patient</option>
+                    <option value="doctor">Doctor</option>
+                    <option value="agent">Agent</option>
+                </select>
+            </div>
+            <div class="col-xs-2 hidden-xs"></div>
+        </div>
 
         <a class="btn btn-default btn-primary btn-block"
            ng-click="model.register(user)"
-           role="button">Register</a>
+           role="button">Sign Up
+        </a>
 
         <a class="btn btn-default btn-danger btn-block"
            href="#!/login"
-           role="button">Cancel</a>
+           role="button">Cancel
+        </a>
     </div>
 
     <nav class="navbar taj-navbar-default navbar-fixed-bottom">

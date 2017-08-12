@@ -7,9 +7,9 @@
 (function ()   {
     angular
         .module("WamApp")
-        .controller("patientProfileController", patientProfileController)
+        .controller("doctorProfileController", doctorProfileController)
 
-    function patientProfileController($routeParams, $location, userService, $rootScope) {
+    function doctorProfileController($routeParams, $location, userService, $rootScope) {
 
         var model = this;
         //model.searchProfile = searchProfile;
