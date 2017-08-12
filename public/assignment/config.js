@@ -62,6 +62,11 @@
                 controller: "agentController",
                 controllerAs: "model"
             })
+            .when("/appointment", {
+                templateUrl: "./views/user/templates/appointment.view.client.html",
+                controller: "appointmentController",
+                controllerAs: "model"
+            })
             .when("/profile/:userId/review", {
                 templateUrl: "./views/user/templates/review-list.view.client.html",
                 controller: "reviewController",
