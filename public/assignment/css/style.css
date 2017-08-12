@@ -14,6 +14,15 @@ input, textarea, select   {
     margin-left: 45px;
 }
 
+.review-image  {
+    height:50px;
+    width:auto;/*maintain aspect ratio*/
+    max-width:100px;
+}
+
+.color-white    {
+    color:white;
+}
 
 .taj-name-margin  {
     margin-left: 10px;
