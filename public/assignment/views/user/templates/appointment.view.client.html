@@ -1,0 +1,94 @@
+
+<nav class="navbar taj-navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+
+        <div class="navbar-text pull-left ">
+            <a class="navbar-link" >
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+        </div>
+
+        <div class="navbar-header col-xs-11 col-sm-5">
+            <a class="navbar-brand">
+                Profile
+            </a>
+        </div>
+
+        <div class="navbar-text pull-right">
+            <a class="navbar-link"
+               ng-click="model.updateUser(model.user)">
+                <span class="glyphicon glyphicon-ok"></span>
+            </a>
+        </div>
+    </div>
+</nav>
+
+
+
+<nav class="navbar taj-navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="navbar-text pull-right">
+            <a class="navbar-link"
+               ng-click="model.update(model.user)">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+        </div>
+    </div>
+</nav>
+
+
+
+
+
+
+
+
+
+<div class="boxWrapper"><div class="form-item form-type-select form-item-hospitals">
+    <label for="edit-hospitals">Hospital <span class="form-required" title="This field is required.">*</span></label>
+    <select id="edit-hospitals" name="hospitals" class="form-select required ajax-processed"><option value="">Select Hospital</option><option value="10" selected="selected">Ahmedabad</option><option value="1">Doddaballapur</option><option value="2">Ghaziabad</option><option value="8">Hebbal</option><option value="4">Kolkata</option><option value="5">Mysore</option><option value="6">Palam Vihar</option><option value="3">Patiala</option><option value="9">Pune</option><option value="36">Sarjapur Road</option><option value="12">Whitefield</option><option value="7">Yeshwanthpur</option></select>
+</div>
+    <div id="specailityDiv"><div class="form-item form-type-select form-item-speciality">
+        <label for="edit-speciality">Department / Specialty <span class="form-required" title="This field is required.">*</span></label>
+        <select class="specialitySelect form-select required ajax-processed" id="edit-speciality" name="speciality"><option value="" selected="selected">Select</option><option value="616">Anesthesiology</option><option value="29">Bariatric Surgery</option><option value="233">Cardiology</option><option value="27">Critical Care Medicine</option><option value="31">Dermatology</option><option value="48">ENT</option><option value="50">Emergency Medicine</option><option value="33">Endocrinology</option><option value="146">Gastroenterology</option><option value="833">General Surgery &amp; Surgical Gastroenterology</option><option value="599">Infectious Diseases</option><option value="150">Internal Medicine</option><option value="49">Medical Oncology</option><option value="152">Minimally Invasive (Laparoscopic) Surgery</option><option value="153">Neonatology</option><option value="154">Nephrology</option><option value="155">Neurology</option><option value="156">Neurosurgery</option><option value="2041">Nutrition &amp; Dietetics</option><option value="51">Obstetrics &amp; Gynecology</option><option value="237">Ophthalmology</option><option value="617">Orthopedics and Joint Replacements</option><option value="234">Pain Management</option><option value="159">Pediatric Surgery</option><option value="601">Pediatrics</option><option value="161">Plastic &amp; Reconstructive Surgery</option><option value="162">Psychiatry</option><option value="163">Pulmonology</option><option value="249">Rheumatology</option><option value="165">Surgical Oncology</option><option value="166">Urology</option><option value="167">Vascular Surgery</option></select>
+    </div>
+    </div><div id="doctorsDiv"><div class="form-item form-type-select form-item-doctor">
+        <label for="edit-doctor">Doctors </label>
+        <select class="doctorSelect form-select" id="edit-doctor" name="doctor"><option value="" selected="selected">Select</option></select>
+    </div>
+    </div><div class="form-item form-type-radios form-item-appointment-cateogry">
+        <label for="edit-appointment-cateogry">Appointment category </label>
+        <div id="edit-appointment-cateogry" class="form-radios"><div class="form-item form-type-radio form-item-appointment-cateogry">
+            <input type="radio" id="edit-appointment-cateogry-fv" name="appointment_cateogry" value="FV" class="form-radio">  <label class="option" for="edit-appointment-cateogry-fv">First visit </label>
+
+        </div>
+            <div class="form-item form-type-radio form-item-appointment-cateogry">
+                <input type="radio" id="edit-appointment-cateogry-fuv" name="appointment_cateogry" value="FUV" class="form-radio">  <label class="option" for="edit-appointment-cateogry-fuv">Follow up visit </label>
+
+            </div>
+        </div>
+    </div>
+    <div class="form-item form-type-radios form-item-priority">
+        <label for="edit-priority">Priority <span class="form-required" title="This field is required.">*</span></label>
+        <div id="edit-priority" class="form-radios"><div class="form-item form-type-radio form-item-priority">
+            <input type="radio" id="edit-priority-fv" name="priority" value="FV" class="form-radio">  <label class="option" for="edit-priority-fv">Next available slot </label>
+
+        </div>
+            <div class="form-item form-type-radio form-item-priority">
+                <input type="radio" id="edit-priority-wnsd" name="priority" value="WNSD" class="form-radio">  <label class="option" for="edit-priority-wnsd">Within next 7 days </label>
+
+            </div>
+            <div class="form-item form-type-radio form-item-priority">
+                <input type="radio" id="edit-priority-wnfd" name="priority" value="WNFD" class="form-radio">  <label class="option" for="edit-priority-wnfd">Within next 15 days </label>
+
+            </div>
+        </div>
+    </div>
+    <div class="form-item form-type-textarea form-item-message">
+        <label for="edit-message">Message </label>
+        <div class="form-textarea-wrapper"><textarea id="edit-message" name="message" cols="60" rows="5" class="form-textarea"></textarea></div>
+    </div>
+    <div class="form-item form-type-checkbox form-item-ccyourself">
+        <input type="checkbox" id="edit-ccyourself" name="ccyourself" value="1" class="form-checkbox"> <span class="field-suffix">Send yourself a copy</span>
+    </div>
+</div>
