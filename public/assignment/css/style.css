@@ -6,6 +6,11 @@ input, textarea, select   {
     margin-bottom: 10px;
 }
 
+.div-width  {
+    width: 400px;
+    margin: auto;
+}
+
 .panel-padding-left   {
     padding-left: 10px;
 }
@@ -24,12 +29,22 @@ input, textarea, select   {
     color:white;
 }
 
+.back-color-white    {
+    background-color:white;
+}
+
 .taj-name-margin  {
     margin-left: 10px;
     margin-right: 10px;
     margin-bottom: 10px;
 }
 
+.fit-left-right-top {
+    background-size:contain;
+    height: 70%;
+    height: auto;
+    width: 100%;
+}
 
 .dl-horizontal dt, dd {
     text-align: left;
@@ -40,8 +55,18 @@ input, textarea, select   {
     line-height: 0.6;
 }
 
+.margin-top-20-bottom-25   {
+    margin-top: 20px;
+    margin-bottom: 25px;
+}
+
 .taj-top-margin {
     margin-top: 10px;
+}
+
+
+.taj-top-margin-25 {
+    margin-top: 25px;
 }
 
 body {
