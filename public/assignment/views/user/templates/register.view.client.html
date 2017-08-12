@@ -20,7 +20,7 @@
             </h5>
         </div>
 
-        <div class="input-group taj-bottom-margin">
+        <!--<div class="input-group taj-bottom-margin">
             <input type="text"
                    class="form-control"
                    aria-describedby="basic-addon2"
@@ -32,11 +32,11 @@
                   id="basic-addon1">
                 <span class="glyphicon glyphicon-envelope"></span>
             </span>
-        </div>
+        </div>-->
 
 
         <div class="row">
-            <div class="col-xs-6">
+            <div class="col-xs-12">
                 <div class="input-group taj-bottom-margin">
                     <input type="text"
                            class="form-control"
@@ -51,7 +51,7 @@
                     </span>
                 </div>
             </div>
-            <div class="col-xs-6">
+            <div class="col-xs-12">
                 <div class="input-group taj-bottom-margin">
                     <input type="text"
                            class="form-control"
@@ -83,7 +83,7 @@
         </div>
 
         <div class="row">
-            <div class="col-xs-6">
+            <div class="col-xs-12">
                 <div class="input-group taj-bottom-margin">
                     <input class="form-control"
                            aria-describedby="basic-addon2"
@@ -98,8 +98,7 @@
                 </span>
                 </div>
             </div>
-            <div class="col-xs-6">
-
+            <div class="col-xs-12">
                 <div class="input-group taj-bottom-margin">
                     <input class="form-control"
                            aria-describedby="basic-addon2"
@@ -116,24 +115,20 @@
             </div>
         </div>
 
-        <div class="row container-fluid">
-            <div class="col-xs-2 hidden-xs"></div>
-            <div class="col-xs-6 col-sm-3 panel-padding-left">
-                <input type="date"
-                       ng-model="user.dob"
-                       class="form-control"/>
-            </div>
-            <div class="col-xs-6 col-sm-5 panel-padding-left">
+        <div class="row">
+            <div class="col-lg-3 hidden-sm"></div>
+            <div class="col-lg-6 col-sm-12">
                 <select class="form-control"
                         placeholder="Create a Password"
+                        id="usertype"
                         ng-model="user.type">
-                    <option value="" disabled selected>Select Type</option>
+                    <option value="" disabled selected>Select User Type</option>
                     <option value="patient">Patient</option>
                     <option value="doctor">Doctor</option>
                     <option value="agent">Agent</option>
                 </select>
             </div>
-            <div class="col-xs-2 hidden-xs"></div>
+            <div class="col-lg-3 hidden-sm"></div>
         </div>
 
         <a class="btn btn-default btn-primary btn-block"
