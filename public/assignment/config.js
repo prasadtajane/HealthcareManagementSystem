@@ -52,6 +52,11 @@
                 controller: "registerController",
                 controllerAs: "model"
             })
+            .when("/doctor", {
+                templateUrl: "./views/user/templates/doctor-list.view.client.html",
+                controller: "doctorController",
+                controllerAs: "model"
+            })
 
 
             .when("/profile/:userId/website", {
