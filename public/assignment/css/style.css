@@ -58,6 +58,11 @@ input, textarea, select   {
     margin-top: 10px;
 }
 
+
+.taj-top-margin-25 {
+    margin-top: 25px;
+}
+
 body {
     padding-top: 60px;
     padding-bottom: 60px;
