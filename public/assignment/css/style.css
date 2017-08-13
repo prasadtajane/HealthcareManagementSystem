@@ -46,6 +46,33 @@ input, textarea, select   {
     width: 100%;
 }
 
+.top-left-padding {
+    padding-top: 290px;
+    padding-left: 42px;
+    color: cadetblue;
+}
+
+.for_patients {
+    background: url("../uploads/patient2.jpg") no-repeat scroll 0 0 transparent;
+    background-size: cover;
+    height: 512px;
+    background-position: center top;
+}
+
+.for_doctors {
+    background: url("../uploads/doctor.jpg") no-repeat scroll 0 0 transparent;
+    background-size: cover;
+    height: 512px;
+    background-position: center top;
+}
+
+.for_agents {
+    background: url("../uploads/medicare-agent.jpg") no-repeat scroll 0 0 transparent;
+    background-size: cover;
+    height: 512px;
+    background-position: center top;
+}
+
 .dl-horizontal dt, dd {
     text-align: left;
     padding-top: 7.5px;
