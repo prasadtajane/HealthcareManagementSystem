@@ -21,7 +21,14 @@ mongoose.Promise = q.Promise;
 
 module.exports = db;
 
+var language = new mongoose.Schema({
+    name:String,
+    code:String
+},  {
+    collection:"language"
+});
 
+var languageModel = mongoose.model("languageModel", language);
 
 var userSchema = new mongoose.Schema({
     username:String,
@@ -31,15 +38,15 @@ var userSchema = new mongoose.Schema({
     email:String,
     title:String,
     gender:String,
-    languages:[{
-        name:String,
-        code:String
-    }],
+    languages:[{type:mongoose.Schema.Types.ObjectId, ref:"languageModel"}],
     isAdmin:{type:Boolean, default:false}
 
 }, {
     collection:"user"
 });
+
+
+var User = mongoose.model("profile", userSchema);
 
 var websiteSchema = mongoose.Schema({
         _user:String,
@@ -77,7 +84,6 @@ function callback(err, result)   {
 function createUserCollection(users)  {
 
     function createUsers(arrayName) {
-        var User = mongoose.model("profile", userSchema);
 
         for (a in arrayName)  {
             User.create(arrayName[a], callback)
@@ -116,6 +122,18 @@ function createWebsiteCollection(websites) {
     });
 }*/
 
-createUserCollection(users);
+//createUserCollection(users);
 //createWebsiteCollection(websites);
 //findAll();
+function findUser() {
+    User.find({"username" : "jannunzi"})
+        .populate('languages')
+        .exec()
+        .then(function (result) {
+            var u = result;
+            console.log(u);
+            var l = result.languages;
+            console.log(l);
+    });}
+
+findUser();
