@@ -23,7 +23,10 @@
             alert("Welcome " + user.username + " !!!")
             var newUser = {
                 username:user.username,
-                password:user.password1
+                password:user.password1,
+                firstName:user.firstName,
+                lastName:user.lastName,
+                type:user.type,
             }
             userService.createUser(newUser)
                 .then( function (response) {
