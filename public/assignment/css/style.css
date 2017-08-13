@@ -109,18 +109,13 @@ body {
     color: whitesmoke;
 }
 
-.navbar-default {
+/*.navbar-default {
     background-color: #57bbe8;
     border-color: #18f306;
-}
+}*/
 
 .taj-navbar-default .navbar-nav>li>a{
-    color: white;
-}
-
-
-.taj-navbar-default .navbar-nav>li>a{
-    color: white;
+    color: whitesmoke;
 }
 
 .taj-navbar-default .navbar-nav>li>a:hover{
@@ -128,8 +123,20 @@ body {
 }
 
 .taj-navbar-default {
+    color: whitesmoke;
     background-color: #46a1b4;
-    border-color: #f3053f;
+}
+
+.service-img {
+    opacity: 0.9;
+}
+
+.hservice {
+    /* background: rgb(242, 247, 255); */
+    background-color: rgba(244, 247, 253, 1);
+    margin: 30px 0px;
+    padding-bottom: 30px;
+    transition: all 0.3s ease-in;
 }
 
 .white  {
