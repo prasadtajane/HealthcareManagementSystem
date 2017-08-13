@@ -21,15 +21,6 @@ mongoose.Promise = q.Promise;
 
 module.exports = db;
 
-var language = new mongoose.Schema({
-    name:String,
-    code:String
-},  {
-    collection:"language"
-});
-
-var languageModel = mongoose.model("languageModel", language);
-
 var userSchema = new mongoose.Schema({
     username:String,
     password:String,
@@ -38,7 +29,7 @@ var userSchema = new mongoose.Schema({
     email:String,
     title:String,
     gender:String,
-    languages:[{type:mongoose.Schema.Types.ObjectId, ref:"languageModel"}],
+    languages:[{name:String, code:String}],
     isAdmin:{type:Boolean, default:false}
 
 }, {
@@ -126,13 +117,11 @@ function createWebsiteCollection(websites) {
 //createWebsiteCollection(websites);
 //findAll();
 function findUser() {
-    User.find({"username" : "jannunzi"})
-        .populate('languages')
-        .exec()
+    User.find({"username" : "jannunzi"},{languages:1})
         .then(function (result) {
             var u = result;
             console.log(u);
-            var l = result.languages;
+            var l = result.languages.;
             console.log(l);
     });}
 
