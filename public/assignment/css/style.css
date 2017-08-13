@@ -100,13 +100,35 @@ body {
     background-repeat: no-repeat;
 }
 
+#menucollapse   {
+    color: whitesmoke;
+}
+
+#logo>a:hover, #logo>a  {
+    background-color: #46a1b4;
+    color: whitesmoke;
+}
+
 .navbar-default {
-    background-color: #09bde8;
+    background-color: #57bbe8;
     border-color: #18f306;
 }
 
+.taj-navbar-default .navbar-nav>li>a{
+    color: white;
+}
+
+
+.taj-navbar-default .navbar-nav>li>a{
+    color: white;
+}
+
+.taj-navbar-default .navbar-nav>li>a:hover{
+    background-color:#20606d;
+}
+
 .taj-navbar-default {
-    background-color:  #2f865a;
+    background-color: #46a1b4;
     border-color: #f3053f;
 }
 
