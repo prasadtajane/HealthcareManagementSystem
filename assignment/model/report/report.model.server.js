@@ -4,7 +4,7 @@
 
 var mongoose = require("mongoose");
 var reportSchema = require('./report.schema.server');
-var db = require('../database');
+var db = require('../models.server');
 
 var reportModel = mongoose.model('ReportModel',reportSchema);
 var appointmentModel = require('../appointment/appointment.model.server');

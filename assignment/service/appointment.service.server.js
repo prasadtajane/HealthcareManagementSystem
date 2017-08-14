@@ -118,7 +118,9 @@ function createappointment(request, response) {
         .createappointment(newAppointment)
         .then(function (appointment) {
             //console.log(page);
-            response.json(appointment);
+            console.log("Inside appointment server then - createappointment");
+            console.log(appointment);
+            return response.json(appointment);
         });
 }
 

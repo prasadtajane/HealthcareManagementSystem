@@ -28,6 +28,9 @@ module.exports = appointmentModel;
 appointment = appointmentModel;
 
 
+//.log(appointment);
+
+
 
 function findAppointmentByUserId(userId) {
     return userModel
@@ -42,8 +45,10 @@ function createappointment(appointmentIn) {
     var userList = []
     userList.push(appointmentIn.doctorId);
     userList.push(appointmentIn.patientId);
-    console.log(userList);
-    return appointment.create(appointmentIn)
+    // console.log("manish");
+    // console.log(appointmentIn);
+    return appointment
+        .create(appointmentIn)
         .then(function (appointmentOut) {
             console.log("inside server appointment then - createappointment");
             return userModel

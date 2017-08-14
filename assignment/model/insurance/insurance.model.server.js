@@ -5,7 +5,7 @@
 
 var mongoose = require("mongoose");
 var insuranceSchema = require('./insurance.schema.server');
-var db = require('../database');
+var db = require('../models.server');
 
 var insuranceModel = mongoose.model('InsuranceModel',insuranceSchema);
 // var appointmentModel = require('../appointment/appointment.model.server');
