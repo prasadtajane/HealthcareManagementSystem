@@ -13,8 +13,6 @@ if(process.env.MLAB_USERNAME_WEBDEV) { // check if running remotely
     connectionString = 'mongodb://' + username + ':' + password;
     connectionString += '@ds145312.mlab.com:45312/heroku_hk8k7m0j'; // user yours
 }
-// Replace "@ds157268.mlab.com:57268/heroku_nh37fqq4"
-// above with your own URL given to you by mLab
 
 var db = mongoose.connect(connectionString);
 mongoose.Promise = q.Promise;
@@ -66,7 +64,13 @@ var userSchema = new mongoose.Schema({
     diseases:String,
     operations:String,
     userType:String,
-    isAdmin:{type:Boolean, default:false}
+    isAdmin:{type:Boolean, default:false},
+
+    insuranceUid:String,
+    smokeStatus:{type:Boolean, default:false},
+
+    insuranceId:[{type:mongoose.Schema.Types.ObjectId, ref:"InsuranceModel"}],
+    appointmentId:{type:mongoose.Schema.Types.ObjectId, ref:"appointmentModel"}
 
 }, {
     collection:"user"
@@ -74,17 +78,6 @@ var userSchema = new mongoose.Schema({
 
 
 var User = mongoose.model("user", userSchema);
-
-var websiteSchema = mongoose.Schema({
-        _user:String,
-        name:String,
-        description:String,
-        pages:String,
-        dateCreated:{type:Date, default:Date.now()}
-    },  {
-    collection:"website"
-    });
-
 
 var users = [
     {username: "alice", password: "alice", firstName: "Alice", lastName: "Wonder", email: "a@b.com", contact: 123,  isAdmin: true
@@ -94,55 +87,17 @@ var users = [
     }];
 
 
-
-function callback(err, result)   {
-    //console.log(err);
-    //console.log(result);
-}
-
 function createUserCollection(users)  {
 
     function createUsers(arrayName) {
-
-        for (a in arrayName)  {
-            //user.practices=arrayName[a].practices,
-
-            //user.educations=arrayName[a].educations,
-
-            //user.profile=arrayName[a].profile,
-
-            //user.ratings=arrayName[a].ratings,
-
-            //user.specialties=arrayName[a].specialties,
-
-            //user.licenses=arrayName[a].licenses,
-
-            //user.uid=arrayName[a].uid,
-            //user.npi=arrayName[a].npi,
-
-            //user.isAdmin=arrayName[a].isAdmin
-
-            User.create(arrayName[a], callback)
-        }
-        //User.insertMany(arrayName);
+        User.insertMany(arrayName);
         console.log("Users Created!");
     }
     createUsers(users);
 }
 
 
-
-/*function findAll() {
-    var User = mongoose.model("profile", userSchema);
-    User.find(function (err, results) {
-        console.log(results);
-    });
-}*/
-
-//
 createUserCollection(users);
-//createWebsiteCollection(websites);
-//findAll();
 function findUser() {
     User.find({"username" : "jannunzi"})
         .then(function (result) {
