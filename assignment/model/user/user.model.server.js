@@ -56,14 +56,14 @@ function removeInsuranceFromUser(insuranceId, userId) {
 }
 
 function addAppInSingleUser(appointmentId, userId) {
-    console.log("inside user server - addAppInSingleUser")
-    console.log(appointmentId, userId)
+    //console.log("inside user server - addAppInSingleUser")
+    //console.log(appointmentId, userId)
     return userModel
         .findOne({_id:userId})
         .then(function (user) {
             user._appointments.push(appointmentId);
-            console.log("inside user server then - addAppInSingleUser");
-            console.log(user._appointments);
+            //console.log("inside user server then - addAppInSingleUser");
+            //console.log(user._appointments);
             return user.save();
         });
 }
@@ -82,16 +82,16 @@ function addAppointmentInUsers(appointmentId, userList) {
         .findOne({_id:userList[0]})
         .then(function (docuser) {
             docuser._appointments.push(appointmentId);
-            console.log("inside user server then 1- addAppInSingleUser");
-            console.log(docuser._appointments);
+            //console.log("inside user server then 1- addAppInSingleUser");
+            //console.log(docuser._appointments);
             docuser.save()
                 .then(function (docuser) {
                     userModel
                     .findOne({_id:userList[1]})
                         .then(function (docuser) {
                             docuser._appointments.push(appointmentId);
-                            console.log("inside user server then 1- addAppInSingleUser");
-                            console.log(docuser._appointments);
+                            //console.log("inside user server then 1- addAppInSingleUser");
+                            //console.log(docuser._appointments);
                             return docuser.save();
                         })
                 })
@@ -149,29 +149,43 @@ function deleteUser(userId) {
 }
 
 function findAllAppointmentsByUserId(userId) {
+    //console.log("inside user server - findAllAppointmentsByUserId");
+    //console.log(userId);
     return userModel
-        .findOne({username: userId})
+        .findOne({_id: userId})
         .then( function (user) {
             var appointmentList = user._appointments;
+            //console.log("inside user server then - findAllAppointmentsByUserId");
+            //console.log(appointmentList);
+            //console.log(appointmentList.length);
+            //console.log(typeof appointmentList.length);   //number
             if (appointmentList.length !== 0)    {
-                user
+                //console.log("inside user server then, if - findAllAppointmentsByUserId");
+                return userModel
+                    .findOne({_id: userId})
                     .populate('_appointments')
                     .exec()
                     .then(function (userOut) {
+                        //console.log("inside user server then, populate - findAllAppointmentsByUserId");
+                        //console.log(userOut);
                         return userOut;
                     })
             }
-            else return user;
+            else {
+                //console.log("inside user server then, else - findAllAppointmentsByUserId");
+                return user;
+            }
         });
 }
 
 function findAllInsurancesByUserId(userId) {
     return userModel
-        .findOne({username: name})
+        .findOne({_id: userId})
         .then( function (user) {
             var appointmentList = user._insurances;
             if (appointmentList.length !== 0)    {
-                user
+                return userModel
+                    .findOne({_id: userId})
                     .populate('_insurances')
                     .exec()
                     .then(function (userOut) {

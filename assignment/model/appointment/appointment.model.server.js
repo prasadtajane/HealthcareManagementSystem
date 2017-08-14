@@ -41,7 +41,7 @@ function findAppointmentByUserId(userId) {
 }
 
 function createappointment(appointmentIn) {
-    console.log("inside server appointment - createappointment");
+    //console.log("inside server appointment - createappointment");
     var userList = []
     userList.push(appointmentIn.doctorId);
     userList.push(appointmentIn.patientId);
@@ -50,11 +50,11 @@ function createappointment(appointmentIn) {
     return appointment
         .create(appointmentIn)
         .then(function (appointmentOut) {
-            console.log("inside server appointment then - createappointment");
+            //console.log("inside server appointment then - createappointment");
             return userModel
                 .addAppointmentInUsers(appointmentOut._id, userList)
                 .then(function (id) {
-                    console.log("inside server appointment then - createappointment, userModel");
+                    //console.log("inside server appointment then - createappointment, userModel");
                     return appointmentOut;
                 });
             return appointmentOut;
@@ -140,7 +140,8 @@ function findReportsByAppointmentId(appointmentId) {
         .then(function (appointment) {
             var reports = appointment._reports;
             if (reports.length !== 0)   {
-                appointment
+                return appointmentModel
+                    .findOne({_id:appointmentId})
                     .populate('_reports')
                     .exec()
                     .then(function (appointmentOut) {

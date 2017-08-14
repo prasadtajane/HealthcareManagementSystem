@@ -35,6 +35,7 @@ function getAppointments(request, response) {
         findappointmentByPriority(request, response);
     }
     else    {
+        console.log("inside appointment server final else");
         findAppointmentByUserId(request, response);
     }
 }
@@ -86,9 +87,13 @@ function findappointmentByPriority(request, response) {
 
 function findAppointmentByUserId(request, response) {
     var userId = request.params.userId;
+    console.log("inside appointment server - findAppointmentByUserId");
+    console.log(userId);
     return appointmentModel
         .findAppointmentByUserId(userId)
         .then(function (appointment) {
+            console.log("inside appointment server then - findAppointmentByUserId");
+            console.log(appointment);
             response.json(appointment);
         }, function (err) {
             response.sendStatus(404).send(err);
