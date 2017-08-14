@@ -7,11 +7,11 @@ var userModel = require("../model/user/user.model.server");
 
 var users = [];
 
-app.get("/api/user", getUsers);
-app.get("/api/user/:userId",findUserById);
-app.post("/api/user/", createUser);
-app.put("/api/user/:userId", updateUser);
-app.delete("/api/user/:userId", deleteUser);
+app.get("/api/profile", getUsers);
+app.get("/api/profile/:userId",findUserById);
+app.post("/api/profile/", createUser);
+app.put("/api/profile/:userId", updateUserByUserId);
+app.delete("/api/profile/:userId", deleteUserByUserId);
 
 function callback(err, result) {
      if(err) {
@@ -27,17 +27,17 @@ function getUsers(request, response) {
     var username = request.query.username;
     var password = request.query.password;
     if (username && password)   {
-        findUserByCredentials(request, response);
+        findUserByUsernameAndPassword(request, response);
     }
     else if (username)  {
         findUserByUsername(request, response);
     }
     else    {
-        findAll(request, response);
+        getAllUsers(request, response);
     }
 }
 
-function findUserByCredentials(request, response)  {
+function findUserByUsernameAndPassword(request, response)  {
     userModel
         .findUserByCredentials(
             request.query.username
@@ -65,9 +65,9 @@ function findUserByUsername(request, response) {
         });
 }
 
-function findAll(request, response) {
+function getAllUsers(request, response) {
     userModel
-        .findAll()
+        .findAll(callback)
         .then(function (user) {
             response.json(user);
         });
@@ -76,7 +76,7 @@ function findAll(request, response) {
 function findUserById(request, response) {
     //console.log(request.params.userId)
     return  userModel
-        .findUserById(request.params.userId)
+        .findUserById(request.params.userId, callback)
         .then(function (user) {
             response.json(user);
         });
@@ -97,7 +97,7 @@ function createUser(request, response) {
     //return;
 }
 
-function updateUser(request, response) {
+function updateUserByUserId(request, response) {
     var userId = request.params.userId;
     var user = request.body;
     //console.log([user, userId]);
@@ -114,7 +114,7 @@ function updateUser(request, response) {
     return;
 }
 
-function deleteUser(request, response) {
+function deleteUserByUserId(request, response) {
     var userId = request.params.userId;
     userModel
         .deleteUser(userId)
