@@ -68,13 +68,34 @@ function addAppInSingleUser(appointmentId, userId) {
         });
 }
 
-function addAppointmentInUsers(appointmentId, userList) {
+/*function addAppointmentInUsers(appointmentId, userList) {
     for(u in userList)   {
         console.log("inside user server - addAppointmentInUsers");
         addAppInSingleUser(appointmentId, userList[u]);
     }
     console.log("inside user server outside for - addAppointmentInUsers");
     return appointmentId;
+}*/
+
+function addAppointmentInUsers(appointmentId, userList) {
+    return userModel
+        .findOne({_id:userList[0]})
+        .then(function (docuser) {
+            docuser._appointments.push(appointmentId);
+            console.log("inside user server then 1- addAppInSingleUser");
+            console.log(docuser._appointments);
+            docuser.save()
+                .then(function (docuser) {
+                    userModel
+                    .findOne({_id:userList[1]})
+                        .then(function (docuser) {
+                            docuser._appointments.push(appointmentId);
+                            console.log("inside user server then 1- addAppInSingleUser");
+                            console.log(docuser._appointments);
+                            return docuser.save();
+                        })
+                })
+        });
 }
 
 function removeAppFromSingleUser(appointmentId, userId) {
