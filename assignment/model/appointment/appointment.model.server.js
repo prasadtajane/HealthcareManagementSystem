@@ -16,6 +16,7 @@ appointmentModel.deleteappointment = deleteappointment;
 appointmentModel.findappointmentById = findappointmentById;
 appointmentModel.findappointmentByDate = findappointmentByDate;
 appointmentModel.addReportToAppointment = addReportToAppointment;
+appointmentModel.findAppointmentByUserId = findAppointmentByUserId;
 appointmentModel.findappointmentByPatient = findappointmentByPatient;
 appointmentModel.findappointmentByPriority = findappointmentByPriority;
 appointmentModel.findappointmentByCategory = findappointmentByCategory;
@@ -27,6 +28,13 @@ appointment = appointmentModel;
 
 
 
+function findAppointmentByUserId(userId) {
+    return userModel
+        .findUserById(userId)
+        .then(function (user) {
+            return user._appointments;
+        })
+}
 
 function createappointment(appointmentIn) {
     //console.log(appointment);
@@ -112,10 +120,19 @@ function updateappointment(appointmentId, appointment)   {
 
 
 function deleteappointment(appointmentId, userList) {
-    return appointment.remove({_id:appointmentId})
-        .then(function (status) {
-            userModel.removeAppointmentFromUsers(appointmentId, userList);
-            return;
+    return appointment
+        .findappointmentById(appointmentId)
+        .then(function (appointment) {
+            var userList = {}
+            userList.push(appointment.doctorId);
+            userList.push(appointment.patientId);
+
+            appointment.remove({_id:appointmentId})
+                .then(function (status) {
+                    userModel.removeAppointmentFromUsers(appointmentId, userList);
+                    console.log(status);
+                    return;
+                })
         });
 }
 

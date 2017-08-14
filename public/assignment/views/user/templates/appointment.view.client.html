@@ -40,20 +40,49 @@
                 </span>
         </div><!-- /input-group -->
 
-        <div class="form-group taj-bottom-margin taj-top-margin">
-            <label for="doctorName">Doctor</label>
-            <input class="form-control"
-                   id="doctorName"
-                   name="doctorName"
-                   ng-model="model.appointment.doctorName"/>
+        <div class="row">
+            <div class="col-xs-6">
+                <div class="form-group taj-bottom-margin taj-top-margin">
+                    <label for="doctorName">Doctor</label>
+                    <input class="form-control"
+                           id="doctorName"
+                           name="doctorName"
+                           ng-model="model.appointment.doctorName"/>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="form-group taj-bottom-margin taj-top-margin">
+                    <label for="doctorName">Id</label>
+                    <input class="form-control"
+                           readonly
+                           id="doctorId"
+                           name="doctorId"
+                           ng-model="model.appointment.doctorId"/>
+                </div>
+            </div>
         </div>
 
-        <div class="form-group taj-bottom-margin taj-top-margin">
-            <label for="patientName">Patient</label>
-            <input class="form-control"
-                   id="patientName"
-                   name="patientName"
-                   ng-model="model.appointment.patientName"/>
+
+        <div class="row">
+            <div class="col-xs-6">
+                <div class="form-group taj-bottom-margin taj-top-margin">
+                    <label for="patientName">Patient</label>
+                    <input class="form-control"
+                           id="patientName"
+                           name="patientName"
+                           ng-model="model.appointment.patientName"/>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="form-group taj-bottom-margin taj-top-margin">
+                    <label for="doctorName">Id</label>
+                    <input class="form-control"
+                           readonly
+                           id="patientId"
+                           name="doctorId"
+                           ng-model="model.appointment.patientId"/>
+                </div>
+            </div>
         </div>
 
         <div class="form-group taj-bottom-margin taj-top-margin">
