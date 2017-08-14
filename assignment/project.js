@@ -70,7 +70,7 @@ var userSchema = new mongoose.Schema({
     smokeStatus:{type:Boolean, default:false},
 
     insuranceId:[{type:mongoose.Schema.Types.ObjectId, ref:"InsuranceModel"}],
-    appointmentId:{type:mongoose.Schema.Types.ObjectId, ref:"appointmentModel"}
+    appointmentId:[{type:mongoose.Schema.Types.ObjectId, ref:"appointmentModel"}]
 
 }, {
     collection:"user"
