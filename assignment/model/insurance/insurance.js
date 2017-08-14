@@ -31,8 +31,7 @@ var insuranceSchema = new mongoose.Schema({
 var insurance = mongoose.model("InsuranceModel", insuranceSchema);
 
 var insuranceData = [
-    {uid: "Amerihealth", name: "Amerihealth"
-        ,plans:[{uid:"AmerihealthPOP", name: "Amerihealth",category:["Medical"]}]}
+    {"uid":"amerihealth","name":"Amerihealth","plans":[{"uid":"amerihealth-amerihealthregionalprefntwkhmohmopos","name":"Amerihealth Regional Pref Ntwk HMO HMO POS","category":["medical"]},{"uid":"amerihealth-amerihealthlocalvaluenetworkepoposppo","name":"Amerihealth Local Value Network EPO POS PPO","category":["medical"]},{"uid":"amerihealth-amerihealthlocalvaluenetworkhmohmopos","name":"Amerihealth Local Value Network HMO HMO POS","category":["medical"]},{"uid":"amerihealth-amerihealthregionalprefntwkepoposppo","name":"Amerihealth Regional Pref Ntwk EPO POS PPO","category":["medical"]}]}
 ];
 
 function callback(err, result)   {
@@ -57,5 +56,5 @@ function findInsurance() {
             // var l = result.languages.;
             // console.log(l);
         });}
-createInsurance(insuranceData);
+// createInsurance(insuranceData);
 findInsurance();
