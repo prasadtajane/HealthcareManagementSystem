@@ -66,10 +66,11 @@ function findUserByUsername(request, response) {
 }
 
 function findAll(request, response) {
-    userModel
+    return userModel
         .findAll()
         .then(function (user) {
-            response.json(user);
+            console.log(user);
+            return response.json(user);
         });
 }
 

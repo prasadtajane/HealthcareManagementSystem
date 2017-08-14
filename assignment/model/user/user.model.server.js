@@ -18,7 +18,10 @@ userModel.addInsuranceInUser = addInsuranceInUser;
 userModel.findUserByCredentials = findUserByCredentials;
 userModel.addAppointmentInUsers = addAppointmentInUsers;
 userModel.removeInsuranceFromUser = removeInsuranceFromUser;
+userModel.findAllInsurancesByUserId = findAllInsurancesByUserId;
 userModel.removeAppointmentFromUsers = removeAppointmentFromUsers;
+userModel.findAllAppointmentsByUserId = findAllAppointmentsByUserId;
+//userModel.findAppointmentReportByUserId = findAppointmentReportByUserId;
 
 module.exports = userModel;
 
@@ -88,47 +91,23 @@ function removeAppointmentFromUsers(appointmentId, userList) {
 function findUserById(userId) {
     //console.log("inside findByUserId of model! = "+userId);
     return userModel
-        .findById(userId)
-        .populate('_appointments')
-        .populate('_insurances')
-        .exec()
-        .then(function (user) {
-            return user;
-        });
+        .findOne({_id:userId});
 }
 
 function findAll() {
     return User
-        .find({})
-        .populate('_appointments')
-        .populate('_insurances')
-        .exec()
-        .then(function (users) {
-            return users;
-        });
+        .find({});
 }
 
 function findUserByUsername(name)   {
     return userModel
-        .findOne({username: name})
-        .populate('_appointments')
-        .populate('_insurances')
-        .exec()
-        .then(function (users) {
-            return users;
-        });
+        .findOne({username: name});
 }
 
-function findUserByCredentials(username, password, callback) {
+function findUserByCredentials(username, password) {
     return User
         .findOne(
-            {username: username, password: password})
-        .populate('_appointments')
-        .populate('_insurances')
-        .exec()
-        .then(function (users) {
-            return users;
-        });
+            {username: username, password: password});
 }
 
 function updateUser(userId, user)   {
@@ -140,6 +119,40 @@ function updateUser(userId, user)   {
 function deleteUser(userId) {
     return User
         .remove({_id:userId});
+}
+
+function findAllAppointmentsByUserId(userId) {
+    return userModel
+        .findOne({username: name})
+        .then( function (user) {
+            var appointmentList = user._appointments;
+            if (appointmentList.length !== 0)    {
+                user
+                    .populate('_appointments')
+                    .exec()
+                    .then(function (userOut) {
+                        return userOut;
+                    })
+            }
+            else return user;
+        });
+}
+
+function findAllInsurancesByUserId(userId) {
+    return userModel
+        .findOne({username: name})
+        .then( function (user) {
+            var appointmentList = user._insurances;
+            if (appointmentList.length !== 0)    {
+                user
+                    .populate('_insurances')
+                    .exec()
+                    .then(function (userOut) {
+                        return userOut;
+                    })
+            }
+            else return user;
+        });
 }
 
 //findAll();

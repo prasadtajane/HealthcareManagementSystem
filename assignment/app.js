@@ -4,9 +4,9 @@
 
 
 require("./service/user.service.server");
-require("./service/website.service.server");
-require("./service/page.service.server");
-require("./service/widget.service.server");
+require("./service/appointment.service.server");
+require("./service/report.service.server");
+require("./service/insurance.service.server");
 
 /*
 module.exports = function(app) {

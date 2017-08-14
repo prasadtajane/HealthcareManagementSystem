@@ -22,15 +22,20 @@ module.exports = db;
 
 var appointmentSchema = new mongoose.Schema({
 
+
     doctor_name:String,
+    doctorId:String,
     patient_name:String,
+    patientId:String,
     specialty:String,
     appointment_category:String,
     priority:String,
     details:String,
     date:Date,
     time:String,
-    reportId:{type:mongoose.Schema.Types.ObjectId, ref:"ReportModel"}
+    isApproved:{type:Boolean, default:false},
+    _reports:[{type:mongoose.Schema.Types.ObjectId, ref:"ReportModel"}]
+
 
 }, {
     collection:"appointment"
@@ -73,7 +78,7 @@ function createappointmentCollection(appointments)  {
 }
 
 
-//createappointmentCollection(appointments);
+createappointmentCollection(appointments);
 function findappointment() {
     appointmentModel.find({})
         .then(function (result) {

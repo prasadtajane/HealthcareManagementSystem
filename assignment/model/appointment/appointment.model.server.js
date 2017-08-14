@@ -20,6 +20,7 @@ appointmentModel.findAppointmentByUserId = findAppointmentByUserId;
 appointmentModel.findappointmentByPatient = findappointmentByPatient;
 appointmentModel.findappointmentByPriority = findappointmentByPriority;
 appointmentModel.findappointmentByCategory = findappointmentByCategory;
+appointmentModel.findReportsByAppointmentId = findReportsByAppointmentId;
 appointmentModel.removeReportFromAppointment = removeReportFromAppointment;
 
 module.exports = appointmentModel;
@@ -30,7 +31,7 @@ appointment = appointmentModel;
 
 function findAppointmentByUserId(userId) {
     return userModel
-        .findUserById(userId)
+        .findAllAppointmentsByUserId(userId)
         .then(function (user) {
             return user._appointments;
         })
@@ -51,53 +52,40 @@ function createappointment(appointmentIn) {
 function findappointmentById(appointmentId) {
     //console.log("inside findByappointmentId of model! = "+appointmentId);
     return appointmentModel
-        .findById(appointmentId)
-        .populate('_reports')
-        .exec();
+        .findById(appointmentId);
 }
 
 function findappointmentByDate(dateIn) {
     //console.log("inside findByappointmentId of model! = "+appointmentId);
     return appointmentModel
-        .find({date:dateIn})
-        .populate('_reports')
-        .exec();
+        .find({date:dateIn});
 }
 
 function findappointmentByPatient(name) {
     //console.log("inside findByappointmentId of model! = "+appointmentId);
     return appointmentModel
-        .find({patient_name:name})
-        .populate('_reports')
-        .exec();
+        .find({patient_name:name});
 }
 
 function findappointmentByPriority(pri) {
     //console.log("inside findByappointmentId of model! = "+appointmentId);
     return appointmentModel
-        .find({priority:pri})
-        .populate('_reports')
-        .exec();
+        .find({priority:pri});
 }
 
 function findappointmentByCategory(category) {
     //console.log("inside findByappointmentId of model! = "+appointmentId);
     return appointmentModel
-        .find({appointment_category:category})
-        .populate('_reports')
-        .exec();
+        .find({appointment_category:category});
 }
 
 function findAll() {
     return appointment
-        .find({})
-        .populate('_reports')
-        .exec();
+        .find({});
 }
 
 function addReportToAppointment(appointmentId, reportId) {
-    return appointment
-        .findappointmentById(appointmentId)
+    return findappointmentById(appointmentId)
         .then(function (appointment) {
             appointment._reports.push(reportId);
             return appointment.save();
@@ -106,8 +94,7 @@ function addReportToAppointment(appointmentId, reportId) {
 
 
 function removeReportFromAppointment(appointmentId, reportId) {
-    return appointment
-        .findappointmentById(appointmentId)
+    return findappointmentById(appointmentId)
         .then(function (appointment) {
             appointment._reports.splice(appointment._reports.indexOf(reportId),1);
             return appointment.save();
@@ -120,8 +107,7 @@ function updateappointment(appointmentId, appointment)   {
 
 
 function deleteappointment(appointmentId, userList) {
-    return appointment
-        .findappointmentById(appointmentId)
+    return findappointmentById(appointmentId)
         .then(function (appointment) {
             var userList = {}
             userList.push(appointment.doctorId);
@@ -133,6 +119,23 @@ function deleteappointment(appointmentId, userList) {
                     console.log(status);
                     return;
                 })
+        });
+}
+
+function findReportsByAppointmentId(appointmentId) {
+    return appointmentModel
+        .findOne({_id:appointmentId})
+        .then(function (appointment) {
+            var reports = appointment._reports;
+            if (reports.length !== 0)   {
+                appointment
+                    .populate('_reports')
+                    .exec()
+                    .then(function (appointmentOut) {
+                        return appointmentOut;
+                    })
+            }
+            else return appointment;
         });
 }
 
