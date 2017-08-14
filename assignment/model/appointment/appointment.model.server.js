@@ -18,6 +18,7 @@ appointmentModel.addReportToAppointment = addReportToAppointment;
 appointmentModel.findappointmentByPatient = findappointmentByPatient;
 appointmentModel.findappointmentByPriority = findappointmentByPriority;
 appointmentModel.findappointmentByCategory = findappointmentByCategory;
+appointmentModel.removeReportFromAppointment = removeReportFromAppointment;
 
 module.exports = appointmentModel;
 
@@ -83,6 +84,16 @@ function addReportToAppointment(appointmentId, reportId) {
         .findappointmentById(appointmentId)
         .then(function (appointment) {
             appointment._reports.push(reportId);
+            return appointment.save();
+        })
+}
+
+
+function removeReportFromAppointment(appointmentId, reportId) {
+    return appointment
+        .findappointmentById(appointmentId)
+        .then(function (appointment) {
+            appointment._reports.splice(appointment._reports.indexOf(reportId),1);
             return appointment.save();
         })
 }
