@@ -7,10 +7,11 @@ var reportSchema = require('./report.schema.server');
 var db = require('../database');
 
 var reportModel = mongoose.model('ReportModel',reportSchema);
-// var appointmentModel = require('../appointment/appointment.model.server');
+var appointmentModel = require('../appointment/appointment.model.server');
 
 
 reportModel.findReportByApppointmentId = findReportByApppointmentId;
+reportModel.findReportByPatientName = findReportByPatientName;
 reportModel.findAllReport = findAllReport;
 reportModel.createReport = createReport;
 reportModel.findReportById = findReportById;
@@ -42,24 +43,22 @@ module.exports = reportModel;
 
 function findReportByApppointmentId(appointmentId){
     return reportModel
-        .find({appointmentId:appointmentId})
-        .populate('appointmentId')
-        .exec();
+        .find({_appointment:appointmentId});
 }
 
 function createReport(appointmentId,report){
     report.appointmentId = appointmentId;
-    // var reportTmp = null;
+    var reportTmp = null;
     return reportModel
-        .create(report);
-        // .then(function (page){
-        //     pageTmp = page;
-        //     return websiteModel
-        //         .addPage(websiteId,page._id);
-        // })
-        // .then(function (website){
-        //     return pageTmp;
-        // });
+        .create(report)
+        .then(function (report){
+            reportTmp = report;
+            return appointmentModel
+                .addReportToAppointment(appointmentId,report._id);
+        })
+        .then(function (appointment){
+            return reportTmp;
+         });
 }
 
 function findReportById(reportId){
@@ -70,14 +69,18 @@ function updateReport(reportId,report){
     return reportModel.update({_id : reportId},{$set : report});
 }
 
-function deleteReport(reportId){
-    return reportModel.remove({_id: reportId});
-        // .then(function (status){
-        //     return websiteModel
-        //         .deletePage(websiteId,pageId);
-        // });
+function deleteReport(appointmentId,reportId){
+    return reportModel.remove({_id: reportId})
+        .then(function (status){
+            return appointmentModel
+                .removeReportFromAppointment(appointmentId,reportId);
+        });
 }
 
 function findAllReport(){
     return reportModel.find();
+}
+
+function findReportByPatientName(patientName){
+    return reportModel.find({patientName:patientName});
 }

@@ -12,7 +12,7 @@ var reportSchema = new mongoose.Schema({
     doctorcomments: String,
     futureappointments: String,
     imageurl: String,
-    appointmentId:{type:mongoose.Schema.Types.ObjectId, ref:"AppointmentModel"},
+    _appointment:{type:mongoose.Schema.Types.ObjectId, ref:"AppointmentModel"},
 },{
     collection:"report"
 });
