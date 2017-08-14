@@ -56,6 +56,7 @@ var users = [
         languages:[{name:"english", code: "en"}]  }
 ];
 
+
 var websites = [
     { "name": "Facebook",    "developerId": "456", "description": "Lorem", "visited": "2000" },
     { "name": "Tweeter",     "developerId": "456", "description": "Lorem", "visited": "3000" },
@@ -82,6 +83,7 @@ function createUserCollection(users)  {
         console.log("Users Created!");
     }
     createUsers(users);
+    // languageModel.create({name:"english", code: "en"})
 }
 
 
@@ -113,16 +115,19 @@ function createWebsiteCollection(websites) {
     });
 }*/
 
-//createUserCollection(users);
+// createUserCollection(users);
 //createWebsiteCollection(websites);
 //findAll();
 function findUser() {
-    User.find({"username" : "jannunzi"},{languages:1})
+    User.find({"username" : "jannunzi"})
+        .populate('languages')
+        .exec()
         .then(function (result) {
             var u = result;
             console.log(u);
-            var l = result.languages.;
-            console.log(l);
+
+            // var l = result.languages.;
+            // console.log(l);
     });}
 
 findUser();
