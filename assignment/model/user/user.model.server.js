@@ -13,10 +13,12 @@ userModel.createUser = createUser;
 userModel.updateUser = updateUser;
 userModel.deleteUser = deleteUser;
 userModel.findUserById = findUserById;
-userModel.removeWebsite = removeWebsite;
-userModel.addWebsiteInUser = addWebsiteInUser;
+userModel.addInsuranceInUser = addInsuranceInUser;
 userModel.findUserByUsername = findUserByUsername;
 userModel.findUserByCredentials = findUserByCredentials;
+userModel.addAppointmentInUsers = addAppointmentInUsers;
+userModel.removeInsuranceFromUser = removeInsuranceFromUser;
+userModel.removeAppointmentFromUsers = removeAppointmentFromUsers;
 
 module.exports = userModel;
 
@@ -27,75 +29,117 @@ User = userModel;
 
 function createUser(user) {
     //console.log(user);
-    return User.create(user);
+    return User
+        .create(user);
 }
 
-function addWebsiteInUser(userId, websiteId)  {
+function addInsuranceInUser(insuranceId, userId) {
     return userModel
         .findById(userId)
         .then(function (user) {
-            user._websites.push(websiteId);
-            return user.save();
-        })
-}
-
-function removeWebsite(userId, websiteId) {
-    return userModel
-        .findById(userId)
-        .then(function (user) {
-            var index = user._websites.indexOf(websiteId);
-            user._websites.splice(index, 1);
+            user._insurances.push(insuranceId);
             return user.save();
         });
 }
 
-function findUserById(userId, callback) {
-    //console.log("inside findByUserId of model! = "+userId);
+function removeInsuranceFromUser(insuranceId, userId) {
     return userModel
-        .findById(
-            userId,
-            function (err, result) {
-                if(err) {
-                    callback(err, null);
-                }
-                else {
-                    callback(null, result);
-            }
-    });
+        .findById(userId)
+        .then(function (user) {
+            var index = user._insurances.indexOf(insuranceId);
+            user._insurances.splice(index, 1);
+            return user.save();
+        });
 }
 
-function findAll(callback) {
+function addAppInSingleUser(appointmentId, userId) {
+    return userModel
+        .findById(userId)
+        .then(function (user) {
+            user._appointments.push(appointmentId);
+            return user.save();
+        });
+}
+
+function addAppointmentInUsers(appointmentId, userList) {
+    for(userId in userList)   {
+        addAppInSingleUser(appointmentId, userId);
+    }
+    return;
+}
+
+function removeAppFromSingleUser(appointmentId, userId) {
+    return userModel
+        .findById(userId)
+        .then(function (user) {
+            var index = user._appointments.indexOf(appointmentId);
+            user._appointments.splice(index, 1);
+            return user.save();
+        });
+}
+
+function removeAppointmentFromUsers(appointmentId, userList) {
+    for(userId in userList)   {
+        removeAppFromSingleUser(appointmentId, userId);
+    }
+    return;
+}
+
+function findUserById(userId) {
+    //console.log("inside findByUserId of model! = "+userId);
+    return userModel
+        .findById(userId)
+        .populate('_appointments')
+        .populate('_insurances')
+        .exec()
+        .then(function (user) {
+            return user;
+        });
+}
+
+function findAll() {
     return User
-        .find(
-            function (err, result) {
-                if(err) {
-                    callback(err, null);
-                }
-                else {
-                    callback(null, result);
-                }
-            }
-        );
+        .find({})
+        .populate('_appointments')
+        .populate('_insurances')
+        .exec()
+        .then(function (users) {
+            return users;
+        });
 }
 
 function findUserByUsername(name)   {
     return userModel
         .findOne({username: name})
+        .populate('_appointments')
+        .populate('_insurances')
+        .exec()
+        .then(function (users) {
+            return users;
+        });
 }
 
 function findUserByCredentials(username, password, callback) {
     return User
         .findOne(
-            {username: username, password: password});
+            {username: username, password: password})
+        .populate('_appointments')
+        .populate('_insurances')
+        .exec()
+        .then(function (users) {
+            return users;
+        });
 }
 
 function updateUser(userId, user)   {
-    return userModel.update({_id:userId}, {$set: user});
+    return userModel
+        .update({_id:userId}, {$set: user});
 }
 
 
 function deleteUser(userId) {
-    return User.remove({_id:userId});
+    return User
+        .remove({_id:userId});
 }
 
 //findAll();

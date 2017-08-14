@@ -4,8 +4,9 @@
 
 var db = require("../models.server");
 var mongoose = require('mongoose');
-var appointmentSchema = require("./appointment.schema.server");
+var userModel = require("../user/user.model.server");
 
+var appointmentSchema = require("./appointment.schema.server");
 var appointmentModel = mongoose.model("appointmentModel", appointmentSchema);
 
 appointmentModel.findAll = findAll;
@@ -29,7 +30,14 @@ appointment = appointmentModel;
 
 function createappointment(appointmentIn) {
     //console.log(appointment);
-    return appointment.create(appointmentIn);
+    return appointment.create(appointmentIn)
+        .then(function (appointmentOut) {
+            var userList = {}
+            userList.push(appointmentOut.doctorId);
+            userList.push(appointmentOut.patientId);
+            userModel.addAppointmentInUsers(appointmentOut._id, userList);
+            return;
+        });
 }
 
 function findappointmentById(appointmentId) {
@@ -103,8 +111,12 @@ function updateappointment(appointmentId, appointment)   {
 }
 
 
-function deleteappointment(appointmentId) {
-    return appointment.remove({_id:appointmentId});
+function deleteappointment(appointmentId, userList) {
+    return appointment.remove({_id:appointmentId})
+        .then(function (status) {
+            userModel.removeAppointmentFromUsers(appointmentId, userList);
+            return;
+        });
 }
 
 //findAll();

@@ -4,15 +4,81 @@
 var mongoose = require("mongoose");
 
 var userSchema = new mongoose.Schema({
+
+    practices:[
+        {location_slug:String,
+        visit_address:{
+            city:String,
+            street:String,
+            street2:String,
+            zip:String,
+            state:String},
+        phones:[{number:String}]
+    }],
+
+    educations:[{
+        degree:String,
+        graduation_year:String,
+        school:String}],
+
+    profile:{
+        first_name:String,
+        last_name:String,
+        title:String,
+        gender:String,
+        image_url:String,
+        bio:String,
+        languages:[{
+            name:String,
+            code:String}]
+    },
+
+    ratings:[{
+        provider:String,
+        provider_url:String,
+        rating:String}],
+
+    specialties:[{
+        name:String,
+        category:String,
+        description:String}],
+
+    licenses:[{
+        number:String,
+        state:String}],
+
+    uid:String,
+    npi:String,
+
     username:String,
     password:String,
-    firstName:String,
-    lastName:String,
     email:String,
-    contact:Number,
-    dateCreated:{type:Date,default:Date.now()},
-    isAdmin:{type:Boolean, default:false},
-    _websites:[{type:mongoose.Schema.Types.ObjectId, ref:"WebsiteModel"}]
+
+    physic:{
+        height:String,
+        weight:String,
+        age:String,
+        blood:String,
+        birthday:{
+            type:Date,
+            default:Date.now()}
+    },
+
+    diseases:String,
+    operations:String,
+    userType:String,
+    isAdmin:{
+        type:Boolean,
+        default:false},
+
+    insuranceUid:String,
+    smokeStatus:{
+        type:Boolean,
+        default:false},
+
+    _insurances:[{type:mongoose.Schema.Types.ObjectId, ref:"InsuranceModel"}],
+    _appointments:[{type:mongoose.Schema.Types.ObjectId, ref:"appointmentModel"}]
+
 
 }, {     collection:"user"    });
 
