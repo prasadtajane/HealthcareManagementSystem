@@ -108,8 +108,11 @@ function findappointmentById(request, response) {
 
 
 function createappointment(request, response) {
+    console.log("Inside appointment server - createappointment");
     var userId = request.params.userId;
     var newAppointment = request.body;
+    console.log(userId);
+    console.log(newAppointment);
 
     return appointmentModel
         .createappointment(newAppointment)

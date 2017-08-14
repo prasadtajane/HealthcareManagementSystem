@@ -38,14 +38,21 @@ function findAppointmentByUserId(userId) {
 }
 
 function createappointment(appointmentIn) {
-    //console.log(appointment);
+    console.log("inside server appointment - createappointment");
+    var userList = []
+    userList.push(appointmentIn.doctorId);
+    userList.push(appointmentIn.patientId);
+    console.log(userList);
     return appointment.create(appointmentIn)
         .then(function (appointmentOut) {
-            var userList = {}
-            userList.push(appointmentOut.doctorId);
-            userList.push(appointmentOut.patientId);
-            userModel.addAppointmentInUsers(appointmentOut._id, userList);
-            return;
+            console.log("inside server appointment then - createappointment");
+            return userModel
+                .addAppointmentInUsers(appointmentOut._id, userList)
+                .then(function (id) {
+                    console.log("inside server appointment then - createappointment, userModel");
+                    return appointmentOut;
+                });
+            return appointmentOut;
         });
 }
 

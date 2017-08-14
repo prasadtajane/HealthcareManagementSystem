@@ -56,19 +56,25 @@ function removeInsuranceFromUser(insuranceId, userId) {
 }
 
 function addAppInSingleUser(appointmentId, userId) {
+    console.log("inside user server - addAppInSingleUser")
+    console.log(appointmentId, userId)
     return userModel
-        .findById(userId)
+        .findOne({_id:userId})
         .then(function (user) {
             user._appointments.push(appointmentId);
+            console.log("inside user server then - addAppInSingleUser");
+            console.log(user._appointments);
             return user.save();
         });
 }
 
 function addAppointmentInUsers(appointmentId, userList) {
-    for(userId in userList)   {
-        addAppInSingleUser(appointmentId, userId);
+    for(u in userList)   {
+        console.log("inside user server - addAppointmentInUsers");
+        addAppInSingleUser(appointmentId, userList[u]);
     }
-    return;
+    console.log("inside user server outside for - addAppointmentInUsers");
+    return appointmentId;
 }
 
 function removeAppFromSingleUser(appointmentId, userId) {
@@ -123,7 +129,7 @@ function deleteUser(userId) {
 
 function findAllAppointmentsByUserId(userId) {
     return userModel
-        .findOne({username: name})
+        .findOne({username: userId})
         .then( function (user) {
             var appointmentList = user._appointments;
             if (appointmentList.length !== 0)    {
