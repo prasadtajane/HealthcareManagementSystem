@@ -7,21 +7,19 @@
 (function ()   {
     angular
         .module("WamApp")
-        .controller("profileController", profileController)
+        .controller("profileController", profileController);
 
-    function profileController($routeParams, $location, userService, $rootScope) {
+    function profileController($routeParams, $location, userService, appointmentService, $rootScope) {
+
 
         var model = this;
-        //model.searchProfile = searchProfile;
-        var updateUser = updateUser;
-        model.updateUser = updateUser;
-        model.deleteUser = deleteUser;
-        model.logout = logout;
-
-        model.findWebsites = findWebsites;
-
         var uId = $routeParams["userId"];
-        
+
+        model.logout = logout;
+        model.createAppointment = createAppointment;
+        model.showInsuranceById = showInsuranceById;
+        //model.showUserReportById = showUserReportById;
+
         function logout() {
             $rootScope.currentUser = null;
             $location.url("/login");
@@ -29,37 +27,50 @@
 
         function init() {
             //alert("inside profile service!")
-            var promise = userService.findUserById(uId);
-            promise.then(function (response) {
-                model.user = response.data;
-                var user = model.user;
-                return user;
-                })
-            //model.user = userService.findUserById(uId);
+            model.user={};
 
+            userService
+                .findUserById(uId)
+                .then(function (response) {
+                    var user = response.data;
+                    //console.log(user);
+
+                    model.user.email = user.email;
+                    model.user.profile = user.profile;
+                    model.user.userType = user.userType;
+                    model.user.username = user.username;
+
+                    //console.log(model.user);
+                    return model.user;
+                });
         }
         init();
 
-        function updateUser(user) {
-            //alert("inside update of controller");
-            userService.updateUserByUserId(user, uId);
-            alert("Hi " + user.username + " all values have been updated successfully!");
+        function createAppointment() {
 
-        }
+            appointment = {
+                patient_name:model.user.username,
+                patientId:uId,
+                doctor_name:"Select Doctor",
+                doctorId:"5993630a91ba6b3fedd0c2b4",
+                date:Date.now(),
+                time:"12:00 PM"
+            };
 
-        function deleteUser(user) {
-            userService.deleteUserByUserId(uId)
-                .then(function (response) {
-                    suCode = response.data;
-                    if (suCode === "200") {
-                        alert("Thank you for your patience, user with username '" + user.username + "' has been removed!");
-                        $location.url("/login");
-                    }
+            console.log("##########");
+            appointmentService
+                .createappointment(uId, appointment)
+                .then(function (appointmentOut) {
+                    console.log("************");
+                    console.log("inside profile controller then - createAppointment");
+                    appointmentId = appointmentOut.data._id;
+                    console.log()
+                    $location.url("/user/" + uId + "/appointment/" + appointmentId);
                 });
         }
 
-        function findWebsites() {
-            $location.url("/profile/" + uId + "/website");
+        function showInsuranceById () {
+            $location.url("/user/" + uId + "/insurance");
         }
     }
 

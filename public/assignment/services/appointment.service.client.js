@@ -49,12 +49,12 @@
         function createappointment(userId, appointment)   {
             //console.log(newuser);
             ///api/user/:userId/appointment
-            return $http.post("/api/user/" + userId, appointment);
+            return $http.post("/api/user/" + userId + "/appointment", appointment);
         }
 
         function updateappointment(userId, appointmentId, appointment)   {
             ///api/user/:userId/appointment/:appointmentId
-            $http.put("/api/user/" + userId + "/appointment/" + appointmentId, appointment);
+            return $http.put("/api/user/" + userId + "/appointment/" + appointmentId, appointment);
             //alert("inside update service " + userId + " " + user);
         }
 
