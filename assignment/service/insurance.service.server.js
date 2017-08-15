@@ -5,6 +5,7 @@
 
 var app = require("../../express");
 var insuranceModel = require("../model/insurance/insurance.model.server");
+var userModel = require("../model/user/user.model.server");
 
 // var pages=[
 //     { "_id": "321", "name": "Post 1", "websiteId": "456", "description": "Lorem" },
@@ -12,17 +13,27 @@ var insuranceModel = require("../model/insurance/insurance.model.server");
 //     { "_id": "543", "name": "Post 3", "websiteId": "456", "description": "Lorem" }
 // ];
 
-app.get("/api/user/:userId/insurance",findAllInsurance);
+app.get("/api/insurance",findAllInsurance);
+app.get("/api/user/:userId/insurance",findAllInsurancesByUserId);
 app.post("/api/user/:userId/insurance",createInsurance);
 app.get("/api/user/:userId/insurance/:insuranceId",findInsuranceById);
 app.put("/api/user/:userId/insurance/:insuranceId",updateInsurance);
 app.delete("/api/user/:userId/insurance/:insuranceId",deleteInsurance);
 
 function findAllInsurance(req,res){
-    var userId= req.params.userId;
     insuranceModel
         .findAllInsurance()
         .then(function (insurances){
+            res.json(insurances);
+        });
+}
+
+function findAllInsurancesByUserId(req,res){
+    var userId= req.params.userId;
+    userModel
+        .findAllInsurancesByUserId(userId)
+        .then(function (user){
+            insurances = user._insurances;
             res.json(insurances);
         });
 }

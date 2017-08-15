@@ -10,54 +10,46 @@
         .module("WamApp")
         .controller("reportController", reportController);
 
-    function reportController($location, userService)   {
+    function reportController($location,$routeParams, reportService)   {
 
         var model = this;
+        model.userId = $routeParams.userId;
+        model.appointmentId = $routeParams.appointmentId;
+        model.reportId = $routeParams.reportId;
+        model.updateReport=updateReport;
+        model.deleteReport = deleteReport;
 
         function init() {
-
+            reportService.findReportByApppointmentId(model.appointmentId)
+                .then(function (response) {
+                    //alert("inside controller - findWebsiteByUserId");
+                    model.report = response.data;
+                    return model.report;
+                });
         }
         init();
 
-        model.register = (
-            function (user) {
-                //console.log(user);
-                if (user.password1 === user.password2 && typeof user.password1 !== "undefined")   {
+        function updateReport(report){
+            reportService
+                .updateReport(model.userId,model.appointmentId,model.reportId,report)
+                .then(function (response){
+                    var report = response.data;
+                    var status = response.status;
+                    if (status === 200){
+                        model.message = "Update Successfull";
+                    }else{
+                        model.message = "Update not successfull";
+                    }
+                    model.report= report;
+                });
+        }
 
-                    if (user.username === null || user.username === '' || typeof user.username === 'undefined')   {
-                        alert("Please write an username !")
-                        return;
-                    }
-                    else    {
-                        //model.inuser = userService.findUserByUsername(user.username);
-                        userService.findUserByUsername(user.username)
-                            .then( function (response) {
-                                model.inuser = response.data;
-                                //console.log("model . inuser");
-                                //  console.log(model.inuser);
-                                /*if(model.inuser !== 'null')   {
-                                 alert("Sorry username '" + model.inuser.username + "' already exists !");
-                                 }
-                                 else */
-                                {
-                                    alert("Welcome " + user.username + " !!!")
-                                    var newUser = {
-                                        username:user.username,
-                                        password:user.password1
-                                    }
-                                    userService.createUser(newUser)
-                                        .then( function (response) {
-                                            newUser = response.data
-                                            alert("Hey, " + user.username + " your userId is " + newUser._id);
-                                            $location.url("/profile/" + newUser._id);
-                                        });
-                                }
-                            });
-                    }
-                }
-                else {
-                    alert("Hi " + user.username + ", two passwords do not match!")
-                }
-            })
+        function deleteReport(reportId) {
+            reportService
+                .deleteReport(model.userId,reportId)
+                .then(function (){
+                    $location.url('/user/'+ model.userId + "/appointment/"+model.appointmentId);
+                });
+        }
     }
 })();
