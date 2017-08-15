@@ -106,8 +106,8 @@
             // }
         }
 
-        function deleteInsuranceByAgent(userId,insuranceId) {
-            var url = "/api/user/"+userId+ "/insurance/"+insuranceId;
+        function deleteInsuranceByAgent(userId,insuranceId,planId) {
+            var url = "/api/user/"+userId+ "/insurance/"+insuranceId+"/plan/"+planId;
             return $http.delete(url)
                 .then(function(response){
                     return response.data;

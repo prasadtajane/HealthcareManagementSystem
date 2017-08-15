@@ -71,12 +71,27 @@ function updateInsurance(insuranceId,insurance){
     return insuranceModel.update({_id : insuranceId},{$set : insurance});
 }
 
-function deleteInsurance(insuranceId,userId){
-    return insuranceModel.remove({_id: insuranceId})
-    .then(function (status){
-        return userModel
-            .removeInsuranceFromUser(insuranceId,userId);
-    });
+function deleteInsurance(insuranceId,userId,planId){
+
+    return insuranceModel
+        .findById(insuranceId)
+        .then(function(insurance){
+           var index = insurance.plans.indexOf(planId);
+           insurance.plans.splice(index,1);
+           return insurance.save()
+               .then(function (insurance){
+                   userModel
+                          .removeInsuranceFromUser(insuranceId,userId)
+                            .then(function (user){
+                               return insurance;
+                            });
+               });
+        });
+    // return insuranceModel.remove({_id: insuranceId})
+    // .then(function (status){
+    //     return userModel
+    //         .removeInsuranceFromUser(insuranceId,userId);
+    // });
 }
 
 function findAllInsurance(){
