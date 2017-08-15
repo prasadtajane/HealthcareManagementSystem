@@ -56,9 +56,9 @@
                 controller: "doctorController",
                 controllerAs: "model"
             })
-            .when("/user/:userId/agent", {
+            .when("/user/:userId/insurance", {
                 templateUrl: "./views/user/templates/insurance-list.view.client.html",
-                controller: "agentController",
+                controller: "insuranceController",
                 controllerAs: "model"
             })
             .when("/agent", {
