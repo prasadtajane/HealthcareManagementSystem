@@ -9,7 +9,7 @@ var users = [];
 
 app.get("/api/user", getUsers);
 app.get("/api/user/:userId",findUserById);
-app.post("/api/user/", createUser);
+app.post("/api/user", createUser);
 app.put("/api/user/:userId", updateUser);
 app.delete("/api/user/:userId", deleteUser);
 

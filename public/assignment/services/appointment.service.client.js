@@ -4,9 +4,9 @@
 (function() {
     angular
         .module("WamApp")
-        .factory("userService", userService);
+        .factory("appointmentService", appointmentService);
 
-    function userService($http)  {
+    function appointmentService($http)  {
 
         var users = [];
 
