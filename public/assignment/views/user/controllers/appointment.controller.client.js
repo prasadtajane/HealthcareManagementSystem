@@ -42,7 +42,14 @@
         function updateAppointment(appointment) {
             //alert("inside update of controller");
             appointmentService
-                .updateappointment(uId, appointmentId, appointment);
+                .updateappointment(uId, appointmentId, appointment)
+                .then(function (appointmentOut) {
+                    console.log("************");
+                    console.log("inside appointment controller then - createAppointment");
+                    appointmentId = appointmentOut.data._id;
+                    console.log()
+                    $location.url("/user/" + uId + "/appointment/" + appointmentId);
+                });
             alert("Values have been updated successfully!");
 
         }

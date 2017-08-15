@@ -124,12 +124,15 @@ function createappointment(request, response) {
         .then(function (appointment) {
             //console.log(page);
             console.log("Inside appointment server then - createappointment");
-            console.log(appointment);
+            //console.log(appointment);
             return response.json(appointment);
+        }, function (err) {
+            console.log("Inside Error");
+            //console.log(err);
         });
 }
 
-function updateappointment(request, response) {
+/*function updateappointment(request, response) {
     var appointmentId = request.params.appointmentId;
     var newAppointment = request.body;
 
@@ -137,6 +140,46 @@ function updateappointment(request, response) {
         .updateappointment(appointmentId, newAppointment)
         .then(function (appointment) {
             response.json(appointment);
+        }, function (err) {
+            response.sendStatus(404).send(err);
+        });
+}*/
+
+function updateappointment(request, response) {
+    var appointmentId = request.params.appointmentId;
+    var nAppointment = request.body;
+
+     var newAppointment = {
+         doctor_name:nAppointment.doctor_name,
+         doctorId:nAppointment.doctorId,
+         patient_name:nAppointment.patient_name,
+         patientId:nAppointment.patientId,
+         specialty:nAppointment.specialty,
+         appointment_category:nAppointment.appointment_category,
+         priority:nAppointment.priority,
+         details:nAppointment.details,
+         date:nAppointment.date,
+         time:nAppointment.time,
+         isApproved:nAppointment.isApproved,
+         _reports:nAppointment._reports
+     }
+
+    console.log("Inside appointment server then - updateappointment");
+    return appointmentModel
+        .deleteappointment(appointmentId)
+        .then(function (appointment) {
+            console.log("Inside appointment server then - updateappointment,deleteappointment");
+            return appointmentModel
+                .createappointment(newAppointment)
+                .then(function (appointment) {
+                    console.log("Inside appointment server then - updateappointment,deleteappointment,createappointment");
+                    console.log("Created new appointment");
+                    console.log(appointment);
+                    return response.json(appointment);
+                }, function (err) {
+                    console.log("Inside Error");
+                    //console.log(err);
+                })
         }, function (err) {
             response.sendStatus(404).send(err);
         });

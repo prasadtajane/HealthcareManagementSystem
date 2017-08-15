@@ -56,6 +56,10 @@ function createappointment(appointmentIn) {
                 .then(function (id) {
                     //console.log("inside server appointment then - createappointment, userModel");
                     return appointmentOut;
+                }, function (err) {
+                    console.log("inside model appointment then - err");
+                    console.log(err);
+                    return err;
                 });
             return appointmentOut;
         });

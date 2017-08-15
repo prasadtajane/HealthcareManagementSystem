@@ -9,7 +9,7 @@
         .module("WamApp")
         .controller("profileController", profileController);
 
-    function profileController($routeParams, $location, userService, $rootScope) {
+    function profileController($routeParams, $location, userService, appointmentService, $rootScope) {
 
 
         var model = this;
@@ -18,7 +18,7 @@
         model.logout = logout;
         model.createAppointment = createAppointment;
         model.showInsuranceById = showInsuranceById;
-        model.showUserReportById = showUserReportById;
+        //model.showUserReportById = showUserReportById;
 
         function logout() {
             $rootScope.currentUser = null;
@@ -46,19 +46,26 @@
         }
         init();
 
-        function createAppointment(appointment) {
-            report = {
-                doctorName:model.appointment.doctor_name,
-                patientName:model.appointment.patient_name,
-                _appointment:appointmentId,
+        function createAppointment() {
+
+            appointment = {
+                patient_name:model.user.username,
+                patientId:uId,
+                doctor_name:"Select Doctor",
+                doctorId:"5993630a91ba6b3fedd0c2b4",
                 date:Date.now(),
-                time:"00:00 AM"
+                time:"12:00 PM"
             };
 
-            reportService
-                .createReport(uId, appointmentId, report)
-                .then(function (report) {
-                    $location.url("/user/" + uId + "/appointment/" + appointmentId + "/report/" + report._id);
+            console.log("##########");
+            appointmentService
+                .createappointment(uId, appointment)
+                .then(function (appointmentOut) {
+                    console.log("************");
+                    console.log("inside profile controller then - createAppointment");
+                    appointmentId = appointmentOut.data._id;
+                    console.log()
+                    $location.url("/user/" + uId + "/appointment/" + appointmentId);
                 });
         }
 
