@@ -40,12 +40,13 @@
         }
         init();
 
-        function deleteInsuranceByAgent(insuranceId) {
+        function deleteInsuranceByAgent(insuranceId, planId) {
             insuranceService
-                .deleteInsuranceByAgent(model.userId,insuranceId)
-                .then(function (status){
+                .deleteInsuranceByAgent(model.userId,insuranceId,planId)
+                .then(function (insurances){
+                    model.insurances=insurances;
                     //$location.url('/user/'+ model.userId + "/insurance");
-                    removeInsuranceFromUser(insuranceId);
+                    // removeInsuranceFromUser(insuranceId);
                 });
         }
 
@@ -57,12 +58,12 @@
                 });
         }
 
-        function deleteInsurance() {
+        function deleteInsurance(insuranceId,planId) {
             userService
                 .findUserById(model.userId)
                 .then(function (user) {
                     if(user.userType === 'agent')    {
-                        deleteInsuranceByAgent(insuranceId);
+                        deleteInsuranceByAgent(insuranceId,planId);
                         return;
                     }
                     else    {
