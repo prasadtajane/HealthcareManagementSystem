@@ -20,10 +20,14 @@
         model.deleteReport = deleteReport;
 
         function init() {
-            reportService.findReportByApppointmentId(model.appointmentId)
+            //console.log("inside report controller init");
+            reportService
+                .findReportByApppointmentId(model.userId, model.appointmentId)
                 .then(function (response) {
                     //alert("inside controller - findWebsiteByUserId");
-                    model.report = response.data;
+                    model.report = response;
+                    //console.log(model.report);
+                    model.report.date = new Date(model.report.date);
                     return model.report;
                 });
         }
@@ -44,10 +48,10 @@
                 });
         }
 
-        function deleteReport(reportId) {
+        function deleteReport() {
             reportService
-                .deleteReport(model.userId,reportId)
-                .then(function (){
+                .deleteReport(model.userId,model.appointmentId ,model.reportId)
+                .then(function (status){
                     $location.url('/user/'+ model.userId + "/appointment/"+model.appointmentId);
                 });
         }

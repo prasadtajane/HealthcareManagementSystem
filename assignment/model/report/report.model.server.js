@@ -44,10 +44,13 @@ module.exports = reportModel;
 function findReportByApppointmentId(appointmentId){
     console.log("inside report model - findReportByApppointmentId" + appointmentId);
     return reportModel
-        .find({_appointment:appointmentId})
+        .findOne({_appointment:appointmentId})
         .then(function (report) {
             //console.log(report);
             return report;
+        }, function (err) {
+            //console.log(err);
+            return err;
         })
     // appointmentModel
     //     .findReportsByAppointmentId(appointmentId);

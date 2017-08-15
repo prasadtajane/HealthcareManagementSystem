@@ -7,6 +7,8 @@ var mongoose = require("mongoose");
 var reportSchema = new mongoose.Schema({
     doctorName:String,
     patientName:String,
+    date:{type:Date},
+    time:String,
     prescription: String,
     dosage: String,
     doctorcomments: String,

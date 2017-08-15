@@ -71,13 +71,15 @@
             report = {
                 doctorName:model.appointment.doctor_name,
                 patientName:model.appointment.patient_name,
-                _appointment:appointmentId
+                _appointment:appointmentId,
+                date:Date.now(),
+                time:"00:00 AM"
             };
 
             reportService
                 .createReport(uId, appointmentId, report)
                 .then(function (report) {
-                    $location.url("/user/" + uId + "/appointment/" + appointmentId + "/report");
+                    $location.url("/user/" + uId + "/appointment/" + appointmentId + "/report/" + report._id);
                 });
         }
 

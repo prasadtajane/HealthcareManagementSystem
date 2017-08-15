@@ -141,6 +141,8 @@ function findReportByApppointmentId(request, response) {
     return  reportModel
         .findReportByApppointmentId(request.params.appointmentId)
         .then(function (report) {
+            //console.log("inside report service server - then");
+            //console.log(report);
             response.json(report);
         });
 }

@@ -55,6 +55,7 @@
             var url = "/api/user/"+userId+ "/appointment/"+appointmentId+"/report";
             return $http.get(url)
                 .then(function (response) {
+                    //console.log(response.data);
                     return response.data;
                 });
             // var pagelist=[];
