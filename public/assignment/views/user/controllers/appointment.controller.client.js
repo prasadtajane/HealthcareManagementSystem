@@ -9,18 +9,18 @@
         .module("WamApp")
         .controller("appointmentController", appointmentController);
 
-    function appointmentController($routeParams, $location, appointmentService, $rootScope) {
+    function appointmentController($routeParams, $location, appointmentService, reportService, $rootScope) {
 
         var model = this;
-        //model.searchProfile = searchProfile;
-        var updateUser = updateUser;
-        model.updateUser = updateUser;
-        model.deleteUser = deleteUser;
-        model.logout = logout;
-
-        model.findWebsites = findWebsites;
 
         var uId = $routeParams["userId"];
+        var appointmentId = $routeParams["appointmentId"];
+
+        model.logout = logout;
+        model.createReport = createReport;
+        model.updateAppointment = updateAppointment;
+        model.deleteAppointment = deleteAppointment;
+        model.approveAppointment = approveAppointment;
 
         function logout() {
             $rootScope.currentUser = null;
@@ -29,37 +29,59 @@
 
         function init() {
             //alert("inside profile service!")
-            var promise = appointmentService.findUserById(uId);
+            var promise = appointmentService.findappointmentById(uId, appointmentId);
             promise.then(function (response) {
-                model.user = response.data;
-                var user = model.user;
-                return user;
+                model.appointment = response.data;
+                model.appointment.date = new Date(model.appointment.date);
+                var appointment = model.appointment;
+                return appointment;
                 })
-            //model.user = appointmentService.findUserById(uId);
-
         }
         init();
 
-        function updateUser(user) {
+        function updateAppointment(appointment) {
             //alert("inside update of controller");
-            appointmentService.updateUserByUserId(user, uId);
-            alert("Hi " + user.username + " all values have been updated successfully!");
+            appointmentService
+                .updateappointment(uId, appointmentId, appointment);
+            alert("Values have been updated successfully!");
 
         }
 
-        function deleteUser(user) {
-            appointmentService.deleteUserByUserId(uId)
+        function approveAppointment(appointment) {
+            appointment.isApproved = "True";
+            appointmentService
+                .updateappointment(uId, appointmentId, appointment);
+            alert("Appointment approved successfully!");
+
+        }
+
+        function deleteAppointment(appointment) {
+            appointmentService
+                .deleteAppointment(uId, appointmentId)
                 .then(function (response) {
                     suCode = response.data;
                     if (suCode === "200") {
-                        alert("Thank you for your patience, user with username '" + user.username + "' has been removed!");
-                        $location.url("/login");
+                        alert("Appointment has been removed!");
+                        $location.url("/user/" + uId);
                     }
+                });
+        }
+        
+        function createReport(appointment) {
+            report = {
+                doctorName:model.appointment.doctor_name,
+                patientName:model.appointment.patient_name,
+                _appointment:appointmentId
+            };
+
+            reportService
+                .createReport(uId, appointmentId, report)
+                .then(function (report) {
+                    $location.url("/user/" + uId + "/appointment/" + appointmentId + "/report");
                 });
         }
 
         function findWebsites() {
-            $location.url("/profile/" + uId + "/website");
         }
     }
 

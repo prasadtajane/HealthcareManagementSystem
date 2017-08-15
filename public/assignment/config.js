@@ -66,12 +66,12 @@
                 controller: "allagentController",
                 controllerAs: "model"
             })
-            .when("/report", {
+            .when("/user/:userId/appointment/:appointmentId/report/:reportId", {
                 templateUrl: "./views/user/templates/report.view.client.html",
                 controller: "reportController",
                 controllerAs: "model"
             })
-            .when("/appointment", {
+            .when("/user/:userId/appointment/:appointmentId", {
                 templateUrl: "./views/user/templates/appointment.view.client.html",
                 controller: "appointmentController",
                 controllerAs: "model"
