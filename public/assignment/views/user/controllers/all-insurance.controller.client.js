@@ -7,9 +7,11 @@
         .module("WamApp")
         .controller("allagentController", allagentController);
 
-    function allagentController(insuranceService)   {
+    function allagentController(insuranceService,$routeParams)   {
 
         var model = this;
+        model.userId = $routeParams.userId;
+        model.addInsuranceInUser = addInsuranceInUser;
 
         function init() {
             insuranceService
@@ -20,5 +22,12 @@
         }
         init();
 
+        function addInsuranceInUser(insuranceId){
+            insuranceService
+                .addInsuranceInUser(insuranceId,model.userId)
+                .then(function (status){
+                    model.status = status;
+                });
+        }
     }
 })();

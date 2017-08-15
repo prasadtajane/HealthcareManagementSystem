@@ -15,11 +15,35 @@
             "findAllInsurancesByUserId": findAllInsurancesByUserId,
             "createInsurance": createInsurance,
             "updateInsurance": updateInsurance,
-            "deleteInsurance": deleteInsurance,
-            "findInsuranceById": findInsuranceById
+            "deleteInsuranceByAgent": deleteInsuranceByAgent,
+            "findInsuranceById": findInsuranceById,
+            "addInsuranceInUser": addInsuranceInUser,
+            "removeInsuranceFromUser": removeInsuranceFromUser
         };
 
         return api;
+
+        function removeInsuranceFromUser(userId,insuranceId) {
+            var url = "/api/user/"+userId+ "/insurance/"+insuranceId+"/patient";
+            return $http.delete(url)
+                .then(function(response){
+                    return response.status;
+                });
+            // for (var p in pages) {
+            //     if (pages[p]._id === pageId) {
+            //     pages.splice(p,1);
+            //     return;
+            //     }
+            // }
+        }
+
+        function addInsuranceInUser(insuranceId,userId){
+            var url = "/api/user/"+userId+"/insurance/"+insuranceId+"/add";
+            return $http.get(url)
+                .then(function (response){
+                    return response.status;
+                });
+        }
 
         function findAllInsurancesByUserId(userId){
             var url = "/api/user/"+userId+ "/insurance";
@@ -82,7 +106,7 @@
             // }
         }
 
-        function deleteInsurance(userId,insuranceId) {
+        function deleteInsuranceByAgent(userId,insuranceId) {
             var url = "/api/user/"+userId+ "/insurance/"+insuranceId;
             return $http.delete(url)
                 .then(function(response){

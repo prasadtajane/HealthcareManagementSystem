@@ -19,6 +19,28 @@ app.post("/api/user/:userId/insurance",createInsurance);
 app.get("/api/user/:userId/insurance/:insuranceId",findInsuranceById);
 app.put("/api/user/:userId/insurance/:insuranceId",updateInsurance);
 app.delete("/api/user/:userId/insurance/:insuranceId",deleteInsurance);
+app.get("/api/user/:userId/insurance/:insuranceId/add",addInsuranceInUser);
+app.delete("/api/user/:userId/insurance/:insuranceId/patient",removeInsuranceFromUser);
+
+function removeInsuranceFromUser(req,res){
+    var userId= req.params.userId;
+    var insuranceId= req.params.insuranceId;
+    userModel
+        .removeInsuranceFromUser(insuranceId,userId)
+        .then(function (user){
+            res.sendStatus(200);
+        });
+}
+
+function addInsuranceInUser(req,res){
+    var userId= req.params.userId;
+    var insuranceId= req.params.insuranceId;
+    userModel
+        .addInsuranceInUser(insuranceId,userId)
+        .then(function (user){
+           res.sendStatus(200);
+        });
+}
 
 function findAllInsurance(req,res){
     insuranceModel

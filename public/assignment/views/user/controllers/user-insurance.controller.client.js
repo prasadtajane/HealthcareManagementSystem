@@ -11,7 +11,8 @@
 
         var model = this;
         model.userId = $routeParams.userId;
-        model.deleteInsurance = deleteInsurance;
+        model.deleteInsuranceByAgent = deleteInsuranceByAgent;
+        model.removeInsuranceFromUser = removeInsuranceFromUser;
 
         function init() {
             insuranceService
@@ -22,11 +23,19 @@
         }
         init();
 
-        function deleteInsurance(insuranceId) {
+        function deleteInsuranceByAgent(insuranceId) {
             insuranceService
-                .deleteInsurance(model.userId,insuranceId)
+                .deleteInsuranceByAgent(model.userId,insuranceId)
                 .then(function (){
-                    $location.url('/user/'+ model.userId + "/website");
+                    $location.url('/user/'+ model.userId + "/agent");
+                });
+        }
+
+        function removeInsuranceFromUser(insuranceId){
+            insuranceService
+                .removeInsuranceFromUser(model.userId,insuranceId)
+                .then(function (status){
+                    $location.url('/user/'+ model.userId + "/patient");
                 });
         }
     }
