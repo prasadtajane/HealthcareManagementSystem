@@ -106,13 +106,36 @@ function removeAppFromSingleUser(appointmentId, userId) {
             user._appointments.splice(index, 1);
             return user.save();
         });
-}
+}/*
 
 function removeAppointmentFromUsers(appointmentId, userList) {
     for(userId in userList)   {
         removeAppFromSingleUser(appointmentId, userId);
     }
     return;
+}*/
+
+function removeAppointmentFromUsers(appointmentId, userList) {
+    return userModel
+        .findOne({_id:userList[0]})
+        .then(function (docuser) {
+            var index = docuser._appointments.indexOf(appointmentId);
+            docuser._appointments.splice(index, 1);
+            docuser.save()
+                .then(function (docuser) {
+                    //console.log("inside user server then 1 - removeAppointmentFromUsers");
+                    //console.log(docuser._appointments);
+                    return userModel
+                        .findOne({_id:userList[1]})
+                        .then(function (docuser) {
+                            var index = docuser._appointments.indexOf(appointmentId);
+                            docuser._appointments.splice(index, 1);
+                            //console.log("inside user server then 2 - removeAppointmentFromUsers");
+                            //console.log(docuser._appointments);
+                            return docuser.save()
+                        })
+                })
+        });
 }
 
 function findUserById(userId) {

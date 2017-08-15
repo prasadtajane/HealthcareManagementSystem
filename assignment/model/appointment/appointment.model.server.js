@@ -118,17 +118,24 @@ function updateappointment(appointmentId, appointment)   {
 }
 
 
-function deleteappointment(appointmentId, userList) {
-    return findappointmentById(appointmentId)
+function deleteappointment(appointmentId) {
+    //console.log("inside appointment model - deleteappointment");
+    //console.log(appointmentId);
+    return appointmentModel
+        .findOne({_id:appointmentId})
         .then(function (appointment) {
-            var userList = {}
+            //console.log("inside user model then - deleteappointment");
+            //console.log(appointment);
+            var userList = [];
             userList.push(appointment.doctorId);
             userList.push(appointment.patientId);
+            //console.log(userList);
 
             appointment.remove({_id:appointmentId})
                 .then(function (status) {
-                    userModel.removeAppointmentFromUsers(appointmentId, userList);
-                    console.log(status);
+                    userModel
+                        .removeAppointmentFromUsers(appointmentId, userList);
+                    //console.log(status);
                     return;
                 })
         });
