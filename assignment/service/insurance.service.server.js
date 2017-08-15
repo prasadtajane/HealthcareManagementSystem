@@ -31,7 +31,7 @@ function deleteInsurance(req,res){
     var userId= req.params.userId;
     var insuranceId= req.params.insuranceId;
     insuranceModel
-        .deleteInsurance(insuranceId)
+        .deleteInsurance(insuranceId,userId)
         .then(function (status){
             res.json(status);
         });
@@ -94,10 +94,10 @@ function findInsuranceById(req,res){
 
 function createInsurance(req,res){
     var userId= req.params.userId;
-    var insuranceId= req.params.insuranceId;
+    // var insuranceId= req.params.insuranceId;
     var insurance = req.body;
     insuranceModel
-        .createInsurance(insurance)
+        .createInsurance(userId,insurance)
         .then(function(insurance){
             res.json(insurance);
         });

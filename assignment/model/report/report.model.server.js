@@ -42,12 +42,19 @@ module.exports = reportModel;
 // }
 
 function findReportByApppointmentId(appointmentId){
+    console.log("inside report model - findReportByApppointmentId" + appointmentId);
     return reportModel
-        .find({_appointment:appointmentId});
+        .find({_appointment:appointmentId})
+        .then(function (report) {
+            //console.log(report);
+            return report;
+        })
+    // appointmentModel
+    //     .findReportsByAppointmentId(appointmentId);
 }
 
 function createReport(appointmentId,report){
-    report.appointmentId = appointmentId;
+    report._appointment = appointmentId;
     var reportTmp = null;
     return reportModel
         .create(report)

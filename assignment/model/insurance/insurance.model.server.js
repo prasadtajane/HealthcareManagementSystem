@@ -8,7 +8,7 @@ var insuranceSchema = require('./insurance.schema.server');
 var db = require('../models.server');
 
 var insuranceModel = mongoose.model('InsuranceModel',insuranceSchema);
-// var appointmentModel = require('../appointment/appointment.model.server');
+var userModel = require('../user/user.model.server');
 
 
 // insuranceModel.findinsuranceByApppointmentId = findReportByApppointmentId;
@@ -48,19 +48,19 @@ module.exports = insuranceModel;
 //         .exec();
 // }
 
-function createInsurance(insurance){
+function createInsurance(userId,insurance){
     // report.appointmentId = appointmentId;
     // var reportTmp = null;
     return insuranceModel
-        .create(insurance);
-    // .then(function (page){
-    //     pageTmp = page;
-    //     return websiteModel
-    //         .addPage(websiteId,page._id);
-    // })
-    // .then(function (website){
-    //     return pageTmp;
-    // });
+        .create(insurance)
+        .then(function (insurance){
+        insuranceTmp = insurance;
+        return userModel
+            .addInsuranceInUser(insurance._id,userId);
+    })
+    .then(function (user){
+        return insuranceTmp;
+    });
 }
 
 function findInsuranceById(insuranceId){
@@ -71,12 +71,12 @@ function updateInsurance(insuranceId,insurance){
     return insuranceModel.update({_id : insuranceId},{$set : insurance});
 }
 
-function deleteInsurance(insuranceId){
-    return insuranceModel.remove({_id: insuranceId});
-    // .then(function (status){
-    //     return websiteModel
-    //         .deletePage(websiteId,pageId);
-    // });
+function deleteInsurance(insuranceId,userId){
+    return insuranceModel.remove({_id: insuranceId})
+    .then(function (status){
+        return userModel
+            .removeInsuranceFromUser(insuranceId,userId);
+    });
 }
 
 function findAllInsurance(){

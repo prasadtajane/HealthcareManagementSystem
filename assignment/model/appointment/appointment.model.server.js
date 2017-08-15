@@ -152,10 +152,10 @@ function findReportsByAppointmentId(appointmentId) {
                     .populate('_reports')
                     .exec()
                     .then(function (appointmentOut) {
-                        return appointmentOut;
+                        return appointmentOut._reports;
                     })
             }
-            else return appointment;
+            else return appointment._reports;
         });
 }
 

@@ -112,8 +112,8 @@ function createReport(req,res){
 }
 
 function findReport(request, response) {
-    var userId= req.params.userId;
-    var appointmentId = req.params.appointmentId;
+    var userId= request.params.userId;
+    var appointmentId = request.params.appointmentId;
     var patient = request.query.patient;
     if (appointmentId && patient)   {
         findReportByPatientName(request, response);
