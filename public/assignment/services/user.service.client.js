@@ -21,13 +21,12 @@
         return api;
 
         function findUserByUsernameAndPassword(username, password) {
-            ///api/profile?username=alice&password=alice
             var host = "/api/user?";
             var query = "username=" + username + "&password=" + password;
             var url = host + query;
-            var response = $http.get(url);
+            return $http.get(url);
             //alert(response);
-            return response;
+            //return res;
         }
 
         function findUserById(userId) {

@@ -11,50 +11,56 @@
         var users = [];
 
         var api =  {
-            createUser:createUser,
-            findUserById:findUserById,
-            updateUserByUserId:updateUserByUserId,
-            deleteUserByUserId:deleteUserByUserId,
-            "findUserByUsername": findUserByUsername,
-            "findUserByUsernameAndPassword": findUserByUsernameAndPassword
+            createappointment:createappointment,
+            updateappointment:updateappointment,
+            deleteAppointment:deleteAppointment,
+            findappointmentById:findappointmentById,
+            "findappointmentByDate": findappointmentByDate,
+            "findappointmentByPatient": findappointmentByPatient,
+            "findappointmentByCategory": findappointmentByCategory,
+            "findappointmentByPriority": findappointmentByPriority
         };
         return api;
 
-        function findUserByUsernameAndPassword(username, password) {
-            ///api/profile?username=alice&password=alice
-            var host = "/api/user?";
-            var query = "username=" + username + "&password=" + password;
-            var url = host + query;
-            var response = $http.get(url);
-            //alert(response);
-            return response;
-        }
-
-        function findUserById(userId) {
-            ///api/user/:userId
-            return $http.get("/api/user/" + userId);
+        function findappointmentById(userId, appointmentId) {
+            ///api/user/:userId/appointment/:appointmentId
+            return $http.get("/api/user/" + userId + "/appointment/" + appointmentId);
                 /*.then(function (response) {
                     response.data;
                 });*/
         }
 
-        function findUserByUsername(username)   {
-            return $http.get("/api/user?username=" + username);
+        function findappointmentByPatient(patientName)   {
+            return $http.get("/api/user?patientName=" + patientName);
         }
 
-        function createUser(newuser)   {
+        function findappointmentByDate(date)   {
+            return $http.get("/api/user?date=" + date);
+        }
+
+        function findappointmentByCategory(category)   {
+            return $http.get("/api/user?category=" + category);
+        }
+
+        function findappointmentByPriority(priority)   {
+            return $http.get("/api/user?priority=" + priority);
+        }
+
+        function createappointment(userId, appointment)   {
             //console.log(newuser);
-            return $http.post("/api/user/", newuser);
+            ///api/user/:userId/appointment
+            return $http.post("/api/user/" + userId, appointment);
         }
 
-        function updateUserByUserId(user, userId)   {
-            $http.put("/api/user/" + userId, user);
+        function updateappointment(userId, appointmentId, appointment)   {
+            ///api/user/:userId/appointment/:appointmentId
+            $http.put("/api/user/" + userId + "/appointment/" + appointmentId, appointment);
             //alert("inside update service " + userId + " " + user);
         }
 
-        function deleteUserByUserId(userId) {
-            ///api/user/:userId
-            return $http.delete("/api/user/" + userId);
+        function deleteAppointment(userId, appointmentId) {
+            ///api/user/:userId/appointment/:appointmentId
+            return $http.delete("/api/user/" + userId + "/appointment/" + appointmentId);
         }
 
     }
