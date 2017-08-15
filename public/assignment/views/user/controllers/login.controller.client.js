@@ -20,7 +20,7 @@
             promise.then(function (response)    {
                 inuser = response.data;
                 //alert(inuser);
-                if (inuser === "0") {
+                if (inuser === null) {
                     model.message = "Incorrect credentials for user '" + user.username + "' !!!";
                     alert(model.message);
                 }
@@ -28,17 +28,11 @@
                     model.message = "Welcome back " + inuser.username + " !!!";
                     $rootScope.currentUser = inuser;
                     //alert("user is " + inuser.username +" "+inuser.password+inuser._id);
-                    $location.url("/profile/" + inuser._id);
+                    $location.url("/user/" + inuser._id);
                 }
             });
 
         }
-
-        function processResponse(response){
-
-        }
-
-
 
         model.register = (function () {
             $location.url("/register");

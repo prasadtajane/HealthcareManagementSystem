@@ -7,9 +7,9 @@
 (function ()   {
     angular
         .module("WamApp")
-        .controller("appointmentController", appointmentController)
+        .controller("appointmentController", appointmentController);
 
-    function appointmentController($routeParams, $location, userService, $rootScope) {
+    function appointmentController($routeParams, $location, appointmentService, $rootScope) {
 
         var model = this;
         //model.searchProfile = searchProfile;
@@ -21,7 +21,7 @@
         model.findWebsites = findWebsites;
 
         var uId = $routeParams["userId"];
-        
+
         function logout() {
             $rootScope.currentUser = null;
             $location.url("/login");
@@ -29,26 +29,26 @@
 
         function init() {
             //alert("inside profile service!")
-            var promise = userService.findUserById(uId);
+            var promise = appointmentService.findUserById(uId);
             promise.then(function (response) {
                 model.user = response.data;
                 var user = model.user;
                 return user;
                 })
-            //model.user = userService.findUserById(uId);
+            //model.user = appointmentService.findUserById(uId);
 
         }
         init();
 
         function updateUser(user) {
             //alert("inside update of controller");
-            userService.updateUserByUserId(user, uId);
+            appointmentService.updateUserByUserId(user, uId);
             alert("Hi " + user.username + " all values have been updated successfully!");
 
         }
 
         function deleteUser(user) {
-            userService.deleteUserByUserId(uId)
+            appointmentService.deleteUserByUserId(uId)
                 .then(function (response) {
                     suCode = response.data;
                     if (suCode === "200") {

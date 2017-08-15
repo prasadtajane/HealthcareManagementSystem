@@ -16,6 +16,7 @@
             updateUserByUserId:updateUserByUserId,
             deleteUserByUserId:deleteUserByUserId,
             "findUserByUsername": findUserByUsername,
+            findUserByUsernameAndUserType:findUserByUsernameAndUserType,
             "findUserByUsernameAndPassword": findUserByUsernameAndPassword
         };
         return api;
@@ -39,6 +40,10 @@
 
         function findUserByUsername(username)   {
             return $http.get("/api/user?username=" + username);
+        }
+
+        function findUserByUsernameAndUserType(username, uType)   {
+            return $http.get("/api/user?username=" + username + "&userType=" + uType);
         }
 
         function createUser(newuser)   {

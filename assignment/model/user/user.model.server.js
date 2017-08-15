@@ -21,6 +21,7 @@ userModel.removeInsuranceFromUser = removeInsuranceFromUser;
 userModel.findAllInsurancesByUserId = findAllInsurancesByUserId;
 userModel.removeAppointmentFromUsers = removeAppointmentFromUsers;
 userModel.findAllAppointmentsByUserId = findAllAppointmentsByUserId;
+userModel.findUserByUsernameAndUserType = findUserByUsernameAndUserType;
 //userModel.findAppointmentReportByUserId = findAppointmentReportByUserId;
 
 module.exports = userModel;
@@ -152,6 +153,11 @@ function findAll() {
 function findUserByUsername(name)   {
     return userModel
         .findOne({username: name});
+}
+
+function findUserByUsernameAndUserType(name, uType)   {
+    return userModel
+        .findOne({username: name, userType:uType});
 }
 
 function findUserByCredentials(username, password) {

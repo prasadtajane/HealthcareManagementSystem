@@ -26,8 +26,13 @@ function callback(err, result) {
 function getUsers(request, response) {
     var username = request.query.username;
     var password = request.query.password;
+    var userType = request.query.userType;
     if (username && password)   {
         findUserByCredentials(request, response);
+    }
+    else if (username && userType)  {
+        //findUserByUsernameAndUserType(name, uType)
+        findUserByUsernameAndUserType(request, response);
     }
     else if (username)  {
         findUserByUsername(request, response);
@@ -56,7 +61,7 @@ function findUserByUsername(request, response) {
     userModel
         .findUserByUsername(request.query.username)
         .then(function (user) {
-            console.log(user);
+            //console.log(user);
             response.json(user);
             return;
         }, function (err) {
@@ -65,6 +70,18 @@ function findUserByUsername(request, response) {
         });
 }
 
+function findUserByUsernameAndUserType(request, response) {
+    userModel
+        .findUserByUsernameAndUserType(request.query.username, request.query.userType)
+        .then(function (user) {
+            //console.log(user);
+            response.json(user);
+            return;
+        }, function (err) {
+            response.sendStatus(404).send(err);
+            return;
+        });
+}
 function findAll(request, response) {
     return userModel
         .findAll()

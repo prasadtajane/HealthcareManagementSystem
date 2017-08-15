@@ -26,22 +26,22 @@
                 controller: "loginController",
                 controllerAs: "model"
             })
-            .when("/profile/:userId", {
+            .when("/user/:userId", {
                 templateUrl: "./views/user/templates/profile.view.client.html",
                 controller: "profileController",
                 controllerAs: "model"
             })
-            .when("/profile/:userId/patient", {
+            .when("/user/:userId/patient", {
                 templateUrl: "./views/user/templates/patient-profile.view.client.html",
                 controller: "patientProfileController",
                 controllerAs: "model"
             })
-            .when("/profile/:userId/agent", {
+            .when("/user/:userId/agent", {
                 templateUrl: "./views/user/templates/agent-profile.view.client.html",
                 controller: "agentProfileController",
                 controllerAs: "model"
             })
-            .when("/profile/:userId/doctor", {
+            .when("/user/:userId/doctor", {
                 templateUrl: "./views/user/templates/doctor-profile.view.client.html",
                 controller: "doctorProfileController",
                 controllerAs: "model"
@@ -71,7 +71,7 @@
                 controller: "appointmentController",
                 controllerAs: "model"
             })
-            .when("/profile/:userId/review", {
+            .when("/user/:userId/review", {
                 templateUrl: "./views/user/templates/review-list.view.client.html",
                 controller: "reviewController",
                 controllerAs: "model"

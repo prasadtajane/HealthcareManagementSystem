@@ -42,7 +42,7 @@
                            class="form-control"
                            aria-describedby="basic-addon2"
                            id="firstname"
-                           ng-model="user.firstname"
+                           ng-model="user.first_name"
                            name="firstname"
                            placeholder="First Name">
                     <span class="input-group-addon back-color-white"
@@ -57,7 +57,7 @@
                            class="form-control"
                            aria-describedby="basic-addon2"
                            id="lastname"
-                           ng-model="user.lastname"
+                           ng-model="user.last_name"
                            name="lastname"
                            placeholder="Last Name">
                     <span class="input-group-addon back-color-white"
@@ -121,7 +121,7 @@
                 <select class="form-control"
                         placeholder="Create a Password"
                         id="usertype"
-                        ng-model="user.type">
+                        ng-model="user.userType">
                     <option value="" disabled selected>Select User Type</option>
                     <option value="patient">Patient</option>
                     <option value="doctor">Doctor</option>
