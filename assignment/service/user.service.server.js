@@ -25,6 +25,7 @@ function callback(err, result) {
 }
 
 function getUsers(request, response) {
+    var npi = request.query.npi;
     var username = request.query.username;
     var password = request.query.password;
     var userType = request.query.userType;
@@ -37,6 +38,8 @@ function getUsers(request, response) {
     }
     else if (username)  {
         findUserByUsername(request, response);
+    }else if(npi)   {
+        findUserByNPI(request, response);
     }
     else    {
         findAll(request, response);
@@ -69,6 +72,20 @@ function findUserByUsername(request, response) {
             response.sendStatus(404).send(err);
             return;
         });
+}
+
+function findUserByNPI(request, response) {
+    userModel
+        .findUserByNPI(request.query.npi)
+        .then(function (user) {
+            //console.log(user);
+            response.json(user);
+            return;
+        }, function (err) {
+            response.sendStatus(404).send(err);
+            return;
+        });
+
 }
 
 function findUserByUsernameAndUserType(request, response) {

@@ -32,9 +32,13 @@
         <div class="input-group">
             <input type="text"
                    class="form-control"
+                   ng-model="doctorName"
                    placeholder="Search doctor here">
             <span class="input-group-btn">
-                    <button class="btn btn-default" type="button">Go!</button>
+                    <button class="btn btn-default"
+                            ng-click="model.searchDoctorByName(doctorName)"
+                            type="button">Go!
+                    </button>
                 </span>
         </div><!-- /input-group -->
     </div>
@@ -48,99 +52,62 @@
         <div class="panel-body ">
 
             <ul class="list-group">
-                <li class="list-group-item">
-                    <div class="media">
-                        <div class="media-left">
-                            <a href="#">
-                                <img class="media-object review-image img-rounded img-responsive taj-top-margin-25"
-                                     alt="Responsive image"
-                                     src="uploads/heart-pulse.jpeg"/>
-                            </a>
-                        </div>
-                        <div class="media-body">
+                <div class="display"
+                     ng-repeat="doctor in model.doctorList">
+                    <li class="list-group-item">
+                        <div class="media">
+                            <div class="media-left">
+                                <a href="#">
+                                    <img class="media-object review-image img-rounded img-responsive taj-top-margin-25"
+                                         alt="Responsive image"
+                                         ng-src="{{doctor.profile.image_url}}"/>
+                                </a>
+                            </div>
+                            <div class="media-body">
 
-                            <h4 class="media-heading">William Smithson</h4>
-                            <ul class="list-group">
-                                <li class="list-group-item">
-                                    <div class="row">
-                                        <div class="col-md-3 col-lg-2"><b>Location  :</b></div>
-                                        <div class="col-md-9 col-lg-10">Allston</div>
-                                    </div>
-                                </li>
-                                <li class="list-group-item">
-                                    <div class="row">
-                                        <div class="col-md-3 col-lg-2"><b>Education :</b></div>
-                                        <div class="col-md-9 col-lg-10">Ph.D</div>
-                                    </div>
-                                </li>
-                                <li class="list-group-item">
-                                    <div class="row">
-                                        <div class="col-md-3 col-lg-2"><b>Practices :</b></div>
-                                        <div class="col-md-9 col-lg-10"> Optholmologist</div>
-                                    </div>
-                                </li>
-                                <li class="list-group-item">
-                                    <div class="row">
-                                        <div class="col-lg-2 col-md-3 col-xs-5">View
-                                            <b><span class="glyphicon glyphicon-zoom-in"></span></b>
+                                <h4 class="media-heading">{{doctor.profile.first_name}},{{ }} {{doctor.profile.last_name}}</h4>
+                                <ul class="list-group">
+                                    <li class="list-group-item">
+                                        <div class="row">
+                                            <div class="col-md-3 col-lg-2"><b>Location  :</b></div>
+                                            <div class="col-md-9 col-lg-10">
+                                                {{doctor.practices[0].visit_address.city}},{{ }} {{doctor.practices[0].visit_address.zip}}
+                                            </div>
                                         </div>
-                                        <div class="col-lg-10 col-md-9 col-xs-7">Schedule
-                                            <b><span class="glyphicon glyphicon-time"></span></b>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <div class="row">
+                                            <div class="col-md-3 col-lg-2"><b>Title :</b></div>
+                                            <div class="col-md-9 col-lg-10">{{doctor.profile.title}}</div>
                                         </div>
-                                    </div>
-                                </li>
-                            </ul>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <div class="row">
+                                            <div class="col-md-3 col-lg-2"><b>Specialization :</b></div>
+                                            <div class="col-md-9 col-lg-10">{{doctor.specialties[0].name}}</div>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <div class="row">
+                                            <div class="col-lg-2 col-md-3 col-xs-5">View
+                                                <a ng-click="model.showDoctorDetails(doctor)">
+                                                    <b><span class="glyphicon glyphicon-zoom-in"></span></b>
+                                                </a>
+                                            </div>
+                                            <div class="col-lg-10 col-md-9 col-xs-7">Schedule
+                                                <a ng-click="model.createAppointment(doctor)">
+                                                    <b><span class="glyphicon glyphicon-time"></span></b>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="color-white"></li>
+                                </ul>
 
+                            </div>
                         </div>
-                    </div>
-                </li>
-                <li class="color-white"></li>
-                <li class="list-group-item">
-                    <div class="media">
-                        <div class="media-left">
-                            <a href="#">
-                                <img class="media-object review-image img-rounded img-responsive taj-top-margin-25"
-                                     alt="Responsive image"
-                                     src="uploads/heart-pulse.jpeg"/>
-                            </a>
-                        </div>
-                        <div class="media-body">
-
-                            <h4 class="media-heading">William Smithson</h4>
-                            <ul class="list-group">
-                                <li class="list-group-item">
-                                    <div class="row">
-                                        <div class="col-md-3 col-lg-2"><b>Location  :</b></div>
-                                        <div class="col-md-9 col-lg-10">Allston</div>
-                                    </div>
-                                </li>
-                                <li class="list-group-item">
-                                    <div class="row">
-                                        <div class="col-md-3 col-lg-2"><b>Education :</b></div>
-                                        <div class="col-md-9 col-lg-10">Ph.D</div>
-                                    </div>
-                                </li>
-                                <li class="list-group-item">
-                                    <div class="row">
-                                        <div class="col-md-3 col-lg-2"><b>Practices :</b></div>
-                                        <div class="col-md-9 col-lg-10"> Optholmologist</div>
-                                    </div>
-                                </li>
-                                <li class="list-group-item">
-                                    <div class="row">
-                                        <div class="col-lg-2 col-md-3 col-xs-5">View
-                                            <b><span class="glyphicon glyphicon-zoom-in"></span></b>
-                                        </div>
-                                        <div class="col-lg-10 col-md-9 col-xs-7">Schedule
-                                            <b><span class="glyphicon glyphicon-time"></span></b>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-
-                        </div>
-                    </div>
-                </li>
+                    </li>
+                </div>
             </ul>
         </div>
     </div>

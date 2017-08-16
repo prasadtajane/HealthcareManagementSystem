@@ -13,6 +13,7 @@ userModel.createUser = createUser;
 userModel.updateUser = updateUser;
 userModel.deleteUser = deleteUser;
 userModel.findUserById = findUserById;
+userModel.findUserByNPI = findUserByNPI;
 userModel.findUserByUsername = findUserByUsername;
 userModel.addInsuranceInUser = addInsuranceInUser;
 userModel.findUserByCredentials = findUserByCredentials;
@@ -153,6 +154,11 @@ function findAll() {
 function findUserByUsername(name)   {
     return userModel
         .findOne({username: name});
+}
+
+function findUserByNPI(npiIn)   {
+    return userModel
+        .findOne({npi: npiIn});
 }
 
 function findUserByUsernameAndUserType(name, uType)   {

@@ -7,54 +7,104 @@
         .module("WamApp")
         .controller("doctorController", doctorController);
 
-    function doctorController($location, userService)   {
+    function doctorController($location, $routeParams, userService, doctorService, appointmentService)   {
 
         var model = this;
 
+        model.showDoctorDetails = showDoctorDetails;
+        model.createAppointment = createAppointment;
+        model.searchDoctorByName = searchDoctorByName;
+
         function init() {
+            /*
+            console.log($routeParams["userId"]);
+            if($routeParams["userId"])    {
+                console.log("Hello");
+            }
+            else console.log("Not Logged In");
+
+             userService
+             .findUserByNPI("123456789")
+             .then(function (response) {
+             console.log("response");
+             console.log(response.data);
+             if(response.data)   {
+             console.log("Doctor Found!");
+             }
+             else console.log("Not Found!");
+             });
+            */
 
         }
         init();
 
-        model.register = (
-            function (user) {
-                //console.log(user);
-                if (user.password1 === user.password2 && typeof user.password1 !== "undefined")   {
+        function searchDoctorByName(doctorName) {
+            doctorService
+                .searchDoctorByName(doctorName)
+                .then(doctorNames);
+        }
 
-                    if (user.username === null || user.username === '' || typeof user.username === 'undefined')   {
-                        alert("Please write an username !")
-                        return;
-                    }
-                    else    {
-                        //model.inuser = userService.findUserByUsername(user.username);
-                        userService.findUserByUsername(user.username)
-                            .then( function (response) {
-                                model.inuser = response.data;
-                                //console.log("model . inuser");
-                                //  console.log(model.inuser);
-                                /*if(model.inuser !== 'null')   {
-                                    alert("Sorry username '" + model.inuser.username + "' already exists !");
-                                }
-                                else */
-                                {
-                                    alert("Welcome " + user.username + " !!!")
-                                    var newUser = {
-                                        username:user.username,
-                                        password:user.password1
-                                    }
-                                    userService.createUser(newUser)
-                                        .then( function (response) {
-                                            newUser = response.data
-                                            alert("Hey, " + user.username + " your userId is " + newUser._id);
-                                            $location.url("/profile/" + newUser._id);
-                                        });
-                                }
-                            });
-                    }
-                }
-                else {
-                    alert("Hi " + user.username + ", two passwords do not match!")
-                }
-        })
+        function doctorNames(docnames){
+            console.log(docnames.data);
+            model.doctorList = docnames.data;
+        }
+        
+        function showDoctorDetails(doctor) {
+            
+        }
+
+        function create(uId, appointment) {
+            console.log("##########");
+            return appointmentService
+                .createappointment(uId, appointment)
+                .then(function (appointmentOut) {
+                    console.log("************");
+                    //console.log("inside profile controller then - createAppointment");
+                    console.log(appointmentOut.data);
+                    appointmentId = appointmentOut.data._id;
+                    $location.url("/user/" + uId + "/appointment/" + appointmentId);
+                })
+        }
+
+        function createAppointment(doctor) {
+
+            if ($routeParams["userId"])   {
+                console.log("User Online");
+                var appointment = {
+                    patient_name:"Your Name",
+                    patientId:$routeParams["userId"],
+                    doctor_name:doctor.profile.first_name+", "+doctor.profile.last_name,
+                    doctorId:doctor._id,
+                    date:Date.now(),
+                    time:"12:00 PM"
+                };
+                userService
+                    .findUserByNPI(doctor.npi)
+                    .then(function (response) {
+                        console.log("response");
+                        //console.log(response.data);
+                        if(response.data)   {
+                            console.log("Doctor Found!");
+                            appointment.doctorId = response.data._id;
+                            create($routeParams["userId"], appointment);
+                        }
+                        else    {
+                            console.log("Creating a Doctor!");
+                            userService
+                                .createUser(doctor)
+                                .then(function (response) {
+                                    var user = response.data;
+                                    appointment.doctorId = user._id;
+                                    create($routeParams["userId"], appointment);
+                                });
+                        };
+                    });
+            }
+            else {
+                alert("Please Login Before Booking an Appointment.");
+                $location.url("/login");
+            };
+         }
+
     }
 })();
