@@ -99,7 +99,7 @@
         }
 
         function showUserReportById () {
-            $location.url("/user/" + uId + "/report/" + model.user._appointments_previous[0]._reports[0]);
+            $location.url("/user/" + uId + "/appointment/" + model.user._appointments_previous[0]._id + "/report/" + model.user._appointments_previous[0]._reports[0]);
         }
 
         function rescheduleAppointment (appointmentId) {

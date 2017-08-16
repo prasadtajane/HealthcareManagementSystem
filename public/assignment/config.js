@@ -21,6 +21,10 @@
                 controller: "homeController",
                 controllerAs: "model"
             })
+
+
+
+
             .when("/login", {
                 templateUrl: "./views/user/templates/login.view.client.html",
                 controller: "loginController",
@@ -76,7 +80,7 @@
                 controller: "insuranceNewController",
                 controllerAs: "model"
             })
-            .when("/agent", {
+            .when("/insurance", {
                 templateUrl: "./views/user/templates/insurance-all-list.view.client.html",
                 controller: "allagentController",
                 controllerAs: "model"

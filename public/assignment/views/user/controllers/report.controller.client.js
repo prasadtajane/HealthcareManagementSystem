@@ -26,7 +26,7 @@
                 .then(function (response) {
                     //alert("inside controller - findWebsiteByUserId");
                     model.report = response;
-                    //console.log(model.report);
+                    console.log(model.report);
                     model.report.date = new Date(model.report.date);
                     return model.report;
                 });
@@ -44,7 +44,8 @@
                     }else{
                         model.message = "Update not successfull";
                     }
-                    model.report= report;
+                    report.date = new Date(report.date);
+                    model.report = report;
                 });
         }
 
