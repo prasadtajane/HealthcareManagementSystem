@@ -253,3 +253,9 @@ body {
 .sou-margin-top-20{
     margin-top: 20px;
 }
+
+#diseaseLabel,#operationLabel,#achievementLabel
+{ font-weight: normal; }
+.normalLabel{
+    font-weight: normal;
+}
