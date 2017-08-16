@@ -22,7 +22,8 @@
         function init() {
             //console.log("inside report controller init");
             reportService
-                .findReportByApppointmentId(model.userId, model.appointmentId)
+                .findReportById(model.userId,model.appointmentId,model.reportId)
+                //.findReportByApppointmentId(model.userId, model.appointmentId)
                 .then(function (response) {
                     //alert("inside controller - findWebsiteByUserId");
                     model.report = response;
@@ -46,6 +47,7 @@
                     }
                     report.date = new Date(report.date);
                     model.report = report;
+                    $location.url('/user/'+ model.userId + "/appointment/"+model.appointmentId);
                 });
         }
 

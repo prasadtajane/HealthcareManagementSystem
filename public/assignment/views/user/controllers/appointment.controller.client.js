@@ -22,6 +22,7 @@
         model.deleteAppointment = deleteAppointment;
         model.approveAppointment = approveAppointment;
         model.function = selectFunction;
+        model.editReport = editReport;
 
         function logout() {
             $rootScope.currentUser = null;
@@ -122,7 +123,8 @@
                 });
         }
 
-        function findWebsites() {
+        function editReport(appointment, reportId) {
+            $location.url("/user/" + uId + "/appointment/" + appointmentId + "/report/" + reportId);
         }
     }
 
