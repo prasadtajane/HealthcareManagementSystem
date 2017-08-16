@@ -6,6 +6,6 @@
 
 (function ()   {
     angular
-        .module("WamApp", ["ngRoute", "wbdvDirectives", "textAngular"]);
+        .module("WamApp", ["ngRoute", "wbdvDirectives", "textAngular","imageDirective"]);
 
 })();

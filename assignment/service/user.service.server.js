@@ -4,6 +4,8 @@
 
 var app = require("../../express");
 var userModel = require("../model/user/user.model.server");
+var multer = require('multer'); // npm install multer --save
+var upload = multer({ dest: __dirname+'/../../public/assignment/uploads' });
 
 var users = [];
 
@@ -12,7 +14,63 @@ app.get("/api/user/:userId",findUserById);
 app.get("/api/user/:userId/populateappointments",findAllAppointmentsByUserId);
 app.post("/api/user", createUser);
 app.put("/api/user/:userId", updateUser);
+app.post("/api/upload",upload.single('myFile'), uploadImage);
 app.delete("/api/user/:userId", deleteUser);
+
+
+function uploadImage(req, res) {
+
+    var myFile        = req.file;
+
+    var userId        = req.body.userId;
+
+    var originalname  = myFile.originalname; // file name on user's computer
+    var filename      = myFile.filename;     // new file name in upload folder
+    var path          = myFile.path;         // full path of uploaded file
+    var destination   = myFile.destination;  // folder where file is saved to
+    var size          = myFile.size;
+    var mimetype      = myFile.mimetype;
+    var photourl     = '/assignment/uploads/'+filename;
+
+    return userModel
+        .findUserById(userId)
+        .then(function (user) {
+            user.profile.image_url=photourl;
+            userModel
+                .updateUser(userId, user)
+                .then(function (status) {
+                    var callbackUrl = "/assignment/#!/user/"+userId+"/patient";
+                    res.redirect(callbackUrl);
+                }, function (err) {
+                    console.log(err);
+                    return err;
+                });
+        });
+    // widget.url = '/uploads/'+filename;
+
+    // console.log(widget);
+    // user.url = '/assignment/uploads/'+myFile.filename ;
+    // widget.myFile = myFile;
+    // widget.name = name;
+    // widget.width = width;
+    // widget.text = text;
+    // console.log("widget service - after setting property");
+    // console.log(widget);
+
+    // widgetModel
+    //     .updateWidget(widgetId, widget)
+    //     .then(function (widget) {
+    //         return widget;
+    //     }, function (err) {
+    //         console.log(err);
+    //         return err;
+    //     });
+    // var callbackUrl   = "/assignment/#/user/"+userId+"/website/"+websiteId;
+    // var callbackUrl = "/assignment/#!/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId;
+    // var callbackUrl = "/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId;
+
+    // res.redirect(callbackUrl);
+}
 
 function callback(err, result) {
      if(err) {

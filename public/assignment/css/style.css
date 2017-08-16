@@ -259,3 +259,15 @@ body {
 .normalLabel{
     font-weight: normal;
 }
+
+#upload{
+    display:none
+}
+
+#imageToolbar{
+    background-color: black;
+}
+
+#padding-remove{
+padding: 1px;
+}

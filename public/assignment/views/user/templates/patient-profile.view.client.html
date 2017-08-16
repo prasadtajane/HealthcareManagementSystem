@@ -33,14 +33,39 @@
     <div class="row">
         <div class="col-xs-4"></div>
         <div class="col-xs-4">
-            <div class="wd-widget-toolbar pull-right">
-                <a ng-click="model.goToEditWidget(widget)">
-                    <span class="glyphicon glyphicon-pencil"></span>
-                </a>
-            </div>
+            <!--<div class="wd-widget-toolbar pull-right">-->
+                <!--<a wdImage>-->
+                    <!--<span class="glyphicon glyphicon-pencil" wdImage></span>-->
+                <!--</a>-->
+
+            <!--</div>-->
             <a href="#">
-                <img class="img-responsive img-rounded" alt="Responsive image "src="uploads/heart-pulse.jpeg"/>
+                <img class="img-responsive img-rounded" alt="Responsive image" ng-src="{{model.user.profile.image_url}}"/>
+                <!--{{model.user.profile.image_url}}-->
+                <!--ng-src="uploads/heart-pulse.jpeg"-->
             </a>
+            <!--<input id="upload" type="file" >-->
+            <form action="/api/upload"  method="post" enctype="multipart/form-data">
+            <div class = "row taj-top-margin">
+                <div class="col-xs-9">
+                     <input name="myFile" type="file"  id = "file" class="form-control" required="required"/>
+                    <!--<input  name="width"     value="{{model.widget.width}}" style="display: none"/>-->
+                    <input  name="userId" value="{{model.userId}}" style="display: none"/>
+                    <!--<input  name="websiteId" value="{{model.websiteId}}"    style="display: none"/>-->
+                    <!--<input  name="pageId"    value="{{model.pageId}}"       style="display: none"/>-->
+                    <!--<input  name="widgetId"  value="{{model.widget._id}}"   style="display: none"/>-->
+                    <!--<input  name="widgetType"  value="{{model.widget.widgetType}}"   style="display: none"/>-->
+                </div>
+                <div class="col-xs-3">
+                    <!--<div class="wd-widget-toolbar pull-right">-->
+                    <button type="submit" class="btn btn-block btn-primary">Upload</button>
+                    <!--<a wdImage>-->
+                        <!--<span class="glyphicon glyphicon-pencil" wdImage></span>-->
+                    <!--</a>-->
+                    <!--</div>-->
+                </div>
+            </div>
+            </form>
         </div>
         <div class="col-xs-4"></div>
     </div>
