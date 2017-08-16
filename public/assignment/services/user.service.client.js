@@ -13,6 +13,7 @@
         var api =  {
             createUser:createUser,
             findUserById:findUserById,
+            "findUserByNPI":findUserByNPI,
             updateUserByUserId:updateUserByUserId,
             deleteUserByUserId:deleteUserByUserId,
             "findUserByUsername": findUserByUsername,
@@ -41,6 +42,10 @@
 
         function findUserByUsername(username)   {
             return $http.get("/api/user?username=" + username);
+        }
+
+        function findUserByNPI(npi)   {
+            return $http.get("/api/user?npi=" + npi);
         }
 
         function findUserByUsernameAndUserType(username, uType)   {

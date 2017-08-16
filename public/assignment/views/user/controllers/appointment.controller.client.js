@@ -35,6 +35,10 @@
                 model.appointment = response.data;
                 model.appointment.date = new Date(model.appointment.date);
                 var appointment = model.appointment;
+                if(appointment.isApproved)    {
+                    model.appointment.status = "Approved!";
+                }
+                else model.appointment.status = "Not Yet Approved!";
                 return appointment;
                 });
 

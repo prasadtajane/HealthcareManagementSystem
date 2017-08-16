@@ -68,7 +68,7 @@
         }
         init();
 
-        function createAppointment() {
+        /*function createAppointment() {
 
             appointment = {
                 patient_name:model.user.username,
@@ -89,7 +89,10 @@
                     //console.log()
                     $location.url("/user/" + uId + "/appointment/" + appointmentId);
                 });
-        }
+        }*/
+
+        function createAppointment() {
+            $location.url("/user/" + uId + "/doctor");}
 
         function showInsuranceById () {
             $location.url("/user/" + uId + "/insurance");

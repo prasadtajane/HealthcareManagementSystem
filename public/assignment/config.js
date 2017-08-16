@@ -31,6 +31,11 @@
                 controller: "profileController",
                 controllerAs: "model"
             })
+            .when("/user/:userId/doctor/:doctorId", {
+                templateUrl: "./views/user/templates/profile.view.client.html",
+                controller: "profileController",
+                controllerAs: "model"
+            })
             .when("/user/:userId/patient", {
                 templateUrl: "./views/user/templates/patient-profile.view.client.html",
                 controller: "patientProfileController",
@@ -41,7 +46,7 @@
                 controller: "agentProfileController",
                 controllerAs: "model"
             })
-            .when("/user/:userId/doctor", {
+            .when("/user/:userId/doctor/profile", {
                 templateUrl: "./views/user/templates/doctor-profile.view.client.html",
                 controller: "doctorProfileController",
                 controllerAs: "model"
@@ -52,6 +57,11 @@
                 controllerAs: "model"
             })
             .when("/doctor", {
+                templateUrl: "./views/user/templates/doctor-list.view.client.html",
+                controller: "doctorController",
+                controllerAs: "model"
+            })
+            .when("/user/:userId/doctor", {
                 templateUrl: "./views/user/templates/doctor-list.view.client.html",
                 controller: "doctorController",
                 controllerAs: "model"
