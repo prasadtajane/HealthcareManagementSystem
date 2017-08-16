@@ -9,6 +9,7 @@ var users = [];
 
 app.get("/api/user", getUsers);
 app.get("/api/user/:userId",findUserById);
+app.get("/api/user/:userId/populateappointments",findAllAppointmentsByUserId);
 app.post("/api/user", createUser);
 app.put("/api/user/:userId", updateUser);
 app.delete("/api/user/:userId", deleteUser);
@@ -61,7 +62,7 @@ function findUserByUsername(request, response) {
     userModel
         .findUserByUsername(request.query.username)
         .then(function (user) {
-            //console.log(user);
+            console.log(user);
             response.json(user);
             return;
         }, function (err) {
@@ -72,9 +73,9 @@ function findUserByUsername(request, response) {
 
 function findUserByUsernameAndUserType(request, response) {
     userModel
-        .findUserByUsernameAndUserType(request.query.username, request.query.userType)
+        .findUserByUsernameAndUserType(request.query.username, request.query.us)
         .then(function (user) {
-            //console.log(user);
+            console.log(user);
             response.json(user);
             return;
         }, function (err) {
@@ -100,6 +101,14 @@ function findUserById(request, response) {
         });
 }
 
+function findAllAppointmentsByUserId(request, response) {
+    //console.log(request.params.userId)
+    return  userModel
+        .findAllAppointmentsByUserId(request.params.userId)
+        .then(function (user) {
+            response.json(user);
+        });
+}
 
 function createUser(request, response) {
     var newuser = request.body;
