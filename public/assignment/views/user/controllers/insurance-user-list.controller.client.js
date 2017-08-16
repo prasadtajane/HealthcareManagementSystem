@@ -11,9 +11,11 @@
 
         var model = this;
         model.userId = $routeParams.userId;
+
+        model.deleteInsurance = deleteInsurance;
+        model.searchInsurances = searchInsurances;
         model.deleteInsuranceByAgent = deleteInsuranceByAgent;
         model.removeInsuranceFromUser = removeInsuranceFromUser;
-        model.deleteInsurance = deleteInsurance;
 
         function init() {
             listInsurance=[];
@@ -71,6 +73,10 @@
                         return;
                     }
                 });
+        }
+
+        function searchInsurances() {
+            $location.url("/user/" + model.userId + "/insurance-search/#searchHere");
         }
     }
 })();

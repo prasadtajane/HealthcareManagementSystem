@@ -72,21 +72,14 @@
             var plans = [];
             var insurance = {};
             insurance.plans = plans;
-            // console.log(input._id);
-            // console.log("input ");
-            //console.log(input);
-            // console.log("start ");
+            // console.log(input);
             // console.log(insurance);
 
+            plan.name = input.name;
+            plan.uid = input.planuid;
             insurance.uid = input.uid;
             insurance.name = input.title;
-            plan.uid = input.planuid;
-            plan.name = input.name;
             plan.category = input.category;
-
-            // console.log("end ");
-            // console.log(insurance);
-
             insurance.plans.push(plan);
 
             // console.log(insurance);
@@ -100,7 +93,7 @@
         }
 
         function searchInsurances() {
-            $location.url("/user/" + model.userId + "/insurance-search");
+            $location.url("/user/" + model.userId + "/insurance-search/#searchHere");
         }
     }
 })();
