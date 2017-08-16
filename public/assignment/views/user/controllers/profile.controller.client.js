@@ -18,7 +18,8 @@
         model.logout = logout;
         model.createAppointment = createAppointment;
         model.showInsuranceById = showInsuranceById;
-        //model.showUserReportById = showUserReportById;
+        model.showUserReportById = showUserReportById;
+        model.rescheduleAppointment = rescheduleAppointment;
 
         function logout() {
             $rootScope.currentUser = null;
@@ -30,17 +31,38 @@
             model.user={};
 
             userService
-                .findUserById(uId)
+                .findAllAppointmentsByUserId(uId)
                 .then(function (response) {
                     var user = response.data;
                     //console.log(user);
 
+                    var _appointments_future = [];
+                    var _appointments_previous = [];
                     model.user.email = user.email;
                     model.user.profile = user.profile;
                     model.user.userType = user.userType;
                     model.user.username = user.username;
+                    model.user._appointments_future = [];
+                    model.user._appointments_previous = [];
 
-                    //console.log(model.user);
+                    //console.log(new Date(Date.now()));
+                    //console.log(user);
+
+                    for(d in user._appointments)   {
+                        if (new Date(user._appointments[d].date) >= new Date(Date.now())) {
+                            _appointments_future.push(user._appointments[d]);
+                        }
+                    };
+                    model.user._appointments_future = _appointments_future.slice(0,3);
+
+                    for(d in user._appointments)   {
+                        if (new Date(user._appointments[d].date) < new Date(Date.now())) {
+                            _appointments_previous.push(user._appointments[d]);
+                        }
+                    };
+                    model.user._appointments_previous = _appointments_previous.slice(0,3);
+                    //console.log(model.user._appointments);
+
                     return model.user;
                 });
         }
@@ -57,20 +79,28 @@
                 time:"12:00 PM"
             };
 
-            console.log("##########");
+            //console.log("##########");
             appointmentService
                 .createappointment(uId, appointment)
                 .then(function (appointmentOut) {
-                    console.log("************");
-                    console.log("inside profile controller then - createAppointment");
+                    //console.log("************");
+                    //console.log("inside profile controller then - createAppointment");
                     appointmentId = appointmentOut.data._id;
-                    console.log()
+                    //console.log()
                     $location.url("/user/" + uId + "/appointment/" + appointmentId);
                 });
         }
 
         function showInsuranceById () {
             $location.url("/user/" + uId + "/insurance");
+        }
+
+        function showUserReportById () {
+            $location.url("/user/" + uId + "/report/" + model.user._appointments_previous[0]._reports[0]);
+        }
+
+        function rescheduleAppointment (appointmentId) {
+            $location.url("/user/" + uId + "/appointment/" + appointmentId);
         }
     }
 

@@ -16,6 +16,7 @@
             updateUserByUserId:updateUserByUserId,
             deleteUserByUserId:deleteUserByUserId,
             "findUserByUsername": findUserByUsername,
+            "findAllAppointmentsByUserId": findAllAppointmentsByUserId,
             findUserByUsernameAndUserType:findUserByUsernameAndUserType,
             "findUserByUsernameAndPassword": findUserByUsernameAndPassword
         };
@@ -49,6 +50,11 @@
         function createUser(newuser)   {
             //console.log(newuser);
             return $http.post("/api/user/", newuser);
+        }
+
+        function findAllAppointmentsByUserId(userId)    {
+            //"/api/user/:userId/populateappointments"
+            return $http.get("/api/user/" + userId + "/populateappointments");
         }
 
         function updateUserByUserId(user, userId)   {
