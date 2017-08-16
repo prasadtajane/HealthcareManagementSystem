@@ -36,9 +36,12 @@ var userSchema = new mongoose.Schema({
     ratings:[{
         provider:String,
         provider_url:String,
-        rating:String,
+
+        rating:String, /*this is extra*/
+
         comments:String,
-        image_url:{type:String,default:"uploads/heart-pulse.jpeg"}}],
+        image_url:{type:String, default:"uploads/heart-pulse.jpeg"}
+    }],
 
     specialties:[{
         name:String,
