@@ -36,7 +36,9 @@ var userSchema = new mongoose.Schema({
     ratings:[{
         provider:String,
         provider_url:String,
-        rating:String}],
+        rating:String,
+        comments:String,
+        image_url:{type:String,default:"uploads/heart-pulse.jpeg"}}],
 
     specialties:[{
         name:String,
