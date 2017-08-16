@@ -254,8 +254,40 @@
     <div class="taj-bottom-margin taj-top-margin">
         <a class="btn btn-default btn-info btn-block"
            ng-click="model.createReport(model.appointment)"
-           role="button">Prescription
+           role="button">Add Prescription / Report
         </a>
+    </div>
+
+    <div class="list-group taj-bottom-margin taj-top-margin">
+        <div class="list-group-item active">
+            <div class="row">
+                <!--title-->
+                <div class="col-xs-10">
+                    Reports
+                </div>
+                <div class="col-xs-2">
+                    <a ng-click="model.createReport(model.appointment)"
+                       class="navbar-link pull-right">
+                        <span class="glyphicon glyphicon-plus white"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div ng-repeat="reports in model.appointment._reports">
+            <div class="list-group-item">
+                <div class="row">
+                    <div class="col-xs-10">
+                        {{reports}}
+                    </div>
+                    <div class="col-xs-2">
+                        <a   ng-click="editReport(model.appointment, reports)"
+                             class="navbar-link pull-right">
+                            <span class="glyphicon glyphicon-cog"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 </div>
