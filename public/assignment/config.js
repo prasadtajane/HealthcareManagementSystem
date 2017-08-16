@@ -55,6 +55,11 @@
                 controller: "patientProfileController",
                 controllerAs: "model"
             })
+            .when("/user/:userId/edit", {
+                templateUrl: "./views/user/templates/patient-profile.view.client.html",
+                controller: "patientProfileController",
+                controllerAs: "model"
+            })
             .when("/user/:userId/agent", {
                 templateUrl: "./views/user/templates/agent-profile.view.client.html",
                 controller: "agentProfileController",
