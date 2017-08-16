@@ -63,7 +63,7 @@
         }
 
         function updateUserByUserId(user, userId)   {
-            $http.put("/api/user/" + userId, user);
+            return $http.put("/api/user/" + userId, user);
             //alert("inside update service " + userId + " " + user);
         }
 

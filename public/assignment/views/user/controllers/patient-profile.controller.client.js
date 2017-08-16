@@ -12,29 +12,32 @@
     function patientProfileController($routeParams, $location, userService, $rootScope) {
 
         var model = this;
-        //model.searchProfile = searchProfile;
-        var updateUser = updateUser;
+        model.userId = $routeParams["userId"];
         model.updateUser = updateUser;
         model.deleteUser = deleteUser;
-        model.logout = logout;
+        model.firstname = {}
+        model.lastname = {}
 
-        model.findWebsites = findWebsites;
-
-        var uId = $routeParams["userId"];
-        
-        function logout() {
-            $rootScope.currentUser = null;
-            $location.url("/login");
-        }
+        model.updateUser = updateUser;
 
         function init() {
             //alert("inside profile service!")
-            var promise = userService.findUserById(uId);
-            promise.then(function (response) {
-                model.user = response.data;
-                var user = model.user;
-                return user;
-                })
+            userService
+                .findUserById(model.userId)
+                .then(function (response) {
+                    var user = response.data;
+                    //console.log(user);
+                    user.physic.birthday = new Date(user.physic.birthday);
+                    user.smokeStatus = user.smokeStatus.toString();
+                    // model.location = user.practices[0].visit_address;
+                    // model.address = model.location.street + "," + model.location.street2 + "," + model.location.city + ","+ model.location.state + "," + model.location.zip
+                    // model.phone = user.practices[0].phones[0]
+                    // model.email = user.email
+                    //console.log(model.user);
+                    model.user = user;
+                    model.firstname = model.user.profile.first_name;
+                    model.lastname = model.user.profile.last_name;
+                });
             //model.user = userService.findUserById(uId);
 
         }
@@ -42,17 +45,30 @@
 
         function updateUser(user) {
             //alert("inside update of controller");
-            userService.updateUserByUserId(user, uId);
-            alert("Hi " + user.username + " all values have been updated successfully!");
+            userService.updateUserByUserId(user, model.userId)
+                .then(function (response){
+                // console.log(model.user);
+                // var usr = response.data;
+                var status = response.status;
+                if (status === 200){
+                    model.message = "Update Successfull";
+                }else{
+                    model.message = "Update not successfull";
+                }
+                // console.log(usr);
+                // usr.dob = new Date(usr.dob);
+                // model.user = usr;
+            });
 
         }
 
         function deleteUser(user) {
-            userService.deleteUserByUserId(uId)
+            console.log(model.userId);
+            userService.deleteUserByUserId(model.userId)
                 .then(function (response) {
                     suCode = response.data;
                     if (suCode === "200") {
-                        alert("Thank you for your patience, user with username '" + user.username + "' has been removed!");
+                        // alert("Thank you for your patience, user with username '" + user.username + "' has been removed!");
                         $location.url("/login");
                     }
                 });
