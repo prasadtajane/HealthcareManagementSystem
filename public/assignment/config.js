@@ -61,6 +61,11 @@
                 controller: "insuranceController",
                 controllerAs: "model"
             })
+                .when("/user/:userId/insurance/:insuranceId", {
+                templateUrl: "./views/user/templates/create-insurance.view.client.html",
+                controller: "insuranceNewController",
+                controllerAs: "model"
+            })
             .when("/agent", {
                 templateUrl: "./views/user/templates/insurance-all-list.view.client.html",
                 controller: "allagentController",
