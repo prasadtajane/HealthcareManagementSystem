@@ -40,6 +40,11 @@
                 controller: "detailsController",
                 controllerAs: "model"
             })
+            .when("/details/:detailId", {
+                templateUrl: "./views/user/templates/details.view.client.html",
+                controller: "detailsController",
+                controllerAs: "model"
+            })
             .when("/user/:userId/doctor/:doctorId", {
                 templateUrl: "./views/user/templates/profile.view.client.html",
                 controller: "profileController",

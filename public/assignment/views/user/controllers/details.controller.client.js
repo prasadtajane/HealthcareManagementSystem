@@ -70,6 +70,8 @@
 
                     return model.user;
                 });
+
+            //console.log(model.user.profile);
         }
         init();
 
@@ -77,12 +79,14 @@
 
             if ($routeParams["userId"]) {
                 //console.log("User Online");
+                console.log($routeParams["userId"]);
+                console.log($routeParams["detailId"]);
 
                 appointment = {
                     patient_name:"Your Name...",
-                    patientId:uId,
+                    patientId:$routeParams["userId"],
                     doctor_name:model.user.username,
-                    doctorId:model.user._id,
+                    doctorId:$routeParams["detailId"],
                     date:Date.now(),
                     time:"12:00 PM"
                 };
@@ -126,31 +130,38 @@
 
         function postReview(review) {
 
-            var ratings = {
-                provider: review.name,
-                rating: review.rating,
-                comments: review.comment,
-                provider_url:"/details/"+ uId,
-                //image_url:uId.url
-                image_url:"uploads/heart-pulse.jpeg"
-            };
-            //console.log(ratings);
+            if ($routeParams["userId"]) {
 
-            userService
-                .findAllAppointmentsByUserId(detailId)
-                .then(function (response) {
-                    var user = response.data;
-                    user.ratings.push(ratings);
+                var ratings = {
+                    provider: review.name,
+                    rating: review.rating,
+                    comments: review.comment,
+                    provider_url:"/details/"+ uId,
+                    //image_url:uId.url
+                    image_url:"uploads/heart-pulse.jpeg"
+                };
+                //console.log(ratings);
 
-                    console.log(user);
-                    console.log(detailId);
-                    userService
-                        .updateUserByUserId(user, detailId)
-                        .then(function (status) {
-                            console.log(status);
-                            $location.url("/user/" + uId + "/details/" + detailId);
-                        });
-                });
+                userService
+                    .findAllAppointmentsByUserId(detailId)
+                    .then(function (response) {
+                        var user = response.data;
+                        user.ratings.push(ratings);
+
+                        //console.log(user);
+                        //console.log(detailId);
+                        userService
+                            .updateUserByUserId(user, detailId)
+                            .then(function (status) {
+                                //console.log(status);
+                                $location.url("/user/" + uId + "/details/" + detailId);
+                            });
+                    });
+            }
+            else {
+                alert("Please Login Before Posting a Review.");
+                $location.url("/login");
+            }
 
         }
 

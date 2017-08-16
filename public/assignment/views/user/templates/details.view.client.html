@@ -76,10 +76,10 @@
                                 {{model.user._appointments_future[0].time}}
                             </div>
                             <div class="col-xs-3">
-                                <a ng-click="model.rescheduleAppointment(model.user._appointments_future[0]._id)"
+                                <!--<a ng-click="model.rescheduleAppointment(model.user._appointments_future[0]._id)"
                                    class="btn btn-default reschedule-btn">
                                     Reschedule
-                                </a>
+                                </a>-->
                             </div>
                         </div>
                     </div>
@@ -99,18 +99,29 @@
             </div>
 
             <div class="col-md-3 col-xs-3">
-                <img class="img-responsive" alt="Responsive image" src="uploads/heart-pulse.jpeg"/>
-                <img class="img-responsive" alt="Responsive image" src="{{model.user.profile.image_url}}"/>
+                <!--<img class="img-responsive" alt="Responsive image" src="uploads/heart-pulse.jpeg"/>-->
+                <img class="img-responsive" alt="Responsive image" ng-src="{{model.user.profile.image_url}}"/>
+                {{model.user.profile.image_url}}
             </div>
         </div>
 
-        <div class="taj-bottom-margin taj-top-margin">
+        <!--<div class="taj-bottom-margin taj-top-margin">
             <div class="input-group">
                 <input type="text" class="form-control" placeholder="Search for...">
                 <span class="input-group-btn">
                     <button class="btn btn-default" type="button">Go!</button>
                 </span>
-            </div><!-- /input-group -->
+            </div>&lt;!&ndash; /input-group &ndash;&gt;
+        </div>-->
+
+        <div class="row taj-bottom-margin taj-top-margin">
+            <div class="col-xs-12">
+                <a class="btn btn-default btn-success btn-block"
+                   role="button"
+                   ng-click="model.createAppointment()">
+                    Book Appointment
+                </a>
+            </div>
         </div>
 
         <div class="list-group taj-bottom-margin taj-top-margin">
@@ -200,17 +211,6 @@
             </div>
         </div>
 
-        <div class="row taj-bottom-margin taj-top-margin">
-            <div class="col-xs-12">
-                <a class="btn btn-default btn-info btn-block"
-                   role="button"
-                   ng-click="model.createAppointment()">
-                    Book Appointment
-                </a>
-            </div>
-        </div>
-
-
         <div class="panel panel-default">
             <div class="panel-heading">
                 <div class="container-fluid row">
@@ -220,37 +220,27 @@
             <div class="panel-body ">
 
                 <ul class="list-group">
-                    <li class="list-group-item">
-                        <div class="media">
-                            <div class="media-left media-middle">
-                                <a href="#">
-                                    <img class="media-object review-image img-rounded img-responsive"
-                                         alt="Responsive image"
-                                         src="uploads/heart-pulse.jpeg"/>
-                                </a>
+                    <div class="repater"
+                         ng-repeat="rating in model.user.ratings">
+
+                        <li class="list-group-item">
+                            <div class="media">
+                                <div class="media-left media-middle">
+                                    <a href="#">
+                                        <img class="media-object review-image img-rounded img-responsive"
+                                             alt="Responsive image"
+                                             ng-src="{{rating.image_url}}"/>
+                                    </a>
+                                </div>
+                                <div class="media-body">
+                                    <h5 class="media-heading">{{rating.provider}}</h5>
+                                    {{rating.rating}},
+                                    {{ }} {{rating.comments}}
+                                </div>
                             </div>
-                            <div class="media-body">
-                                <h5 class="media-heading">William Smithson</h5>
-                                ...
-                            </div>
-                        </div>
-                    </li>
-                    <li class="color-white"></li>
-                    <li class="list-group-item">
-                        <div class="media">
-                            <div class="media-left media-middle">
-                                <a href="#">
-                                    <img class="media-object review-image img-rounded img-responsive"
-                                         alt="Responsive image"
-                                         src="uploads/heart-pulse.jpeg"/>
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <h5 class="media-heading">William Smithson</h5>
-                                ...
-                            </div>
-                        </div>
-                    </li>
+                        </li>
+                        <li class="color-white"></li>
+                    </div>
                 </ul>
 
 
