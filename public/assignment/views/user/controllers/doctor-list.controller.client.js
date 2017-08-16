@@ -72,6 +72,8 @@
                         }
                         else    {
                             console.log("Creating a Doctor!");
+                            doctor.username = (doctor.profile.first_name).toLowerCase() + (doctor.profile.last_name).toLowerCase();
+                            doctor.password = (doctor.profile.first_name).toLowerCase() + (doctor.profile.last_name).toLowerCase();
                             userService
                                 .createUser(doctor)
                                 .then(function (response) {
@@ -125,6 +127,8 @@
                         }
                         else    {
                             console.log("Creating a Doctor!");
+                            doctor.username = (doctor.profile.first_name).toLowerCase() + (doctor.profile.last_name).toLowerCase();
+                            doctor.password = (doctor.profile.first_name).toLowerCase() + (doctor.profile.last_name).toLowerCase();
                             userService
                                 .createUser(doctor)
                                 .then(function (response) {
