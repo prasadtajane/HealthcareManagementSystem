@@ -19,6 +19,8 @@
         model.lastname = {}
 
         model.updateUser = updateUser;
+        model.addNewDegree = addNewDegree;
+        model.removeAllDegree = removeAllDegree;
 
         function init() {
             //alert("inside profile service!")
@@ -37,6 +39,9 @@
                     model.user = user;
                     model.firstname = model.user.profile.first_name;
                     model.lastname = model.user.profile.last_name;
+
+
+                    //console.log(model.user.educations);
                 });
             //model.user = userService.findUserById(uId);
 
@@ -64,7 +69,8 @@
 
         function deleteUser(user) {
             console.log(model.userId);
-            userService.deleteUserByUserId(model.userId)
+            userService
+                .deleteUserByUserId(model.userId)
                 .then(function (response) {
                     suCode = response.data;
                     if (suCode === "200") {
@@ -74,8 +80,51 @@
                 });
         }
 
-        function findWebsites() {
-            $location.url("/profile/" + uId + "/website");
+        function addNewDegree(newDegree) {
+            //console.log("in");
+            //console.log(newDegree);
+            userService
+                .findUserById(model.userId)
+                .then(function (response) {
+                    var user = response.data;
+                    user.educations.push(newDegree);
+
+                    //console.log(user);
+                    //console.log(model.userId);
+                    userService
+                        .updateUserByUserId(user, model.userId)
+                        .then(function (status) {
+                            console.log(status);
+                            $location.url("/user/" + model.userId + "/edit");
+                        });
+                });
+        }
+
+        function removeAllDegree(oldDegree) {
+            //console.log("in");
+            //console.log(newDegree);
+            userService
+                .findUserById(model.userId)
+                .then(function (response) {
+                    var user = response.data;
+                    for (d in user.educations)  {
+                        if(user.educations[d].degree === oldDegree.degree &&
+                            user.educations[d].school === oldDegree.school &&
+                            user.educations[d].graduation_year === oldDegree.graduation_year)    {
+                            user.educations.splice(d,1);
+                        }
+                        continue;
+                    }
+
+                    //console.log(user);
+                    //console.log(model.userId);
+                    userService
+                        .updateUserByUserId(user, model.userId)
+                        .then(function (status) {
+                            console.log(status);
+                            $location.url("/user/" + model.userId + "/edit");
+                        });
+                });
         }
     }
 

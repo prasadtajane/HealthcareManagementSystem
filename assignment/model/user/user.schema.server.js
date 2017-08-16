@@ -26,7 +26,7 @@ var userSchema = new mongoose.Schema({
         last_name:String,
         title:String,
         gender:String,
-        image_url:String,
+        image_url:{type:String, default:"uploads/heart-pulse.jpeg"},
         bio:String,
         languages:[{
             name:String,

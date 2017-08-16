@@ -40,7 +40,7 @@
                 controller: "detailsController",
                 controllerAs: "model"
             })
-            .when("/details/:detailId", {
+            .when("/user/:userId/details/:detailId", {
                 templateUrl: "./views/user/templates/details.view.client.html",
                 controller: "detailsController",
                 controllerAs: "model"
@@ -51,6 +51,11 @@
                 controllerAs: "model"
             })
             .when("/user/:userId/patient", {
+                templateUrl: "./views/user/templates/patient-profile.view.client.html",
+                controller: "patientProfileController",
+                controllerAs: "model"
+            })
+            .when("/user/:userId/edit", {
                 templateUrl: "./views/user/templates/patient-profile.view.client.html",
                 controller: "patientProfileController",
                 controllerAs: "model"
@@ -95,7 +100,7 @@
                 controller: "searchInsuranceController",
                 controllerAs: "model"
             })
-            .when("/insurance", {
+            .when("/insurance-search", {
                 templateUrl: "./views/user/templates/insurance-search-list.view.client.html",
                 controller: "searchInsuranceController",
                 controllerAs: "model"
