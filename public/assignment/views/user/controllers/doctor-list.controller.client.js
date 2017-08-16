@@ -50,26 +50,53 @@
         }
         
         function showDoctorDetails(doctor) {
+            if ($routeParams["userId"])   {
+                console.log("User Online");
+                userService
+                    .findUserByNPI(doctor.npi)
+                    .then(function (response) {
+                        console.log("response");
+                        //console.log(response.data);
+                        if(response.data)   {
+                            console.log("Doctor Found!");
+                            doctorId = response.data._id;
+                            $location.url("/user/" + doctorId);
+                        }
+                        else    {
+                            console.log("Creating a Doctor!");
+                            userService
+                                .createUser(doctor)
+                                .then(function (response) {
+                                    var user = response.data;
+                                    doctorId = user._id;
+                                    $location.url("/user/" + doctorId);
+                                });
+                        };
+                    });
+            }
+            else {
+                alert("Please Login Before Booking an Appointment.");
+                $location.url("/login");
+            };
             
         }
 
         function create(uId, appointment) {
-            console.log("##########");
+            //console.log("##########");
             return appointmentService
                 .createappointment(uId, appointment)
                 .then(function (appointmentOut) {
-                    console.log("************");
+                    //console.log("************");
                     //console.log("inside profile controller then - createAppointment");
-                    console.log(appointmentOut.data);
+                    //console.log(appointmentOut.data);
                     appointmentId = appointmentOut.data._id;
                     $location.url("/user/" + uId + "/appointment/" + appointmentId);
                 })
         }
 
         function createAppointment(doctor) {
-
             if ($routeParams["userId"])   {
-                console.log("User Online");
+                //console.log("User Online");
                 var appointment = {
                     patient_name:"Your Name",
                     patientId:$routeParams["userId"],
@@ -81,15 +108,15 @@
                 userService
                     .findUserByNPI(doctor.npi)
                     .then(function (response) {
-                        console.log("response");
+                        //console.log("response");
                         //console.log(response.data);
                         if(response.data)   {
-                            console.log("Doctor Found!");
+                            //console.log("Doctor Found!");
                             appointment.doctorId = response.data._id;
                             create($routeParams["userId"], appointment);
                         }
                         else    {
-                            console.log("Creating a Doctor!");
+                            //console.log("Creating a Doctor!");
                             userService
                                 .createUser(doctor)
                                 .then(function (response) {
