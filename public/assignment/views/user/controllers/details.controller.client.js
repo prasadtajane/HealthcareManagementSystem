@@ -42,11 +42,15 @@
                     var _appointments_future = [];
                     var _appointments_previous = [];
 
+                    model.user = user;
+                    /*
                     model.user.email = user.email;
                     model.user.ratings = user.ratings;
                     model.user.profile = user.profile;
                     model.user.userType = user.userType;
                     model.user.username = user.username;
+                    */
+
                     model.user._appointments_future = [];
                     model.user._appointments_previous = [];
 
@@ -67,6 +71,11 @@
                     };
                     model.user._appointments_previous = _appointments_previous.slice(0,3);
                     //console.log(model.user._appointments);
+
+                    if(model.user.userType == 'patient')    {
+                        model.isPatient = "True";
+                    }
+                    //appointment.isApproved = "True";
 
                     return model.user;
                 });

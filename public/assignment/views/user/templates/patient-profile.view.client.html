@@ -383,7 +383,6 @@
 
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <!--<h3 class="panel-title">Diseases</h3>-->
                         <label for="diseases" id ="diseaseLabel">Diseases</label>
                     </div>
                     <div class="panel-body">
@@ -410,7 +409,6 @@
                                   rows="5"></textarea>
                     </div>
                 </div>
-
             </div>
         </div>
 
@@ -438,7 +436,7 @@
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-xs-8">
-                        <h3 class="panel-title">History</h3>
+                        <h3 class="panel-title">Education</h3>
                     </div>
                     <div class="col-xs-4">
                         <a class="pull-right"
@@ -448,15 +446,12 @@
 
                     </div>
                 </div>
-                <!--<label for="history" class ="normalLabel">History</label>-->
-                <!--<h3 class="panel-title">History</h3>-->
-
             </div>
             <div class="panel-body">
 
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <label for="education" class ="normalLabel">Education</label>
+                        <label for="education" class ="normalLabel">Degree</label>
                     </div>
                     <div class="panel-body">
                         <textarea name="education"
@@ -465,7 +460,6 @@
                                   id="education"
                                   placeholder="Degree,School,Graduation Year"
                                   rows="5">{{model.user.educations[0].degree}},{{model.user.educations[0].school}},{{model.user.educations[0].graduation_year}}</textarea>
-                        <!--ng-model="model.user.educations.bio"-->
                     </div>
                 </div>
 
