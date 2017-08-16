@@ -5,9 +5,9 @@
 (function () {
     angular
         .module("WamApp")
-        .controller("doctorController", doctorController);
+        .controller("doctorListController", doctorListController);
 
-    function doctorController($location, $routeParams, userService, doctorService, appointmentService)   {
+    function doctorListController($location, $routeParams, userService, doctorService, appointmentService)   {
 
         var model = this;
 
@@ -52,6 +52,14 @@
         function showDoctorDetails(doctor) {
             if ($routeParams["userId"])   {
                 console.log("User Online");
+                var appointment = {
+                    patient_name:"Your Name",
+                    patientId:$routeParams["userId"],
+                    doctor_name:doctor.profile.first_name+", "+doctor.profile.last_name,
+                    doctorId:doctor._id,
+                    date:Date.now(),
+                    time:"12:00 PM"
+                };
                 userService
                     .findUserByNPI(doctor.npi)
                     .then(function (response) {
@@ -59,8 +67,8 @@
                         //console.log(response.data);
                         if(response.data)   {
                             console.log("Doctor Found!");
-                            doctorId = response.data._id;
-                            $location.url("/user/" + doctorId);
+                            appointment.doctorId = response.data._id;
+                            $location.url("/user/" + uId + "/doctor/" + appointment.doctorId);
                         }
                         else    {
                             console.log("Creating a Doctor!");
@@ -68,8 +76,8 @@
                                 .createUser(doctor)
                                 .then(function (response) {
                                     var user = response.data;
-                                    doctorId = user._id;
-                                    $location.url("/user/" + doctorId);
+                                    appointment.doctorId = user._id;
+                                    create($routeParams["userId"], appointment);
                                 });
                         };
                     });
@@ -108,15 +116,15 @@
                 userService
                     .findUserByNPI(doctor.npi)
                     .then(function (response) {
-                        //console.log("response");
+                        console.log("response");
                         //console.log(response.data);
                         if(response.data)   {
-                            //console.log("Doctor Found!");
+                            console.log("Doctor Found!");
                             appointment.doctorId = response.data._id;
                             create($routeParams["userId"], appointment);
                         }
                         else    {
-                            //console.log("Creating a Doctor!");
+                            console.log("Creating a Doctor!");
                             userService
                                 .createUser(doctor)
                                 .then(function (response) {

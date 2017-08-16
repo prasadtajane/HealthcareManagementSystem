@@ -62,7 +62,7 @@
             })
             .when("/doctor", {
                 templateUrl: "./views/user/templates/doctor-list.view.client.html",
-                controller: "doctorController",
+                controller: "doctorListController",
                 controllerAs: "model"
             })
             .when("/user/:userId/doctor", {
@@ -71,18 +71,23 @@
                 controllerAs: "model"
             })
             .when("/user/:userId/insurance", {
-                templateUrl: "./views/user/templates/insurance-list.view.client.html",
+                templateUrl: "./views/user/templates/insurance-user-list.view.client.html",
                 controller: "insuranceController",
                 controllerAs: "model"
             })
                 .when("/user/:userId/insurance/:insuranceId", {
-                templateUrl: "./views/user/templates/create-insurance.view.client.html",
+                templateUrl: "./views/user/templates/insurance-create.view.client.html",
                 controller: "insuranceNewController",
                 controllerAs: "model"
             })
+            .when("/user/:userId/insurance-search", {
+                templateUrl: "./views/user/templates/insurance-search-list.view.client.html",
+                controller: "searchInsuranceController",
+                controllerAs: "model"
+            })
             .when("/insurance", {
-                templateUrl: "./views/user/templates/insurance-all-list.view.client.html",
-                controller: "allagentController",
+                templateUrl: "./views/user/templates/insurance-search-list.view.client.html",
+                controller: "searchInsuranceController",
                 controllerAs: "model"
             })
             .when("/user/:userId/appointment/:appointmentId/report/:reportId", {

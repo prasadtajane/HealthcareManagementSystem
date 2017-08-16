@@ -10,43 +10,14 @@ var db = require('../models.server');
 var insuranceModel = mongoose.model('InsuranceModel',insuranceSchema);
 var userModel = require('../user/user.model.server');
 
-
-// insuranceModel.findinsuranceByApppointmentId = findReportByApppointmentId;
-insuranceModel.findAllInsurance = findAllInsurance;
 insuranceModel.createInsurance = createInsurance;
-insuranceModel.findInsuranceById = findInsuranceById;
 insuranceModel.updateInsurance = updateInsurance;
 insuranceModel.deleteInsurance = deleteInsurance;
-// reportModel.addAppointment = addAppointment;
-// reportModel.deleteAppointment = deleteAppointment;
+insuranceModel.findAllInsurance = findAllInsurance;
+insuranceModel.findInsuranceById = findInsuranceById;
+insuranceModel.findAllInsurancesByName = findAllInsurancesByName;
 
 module.exports = insuranceModel;
-
-// function addAppointment(reportId,appointmentId){
-//     return reportModel
-//         .findReportById(reportId)
-//         .then(function (report){
-//             report.appointments.push(appointmentId);
-//             return report.save();
-//         });
-// }
-//
-// function deleteAppointment(reportId,appointmentId){
-//     return reportModel
-//         .findReportById(reportId)
-//         .then(function (report){
-//             var index = report.appointments.indexOf(appointmentId);
-//             report.appointments.splice(index,1);
-//             return report.save();
-//         });
-// }
-
-// function findReportByApppointmentId(appointmentId){
-//     return reportModel
-//         .find({appointmentId:appointmentId})
-//         .populate('appointmentId')
-//         .exec();
-// }
 
 function createInsurance(userId,insurance){
     // report.appointmentId = appointmentId;
@@ -96,4 +67,8 @@ function deleteInsurance(insuranceId,userId,planId){
 
 function findAllInsurance(){
     return insuranceModel.find();
+}
+
+function findAllInsurancesByName(name){
+    return insuranceModel.find({name:name});
 }

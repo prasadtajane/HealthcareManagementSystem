@@ -11,14 +11,15 @@
     function insuranceService($http) {
 
         var api= {
-            "findAllInsurance": findAllInsurance,
-            "findAllInsurancesByUserId": findAllInsurancesByUserId,
             "createInsurance": createInsurance,
             "updateInsurance": updateInsurance,
-            "deleteInsuranceByAgent": deleteInsuranceByAgent,
+            "findAllInsurance": findAllInsurance,
             "findInsuranceById": findInsuranceById,
             "addInsuranceInUser": addInsuranceInUser,
-            "removeInsuranceFromUser": removeInsuranceFromUser
+            "deleteInsuranceByAgent": deleteInsuranceByAgent,
+            "removeInsuranceFromUser": removeInsuranceFromUser,
+            "findAllInsurancesByName": findAllInsurancesByName,
+            "findAllInsurancesByUserId": findAllInsurancesByUserId
         };
 
         return api;
@@ -47,6 +48,14 @@
 
         function findAllInsurancesByUserId(userId){
             var url = "/api/user/"+userId+ "/insurance";
+            return $http.get(url)
+                .then(function (response){
+                    return response.data;
+                });
+        }
+
+        function findAllInsurancesByName(name){
+            var url = "/api/insurance?name="+name;
             return $http.get(url)
                 .then(function (response){
                     return response.data;

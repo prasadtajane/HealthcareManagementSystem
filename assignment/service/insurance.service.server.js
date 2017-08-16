@@ -14,6 +14,7 @@ var userModel = require("../model/user/user.model.server");
 // ];
 
 app.get("/api/insurance",findAllInsurance);
+//app.get("/api/insurance?name=",findAllInsurancesByName);
 app.get("/api/user/:userId/insurance",findAllInsurancesByUserId);
 app.post("/api/user/:userId/insurance",createInsurance);
 app.get("/api/user/:userId/insurance/:insuranceId",findInsuranceById);
@@ -43,11 +44,20 @@ function addInsuranceInUser(req,res){
 }
 
 function findAllInsurance(req,res){
-    insuranceModel
-        .findAllInsurance()
-        .then(function (insurances){
-            res.json(insurances);
-        });
+    if (req.query.name) {
+        insuranceModel
+            .findAllInsurancesByName(req.query.name)
+            .then(function (insurances){
+                res.json(insurances);
+            });
+    }
+    else    {
+        insuranceModel
+            .findAllInsurance()
+            .then(function (insurances){
+                res.json(insurances);
+            });
+    }
 }
 
 function findAllInsurancesByUserId(req,res){
