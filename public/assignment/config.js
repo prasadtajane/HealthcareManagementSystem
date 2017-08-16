@@ -82,7 +82,7 @@
             })
             .when("/user/:userId/doctor", {
                 templateUrl: "./views/user/templates/doctor-list.view.client.html",
-                controller: "doctorController",
+                controller: "doctorListController",
                 controllerAs: "model"
             })
             .when("/user/:userId/insurance", {
@@ -184,6 +184,4 @@
             })
 
     }
-
-
 })();
