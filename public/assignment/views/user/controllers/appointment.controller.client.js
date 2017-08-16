@@ -9,7 +9,7 @@
         .module("WamApp")
         .controller("appointmentController", appointmentController);
 
-    function appointmentController($routeParams, $location, appointmentService, reportService, $rootScope) {
+    function appointmentController($routeParams, $location, appointmentService, reportService, userService, $rootScope) {
 
         var model = this;
 
@@ -21,6 +21,7 @@
         model.updateAppointment = updateAppointment;
         model.deleteAppointment = deleteAppointment;
         model.approveAppointment = approveAppointment;
+        model.function = selectFunction;
 
         function logout() {
             $rootScope.currentUser = null;
@@ -35,19 +36,39 @@
                 model.appointment.date = new Date(model.appointment.date);
                 var appointment = model.appointment;
                 return appointment;
-                })
+                });
+
+            userService
+                .findUserById(uId)
+                .then(function (response) {
+                    model.user = response.data;
+                    model.button = "Approve";
+                    if (model.user.userType === 'patient')    {
+                        model.button = "Save";
+                    }
+                });
         }
         init();
+
+        function selectFunction(appointment) {
+
+            if (model.user.userType === 'patient')    {
+                updateAppointment(appointment);
+            }
+            else {
+                approveAppointment(appointment);
+            }
+        }
 
         function updateAppointment(appointment) {
             //alert("inside update of controller");
             appointmentService
                 .updateappointment(uId, appointmentId, appointment)
                 .then(function (appointmentOut) {
-                    console.log("************");
-                    console.log("inside appointment controller then - createAppointment");
+                    //console.log("************");
+                    //console.log("inside appointment controller then - createAppointment");
                     appointmentId = appointmentOut.data._id;
-                    console.log()
+                    //console.log();
                     $location.url("/user/" + uId + "/appointment/" + appointmentId);
                 });
             alert("Values have been updated successfully!");
@@ -57,7 +78,14 @@
         function approveAppointment(appointment) {
             appointment.isApproved = "True";
             appointmentService
-                .updateappointment(uId, appointmentId, appointment);
+                .updateappointment(uId, appointmentId, appointment)
+                .then(function (appointmentOut) {
+                    //console.log("************");
+                    //console.log("inside appointment controller then - createAppointment");
+                    appointmentId = appointmentOut.data._id;
+                    //console.log();
+                    $location.url("/user/" + uId + "/appointment/" + appointmentId);
+                });
             alert("Appointment approved successfully!");
 
         }
