@@ -386,6 +386,10 @@
                         {{education.degree}}
                         ,{{ }} {{education.school}}
                         ,{{ }} {{education.graduation_year}}
+                        <a class="pull-right"
+                           ng-click="model.removeAllDegree(education)">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </a>
                     </div>
                     <div class="panel-body"></div>
                     <div class="panel-body">

@@ -20,6 +20,7 @@
 
         model.updateUser = updateUser;
         model.addNewDegree = addNewDegree;
+        model.removeAllDegree = removeAllDegree;
 
         function init() {
             //alert("inside profile service!")
@@ -87,6 +88,33 @@
                 .then(function (response) {
                     var user = response.data;
                     user.educations.push(newDegree);
+
+                    //console.log(user);
+                    //console.log(model.userId);
+                    userService
+                        .updateUserByUserId(user, model.userId)
+                        .then(function (status) {
+                            console.log(status);
+                            $location.url("/user/" + model.userId + "/edit");
+                        });
+                });
+        }
+
+        function removeAllDegree(oldDegree) {
+            //console.log("in");
+            //console.log(newDegree);
+            userService
+                .findUserById(model.userId)
+                .then(function (response) {
+                    var user = response.data;
+                    for (d in user.educations)  {
+                        if(user.educations[d].degree === oldDegree.degree &&
+                            user.educations[d].school === oldDegree.school &&
+                            user.educations[d].graduation_year === oldDegree.graduation_year)    {
+                            user.educations.splice(d,1);
+                        }
+                        continue;
+                    }
 
                     //console.log(user);
                     //console.log(model.userId);
