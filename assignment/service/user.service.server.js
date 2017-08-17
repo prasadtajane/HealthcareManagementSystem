@@ -3,6 +3,12 @@
  */
 
 var app = require("../../express");
+
+var cookie = require('cookie-parser');
+var session = require('express-session');
+var passport         = require('passport');
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+
 var userModel = require("../model/user/user.model.server");
 var multer = require('multer'); // npm install multer --save
 var upload = multer({ dest: __dirname+'/../../public/assignment/uploads' });
@@ -17,6 +23,60 @@ app.put("/api/user/:userId", updateUser);
 app.post("/api/upload",upload.single('myFile'), uploadImage);
 app.delete("/api/user/:userId", deleteUser);
 
+app.get ('/auth/google', passport.authenticate('google', { scope : ['email', 'profile']}));
+app.get('/google/callback',
+    passport.authenticate('google', {
+        successRedirect: '/#!/user',
+        failureRedirect: '/#!/login'
+    }));
+
+
+
+var googleConfig = {
+    clientID     : process.env.GOOGLE_CLIENT_ID,
+    clientSecret : process.env.GOOGLE_CLIENT_SECRET,
+    callbackURL  : process.env.GOOGLE_CALLBACK_URL
+};
+
+passport.use(new GoogleStrategy(googleConfig, googleStrategy));
+
+function googleStrategy(token, refreshToken, profile, done) {
+    userModel
+        .findUserByGoogleId(profile.id)
+        .then(function (user) {
+            if(user)    {
+                return done(null,user);
+            }
+            else    {
+                var gemail = profile.emails[0].value;
+                var parts = gemail.split('@');
+                var newGoogleUser = {
+                    username:parts[0],
+                    email:gemail,
+                    profile:{
+                        first_name:profile.name.givenName,
+                        last_name:profile.name.familyName
+                    },
+                    google: {
+                        id:    profile.id,
+                        token: token
+                    }};
+                    return userModel.createUser(newGoogleUser);
+                }
+        }, function (err) {
+            console.log(err);
+            if(err) {
+                return done(err);
+            }
+        })
+        .then(function (user) {
+            return done(null, user);
+        }, function (err) {
+            if(err) {
+                return done(err);
+            }
+        })
+}
 
 function uploadImage(req, res) {
 
