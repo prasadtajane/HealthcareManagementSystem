@@ -20,7 +20,9 @@
 
         model.updateUser = updateUser;
         model.addNewDegree = addNewDegree;
+        model.addNewSpecialty = addNewSpecialty;
         model.removeAllDegree = removeAllDegree;
+        model.removeSpecialty = removeSpecialty;
 
         function init() {
             //alert("inside profile service!")
@@ -88,6 +90,51 @@
                 .then(function (response) {
                     var user = response.data;
                     user.educations.push(newDegree);
+
+                    //console.log(user);
+                    //console.log(model.userId);
+                    userService
+                        .updateUserByUserId(user, model.userId)
+                        .then(function (status) {
+                            console.log(status);
+                            $location.url("/user/" + model.userId + "/edit");
+                        });
+                });
+        }
+
+        function addNewSpecialty(newSpecialty) {
+            userService
+                .findUserById(model.userId)
+                .then(function (response) {
+                    var user = response.data;
+                    user.specialties.push(newSpecialty);
+
+                    //console.log(user);
+                    //console.log(model.userId);
+                    userService
+                        .updateUserByUserId(user, model.userId)
+                        .then(function (status) {
+                            console.log(status);
+                            $location.url("/user/" + model.userId + "/edit");
+                        });
+                });
+        }
+
+        function removeSpecialty(oldSpecialty) {
+            //console.log("in");
+            //console.log(newDegree);
+            userService
+                .findUserById(model.userId)
+                .then(function (response) {
+                    var user = response.data;
+                    for (d in user.specialties)  {
+                        if(user.specialties[d].name === oldSpecialty.name &&
+                            user.specialties[d].category === oldSpecialty.category &&
+                            user.specialties[d].description === oldSpecialty.description)    {
+                            user.specialties.splice(d,1);
+                        }
+                        continue;
+                    }
 
                     //console.log(user);
                     //console.log(model.userId);
