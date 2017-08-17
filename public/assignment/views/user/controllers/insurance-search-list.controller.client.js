@@ -7,7 +7,7 @@
         .module("WamApp")
         .controller("searchInsuranceController", searchInsuranceController);
 
-    function searchInsuranceController($location, $routeParams, insuranceService)   {
+    function searchInsuranceController($location, $routeParams, $rootScope, insuranceService)   {
 
         var model = this;
         model.userId = $routeParams.userId;
@@ -93,7 +93,12 @@
         }
 
         function searchInsurances() {
-            $location.url("/user/" + model.userId + "/insurance-search/#searchHere");
+            if($rootScope.currentUser)    {
+                $location.url("/user/" + $rootScope.currentUser._id + "/doctor/#searchHere");
+            }
+            else {
+                $location.url("/doctor/#searchHere");
+            }
         }
     }
 })();
