@@ -9,10 +9,17 @@
         model.logout = logout;
         model.searchDoctor = searchDoctor;
         model.searchInsurances = searchInsurances;
+        // model.profile = profile;
 
         function init() {
         }
         init();
+
+        // function profile(){
+        //     if ($rootScope.currentUser.userType === 'doctor'){
+        //         $location.url("/user/"+ $rootScope.currentUser._id+"/doctor/"+
+            // }
+        // }
 
         function logout() {
             $rootScope.currentUser = null;
