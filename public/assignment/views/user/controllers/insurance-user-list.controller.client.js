@@ -12,6 +12,8 @@
         var model = this;
         model.userId = $routeParams.userId;
 
+        model.removePlan = removePlan;
+        model.removeInsurance = removeInsurance;
         model.deleteInsurance = deleteInsurance;
         model.searchInsurances = searchInsurances;
         model.deleteInsuranceByAgent = deleteInsuranceByAgent;
@@ -24,7 +26,7 @@
                 .findAllInsurancesByUserId(model.userId)
                 .then(function (insurances){
                     model.insurances = insurances;
-                    for(i in insurances)   {
+                    /*for(i in insurances)   {
                         for (j in insurances[i].plans)  {
                             userInsuracnce.id = insurances[i].uid;
                             userInsuracnce.title = insurances[i].name;
@@ -36,13 +38,16 @@
                         }
                     }
                     console.log(listInsurance);
-                    model.listInsurance = listInsurance;
-                    return listInsurance;
+                    model.listInsurance = listInsurance;*/
+                    return model.insurances;
                 });
+
+
         }
         init();
 
         function deleteInsuranceByAgent(insuranceId, planId) {
+            //console.log(model.userId,insuranceId,planId);
             insuranceService
                 .deleteInsuranceByAgent(model.userId,insuranceId,planId)
                 .then(function (insurances){
@@ -64,7 +69,10 @@
             userService
                 .findUserById(model.userId)
                 .then(function (user) {
-                    if(user.userType === 'agent')    {
+                    console.log(user.data.userType);
+                    if(user.data.userType === 'agent')    {
+                        console.log(insuranceId);
+                        console.log(planId);
                         deleteInsuranceByAgent(insuranceId,planId);
                         return;
                     }
@@ -75,8 +83,67 @@
                 });
         }
 
+        function removeInsurance(insuranceIn, plan) {
+            userService
+                .findUserById(model.userId)
+                .then(function (user) {
+                    console.log(user.data.userType);
+                    if(user.data.userType === 'agent' || user.data.userType === 'admin')    {
+                        console.log(insuranceId);
+                        console.log(planId);
+                        removePlan(insuranceIn, plan);
+                        return;
+                    }
+                    else    {
+                        removeInsuranceFromUser(insuranceIn._id);
+                        return;
+                    }
+                });
+        }
+
         function searchInsurances() {
             $location.url("/user/" + model.userId + "/insurance-search/#searchHere");
+        }
+
+        function removePlan(insuranceIn, plan) {
+            //console.log(plan);
+            insuranceService
+                .findAllInsurancesByUserId(model.userId)
+                .then(function (insurances){
+                    //console.log(insurances);
+                    for (i in insurances)  {
+                        if (insurances[i].name !== insuranceIn.name  || insurances[i].uid !== insuranceIn.uid)    {
+                            continue;
+                        }
+                        else    {
+                            for(p in insurances[i].plans) {
+                                //console.log("inside second for");
+                                if ((insurances[i].plans[p].name === plan.name) &&
+                                    (insurances[i].plans[p].uid  === plan.uid) )   {
+                                /*if (insurances[i].plans[p] === plan)   {*/
+                                //  &&    (insurances[i].plans[p].category === plan.category)
+
+                                    //console.log("final");
+                                    insurances[i].plans.splice(p,1);
+                                    console.log(insurances);
+                                    console.log(insurances[i]._id);
+                                    //console.log(model.userId);
+
+                                    insuranceService
+                                        .updateInsurance(model.userId,insurances[i]._id,insurances[i])
+                                        .then(function (response) {
+                                            console.log("inside update");
+                                            console.log(response);
+                                        });
+
+
+                                }
+                                else continue;
+                            }
+                        }
+
+                    }
+                });
         }
     }
 })();

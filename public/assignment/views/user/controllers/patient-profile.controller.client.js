@@ -76,7 +76,7 @@
                 .then(function (response) {
                     suCode = response.data;
                     if (suCode === "200") {
-                        alert("Thank you for your patience, user has been removed!");
+                        // alert("Thank you for your patience, user with username '" + user.username + "' has been removed!");
                         $location.url("/login");
                     }
                 });

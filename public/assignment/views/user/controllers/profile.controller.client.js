@@ -9,7 +9,7 @@
         .module("WamApp")
         .controller("profileController", profileController);
 
-    function profileController($routeParams, $location, userService, appointmentService, $rootScope) {
+    function profileController($routeParams, $location, userService, insuranceService, appointmentService, $rootScope) {
 
 
         var model = this;
@@ -148,6 +148,12 @@
                 name:"",
                 plans:[{uid:"",name:"",category:[""]}]
             };
+            insuranceService
+                .createInsurance($routeParams["userId"], newInsurance)
+                .then(function (responce) {
+                    var insurance = responce;
+                    $location.url("/user/" + $routeParams["userId"] + "/insurance/" + insurance._id);
+                });
 
 
         }

@@ -13,12 +13,14 @@
         model.userId = $routeParams.userId;
         model.insuranceId= $routeParams.insuranceId;
         model.updateInsurance = updateInsurance;
+        model.addNewPlan=addNewPlan;
         model.deleteInsuranceByAgent = deleteInsuranceByAgent;
         var saveinsurance={}
+
         function init() {
             userInsurance={};
             console.log(model.userId,model.insuranceId);
-            insuranceService
+            /*insuranceService
                 .findInsuranceById(model.userId,model.insuranceId)
                 .then(function (insurance){
                     saveinsurance = insurance;
@@ -34,6 +36,15 @@
                     console.log(userInsurance);
                     model.userInsurance = userInsurance;
                     return userInsurance;
+                });*/
+
+            listInsurance=[];
+            userInsuracnce={};
+            insuranceService
+                .findAllInsurancesByUserId(model.userId)
+                .then(function (insurances){
+                    model.insurance = insurances[0];
+                    return model.insurance;
                 });
         }
         init();
@@ -60,17 +71,25 @@
                     }
                     console.log(userInsurance);
                     model.userInsurance = userInsurance;
+                    $location.url('/user/'+ model.userId + "/insurance");
                     return userInsurance;
                 });
         }
 
         function deleteInsuranceByAgent(userId,insuranceId,planId) {
+            console.log(insuranceId);
             insuranceService
                 .deleteInsuranceByAgent(model.userId,model.insuranceId,planId)
                 .then(function (insurances){
                     $location.url('/user/'+ model.userId + "/insurance");
                     // removeInsuranceFromUser(insuranceId);
                 });
+        }
+
+        function addNewPlan(newPlan) {
+            if (!model.insurance)    {
+                console.log("Creating new insurance");
+            }
         }
     }
 })();

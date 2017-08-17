@@ -94,9 +94,12 @@ function updateInsurance(req,res){
     var userId= req.params.userId;
     var insuranceId= req.params.insuranceId;
     var insurance = req.body;
+    //console.log(insurance);
+    //console.log(insuranceId);
     insuranceModel
         .updateInsurance(insuranceId,insurance)
         .then(function(status){
+            //console.log(status);
             return insuranceModel
                 .findInsuranceById(insuranceId);
         },function (err) {
