@@ -26,8 +26,10 @@
         function findUserByUsernameAndPassword(username, password) {
             var host = "/api/user?";
             var query = "username=" + username + "&password=" + password;
-            var url = host + query;
-            return $http.get(url);
+            // var url = host + query;
+            // return $http.get(url);
+            var url = "/api/login";
+            return $http.post(url,{username: username,password:password});
             //alert(response);
             //return res;
         }
@@ -41,15 +43,24 @@
         }
 
         function findUserByUsername(username)   {
-            return $http.get("/api/user?username=" + username);
+            // return $http.get("/api/user?username=" + username);
+            var url = "/api/user";
+            // return $http.post("/api/user?username=" + username);
+            return $http.post(url,{username: username});
         }
 
         function findUserByNPI(npi)   {
-            return $http.get("/api/user?npi=" + npi);
+            // return $http.get("/api/user?npi=" + npi);
+            var url = "/api/user";
+            return $http.post(url,{npi: npi});
         }
 
         function findUserByUsernameAndUserType(username, uType)   {
-            return $http.get("/api/user?username=" + username + "&userType=" + uType);
+            // return $http.get("/api/user?username=" + username + "&userType=" + uType);
+            var url = "/api/user";
+            return $http.post(url,{username: username,userType:uType});
+
+            // var url = "/api/user?username=" + username + "&userType=" + uType
         }
 
         function createUser(newuser)   {

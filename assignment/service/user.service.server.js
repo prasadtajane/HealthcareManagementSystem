@@ -12,17 +12,74 @@ var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var userModel = require("../model/user/user.model.server");
 var multer = require('multer'); // npm install multer --save
 var upload = multer({ dest: __dirname+'/../../public/assignment/uploads' });
+//var passport      = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+passport.use(new LocalStrategy(localStrategy));
+passport.serializeUser(serializeUser);
+passport.deserializeUser(deserializeUser);
 
 var users = [];
 
-app.get("/api/user", getUsers);
+app.post("/api/user", getUsers);
 app.get("/api/user/:userId",findUserById);
 app.get("/api/user/:userId/populateappointments",findAllAppointmentsByUserId);
 app.post("/api/user", createUser);
 app.put("/api/user/:userId", updateUser);
 app.post("/api/upload",upload.single('myFile'), uploadImage);
 app.delete("/api/user/:userId", deleteUser);
+app.post("/api/login",passport.authenticate('local'), login);
 
+function localStrategy(username, password, done) {
+    userModel
+        .findUserByCredentials(username,password)
+        .then(
+            function(user) {
+                if (!user) {
+                    return done(null, false);
+                }
+                return done(null, user);
+            },
+            function(err) {
+                if (err) {
+                    return done(err);
+                }
+            }
+        );
+}
+
+function serializeUser(user, done) {
+    done(null, user);
+}
+
+function deserializeUser(user, done) {
+    userModel
+        .findUserById(user._id)
+        .then(
+            function(user){
+                done(null, user);
+            },
+            function(err){
+                done(err, null);
+            }
+        );
+}
+
+function login(request, response){
+    var user =request.user;
+    response.json(user);
+    // userModel
+    //     .findUserByCredentials(
+    //         request.query.username
+    //         , request.query.password)
+    //     .then(function (user) {
+    //         console.log(user);
+    //         response.json(user);
+    //         return;
+    //     }, function (err) {
+    //         response.sendStatus(404).send(err);
+    //         return;
+    //     });
+}
 app.get ('/auth/google', passport.authenticate('google', { scope : ['email', 'profile']}));
 app.get('/google/callback',
     passport.authenticate('google', {
@@ -143,10 +200,15 @@ function callback(err, result) {
 }
 
 function getUsers(request, response) {
-    var npi = request.query.npi;
-    var username = request.query.username;
-    var password = request.query.password;
-    var userType = request.query.userType;
+    var body =req.body;
+    var npi = body.npi;
+    var username = body.username;
+    var password = body.password;
+    var userType = body.userType;
+    // var npi = request.query.npi;
+    // var username = request.query.username;
+    // var password = request.query.password;
+    // var userType = request.query.userType;
     if (username && password)   {
         findUserByCredentials(request, response);
     }
