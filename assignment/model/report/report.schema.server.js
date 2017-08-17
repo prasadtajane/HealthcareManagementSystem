@@ -14,6 +14,7 @@ var reportSchema = new mongoose.Schema({
     doctorcomments: String,
     futureappointments: String,
     imageurl: String,
+    imagename:String,
     _appointment:{type:mongoose.Schema.Types.ObjectId, ref:"AppointmentModel"},
 },{
     collection:"report"
