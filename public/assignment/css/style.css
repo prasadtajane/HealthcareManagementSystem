@@ -154,6 +154,11 @@ body {
     background-color: #46a1b4;
 }
 
+.taj-carousel-container, .taj-carousel-img{
+    width: 100%;
+    height: 605px !important;
+}
+
 .service-img {
     opacity: 0.9;
 }
