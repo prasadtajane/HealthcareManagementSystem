@@ -52,12 +52,12 @@
                     model.user._appointments_future = [];
                     model.user._appointments_previous = [];
 
-                    model.isPatient = "False";
+                    model.isAgent = "False";
                     console.log("outside if");
                     console.log(model.user.userType);
-                    if(model.user.userType === "patient" || model.user.userType === "doctor")    {
+                    if(model.user.userType === "agent" || model.user.userType === "admin")    {
                         console.log("inside if");
-                        model.isPatient = "True";
+                        model.isAgent = "True";
                     }
                     // console.log(model.isNotAgent);
 
