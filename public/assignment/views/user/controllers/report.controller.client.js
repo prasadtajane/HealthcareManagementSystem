@@ -10,7 +10,7 @@
         .module("WamApp")
         .controller("reportController", reportController);
 
-    function reportController($location,$routeParams, reportService)   {
+    function reportController($location,$routeParams, userService, reportService)   {
 
         var model = this;
         model.userId = $routeParams.userId;
@@ -20,6 +20,7 @@
         model.deleteReport = deleteReport;
 
         function init() {
+            isEditable = "False";
             //console.log("inside report controller init");
             reportService
                 .findReportById(model.userId,model.appointmentId,model.reportId)
@@ -27,10 +28,23 @@
                 .then(function (response) {
                     //alert("inside controller - findWebsiteByUserId");
                     model.report = response;
-                    console.log(model.report);
+                    //console.log(model.report);
                     model.report.date = new Date(model.report.date);
                     return model.report;
                 });
+
+            userService
+                .findUserById(model.userId)
+                .then(function (response) {
+                    //console.log(response.data);
+                    console.log("outside if");
+                    var user = response.data;
+                    if(user.userType === "doctor" || user.userType === "admin")    {
+                        console.log("inside if");
+                        model.isEditable = "True";
+                    }
+                });
+
         }
         init();
 
