@@ -7,7 +7,7 @@
         .module("WamApp")
         .controller("reviewController", reviewController);
 
-    function reviewController($location, userService)   {
+    function reviewController($location, $rootScope, userService)   {
 
         var model = this;
         model.searchDoctor = searchDoctor;
