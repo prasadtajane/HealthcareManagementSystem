@@ -103,9 +103,11 @@
 
         function updateInsurance(userId,insuranceId,insurance){
             var url = "/api/user/"+userId+ "/insurance/"+insuranceId;
+            //console.log(url);
+            //console.log(insurance);
             return $http.put(url,insurance)
                 .then(function(response){
-                    return response.data;
+                    return response;
                 });
             // for (var p in pages){
             //     if (pages[p]._id === pageId){
@@ -117,6 +119,7 @@
 
         function deleteInsuranceByAgent(userId,insuranceId,planId) {
             var url = "/api/user/"+userId+ "/insurance/"+insuranceId+"/plan/"+planId;
+            //console.log(url);
             return $http.delete(url)
                 .then(function(response){
                     return response.data;

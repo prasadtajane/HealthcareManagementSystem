@@ -50,7 +50,7 @@
                 <h3 class="panel-title">List Of Insurance Plans - Taken</h3>
             </div>
         </div>
-        <div class="panel-body ">
+        <!--<div class="panel-body ">
 
             <ul class="list-group"
                 ng-repeat="insurance in model.listInsurance">
@@ -89,7 +89,7 @@
                     </div>
                 </li>
                 <li class="color-white"></li>
-                <!--<li class="list-group-item">
+                &lt;!&ndash;<li class="list-group-item">
                     <div class="media">
                         <div class="media-body">
 
@@ -118,9 +118,72 @@
 
                         </div>
                     </div>
-                </li>-->
+                </li>&ndash;&gt;
             </ul>
+        </div>-->               <!--Old-->
+
+        <div class="panel-body ">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-8">
+                        <h3 class="panel-title">Insurances</h3>
+                    </div>
+                    <div class="col-xs-4">
+                        <!--<a class="pull-right">
+                            <span class="glyphicon glyphicon-ok"></span>
+                        </a>-->
+
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+
+                <div class="outerReperat">
+                    <div class="panel panel-default" ng-repeat="insurance in model.insurances">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="row container-fluid">
+                                    <div class="col-md-3 col-lg-2"><b>Provider Name:</b></div>
+                                    <div class="col-md-9 col-lg-10">{{insurance.name}}</div>
+                                </div>
+                                <div class="row container-fluid">
+                                    <div class="col-md-3 col-lg-2"><b>Provider Uid:</b></div>
+                                    <div class="col-md-9 col-lg-10">{{insurance.uid}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body"
+                             ng-repeat="plan in insurance.plans">
+                            <div class="row">
+                                <div class="row container-fluid">
+                                    <div class="col-md-3 col-lg-2">Insurance Plan:</div>
+                                    <div class="col-md-9 col-lg-10">{{plan.name}}</div>
+                                </div>
+                                <div class="row container-fluid">
+                                    <div class="col-md-3 col-lg-2">Insurance Uid:</div>
+                                    <div class="col-md-9 col-lg-10">{{plan.uid}}</div>
+                                </div>
+                                <div class="row container-fluid">
+                                    <div class="col-md-3 col-lg-2">Insurance Category:</div>
+                                    <div class="col-md-9 col-lg-10">{{plan.category}}</div>
+                                </div>
+                                <div class="col-md-2 col-lg-2">
+                                    <a class="pull-left"
+                                       ng-click="model.removeInsurance(insurance, plan)">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </a>
+                                </div>
+                                <div class="white"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>                      <!--Insurances-->
+
+            </div>
+        </div>                              <!--Insurance-->
         </div>
+
     </div>
 
 </div>
