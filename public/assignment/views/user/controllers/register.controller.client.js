@@ -54,12 +54,13 @@
                 else    {
                     console.log("Looking weather username " + user.username + "already exists");
                     userService
-                        .findUserByUsernameAndUserType(user.username, user.userType)
+                        //.findUserByUsernameAndUserType(user.username, user.userType)
+                        .findUserByUsername(user.username)
                         .then( function (response) {
                             model.inuser = response.data;
                             //console.log(model.inuser);
                             if(model.inuser !== null)   {
-                                alert("Sorry username '" + model.inuser.username + "' and type '" + model.inuser.userType + "' already exists !");
+                                alert("Sorry username '" + model.inuser.username + "' already exists !");
                             }
                             else
                             {

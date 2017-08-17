@@ -10,6 +10,9 @@
     function reviewController($location, userService)   {
 
         var model = this;
+        model.searchDoctor = searchDoctor;
+        model.searchInsurances = searchInsurances;
+
 
         function init() {
 
@@ -55,6 +58,25 @@
                 else {
                     alert("Hi " + user.username + ", two passwords do not match!")
                 }
-        })
+        });
+
+        function searchInsurances() {
+            if($rootScope.currentUser)    {
+                $location.url("/user/" + $rootScope.currentUser._id + "/insurance-search/#searchHere");
+            }
+            else {
+                $location.url("/insurance-search/#searchHere");
+            }
+        }
+
+        function searchDoctor() {
+            if($rootScope.currentUser)    {
+                $location.url("/user/" + $rootScope.currentUser._id + "/doctor/#searchHere");
+            }
+            else {
+                $location.url("/doctor/#searchHere");
+            }
+        }
+
     }
 })();

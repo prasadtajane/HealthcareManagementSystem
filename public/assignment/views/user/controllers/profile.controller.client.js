@@ -16,6 +16,8 @@
         var uId = $routeParams["userId"];
 
         model.logout = logout;
+        model.searchDoctor = searchDoctor;
+        model.searchInsurances = searchInsurances;
         model.createAppointment = createAppointment;
         model.showInsuranceById = showInsuranceById;
         model.showUserReportById = showUserReportById;
@@ -53,7 +55,8 @@
                             _appointments_future.push(user._appointments[d]);
                         }
                     };
-                    model.user._appointments_future = _appointments_future.slice(0,3);
+                    //model.user._appointments_future = _appointments_future.slice(0,3);
+                    model.user._appointments_future = _appointments_future;
 
                     for(d in user._appointments)   {
                         if (new Date(user._appointments[d].date) < new Date(Date.now())) {
@@ -105,6 +108,25 @@
         function rescheduleAppointment (appointmentId) {
             $location.url("/user/" + uId + "/appointment/" + appointmentId);
         }
+
+        function searchInsurances() {
+            if($rootScope.currentUser)    {
+                $location.url("/user/" + $rootScope.currentUser._id + "/insurance-search/#searchHere");
+            }
+            else {
+                $location.url("/insurance-search/#searchHere");
+            }
+        }
+
+        function searchDoctor() {
+            if($rootScope.currentUser)    {
+                $location.url("/user/" + $rootScope.currentUser._id + "/doctor/#searchHere");
+            }
+            else {
+                $location.url("/doctor/#searchHere");
+            }
+        }
+
     }
 
 })();

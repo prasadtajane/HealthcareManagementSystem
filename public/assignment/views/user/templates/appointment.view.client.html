@@ -33,11 +33,11 @@
                    ng-model="model.appointment.searchName"
                    placeholder="Search Doctor ...">
             <span class="input-group-btn">
-                    <button class="btn btn-default"
-                            type="button">
-                        Go!
-                    </button>
-                </span>
+                <button class="btn btn-default"
+                        ng-click="model.searchDoctor()"
+                        type="button">Search
+                </button>
+            </span>
         </div><!-- /input-group -->
 
         <div class="row taj-bottom-margin taj-top-margin">
