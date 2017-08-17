@@ -17,6 +17,7 @@
 
         model.logout = logout;
         model.searchDoctor = searchDoctor;
+        model.createInsurance = createInsurance;
         model.searchInsurances = searchInsurances;
         model.createAppointment = createAppointment;
         model.showInsuranceById = showInsuranceById;
@@ -46,6 +47,15 @@
                     model.user.username = user.username;
                     model.user._appointments_future = [];
                     model.user._appointments_previous = [];
+
+                    model.isPatient = "False";
+                    console.log("outside if");
+                    console.log(model.user.userType);
+                    if(model.user.userType === "patient" || model.user.userType === "doctor")    {
+                        console.log("inside if");
+                        model.isPatient = "True";
+                    }
+                    // console.log(model.isNotAgent);
 
                     //console.log(new Date(Date.now()));
                     //console.log(user);
@@ -130,6 +140,16 @@
             else {
                 $location.url("/doctor/#searchHere");
             }
+        }
+
+        function createInsurance() {
+            var newInsurance = {
+                uid:"",
+                name:"",
+                plans:[{uid:"",name:"",category:[""]}]
+            };
+
+
         }
 
     }

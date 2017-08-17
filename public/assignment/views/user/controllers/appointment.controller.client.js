@@ -54,7 +54,7 @@
                 .then(function (response) {
                     model.user = response.data;
                     model.button = "Approve";
-                    if (model.user.userType === 'patient')    {
+                    if (model.user.userType === 'patient' || model.user.userType === 'agent')    {
                         model.button = "Save";
                         model.isPatient = "True";
                     }
@@ -64,7 +64,7 @@
 
         function selectFunction(appointment) {
 
-            if (model.user.userType === 'patient')    {
+            if (model.user.userType === 'patient' || model.user.userType === 'agent'    )    {
                 updateAppointment(appointment);
             }
             else {

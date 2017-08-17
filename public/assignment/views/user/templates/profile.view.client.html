@@ -229,18 +229,18 @@
                role="button">Insurance
             </a>
         </div>
+
+
+        <div class="taj-bottom-margin taj-top-margin">
+            <a class="btn btn-default btn-info btn-block"
+               ng-click="model.createInsurance()"
+               ng-show="!model.isPatient"
+               role="button">Create Insurance
+            </a>
+        </div>
     </div>
 
-    <!--<nav class="navbar taj-navbar-default navbar-fixed-bottom">-->
-        <!--<div class="container-fluid">-->
-            <!--<div class="navbar-text pull-right">-->
-                <!--<a class="navbar-link"-->
-                   <!--ng-click="model.update(model.user)">-->
-                    <!--<span class="glyphicon glyphicon-user"></span>-->
-                <!--</a>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</nav>-->
+
 
     <div ng-include="'views/common/footer-common.view.client.html'"></div>
 
