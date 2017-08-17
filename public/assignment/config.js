@@ -35,16 +35,11 @@
                 controller: "profileController",
                 controllerAs: "model"
             })
-            .when("/user/:userId/details/:detailId", {
+            .when("/user/:userId/doctor/:detailId", {
                 templateUrl: "./views/user/templates/details.view.client.html",
                 controller: "detailsController",
                 controllerAs: "model"
-            })
-            .when("/user/:userId/details/:detailId", {
-                templateUrl: "./views/user/templates/details.view.client.html",
-                controller: "detailsController",
-                controllerAs: "model"
-            })
+            })/*
             .when("/user/:userId/doctor/:doctorId", {
                 templateUrl: "./views/user/templates/profile.view.client.html",
                 controller: "profileController",
@@ -55,19 +50,19 @@
                 controller: "patientProfileController",
                 controllerAs: "model"
             })
+             .when("/user/:userId/agent", {
+             templateUrl: "./views/user/templates/agent-profile.view.client.html",
+             controller: "agentProfileController",
+             controllerAs: "model"
+             })
+             .when("/user/:userId/doctor/profile", {
+             templateUrl: "./views/user/templates/doctor-profile.view.client.html",
+             controller: "doctorProfileController",
+             controllerAs: "model"
+             })*/
             .when("/user/:userId/edit", {
                 templateUrl: "./views/user/templates/patient-profile.view.client.html",
                 controller: "patientProfileController",
-                controllerAs: "model"
-            })
-            .when("/user/:userId/agent", {
-                templateUrl: "./views/user/templates/agent-profile.view.client.html",
-                controller: "agentProfileController",
-                controllerAs: "model"
-            })
-            .when("/user/:userId/doctor/profile", {
-                templateUrl: "./views/user/templates/doctor-profile.view.client.html",
-                controller: "doctorProfileController",
                 controllerAs: "model"
             })
             .when("/register", {

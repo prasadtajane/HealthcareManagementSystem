@@ -1,33 +1,10 @@
 
-
-    <!--<nav class="navbar taj-navbar-default navbar-fixed-top">-->
-        <!--<div class="container-fluid">-->
-
-            <!--<div class="navbar-text pull-left ">-->
-                <!--<a class="navbar-link" >-->
-                    <!--<span class="glyphicon glyphicon-chevron-left"></span>-->
-                <!--</a>-->
-            <!--</div>-->
-
-            <!--<div class="navbar-header col-xs-11 col-sm-5">-->
-                <!--<a class="navbar-brand">-->
-                    <!--Profile-->
-                <!--</a>-->
-            <!--</div>-->
-
-            <!--<div class="navbar-text pull-right">-->
-                <!--<a class="navbar-link"-->
-                   <!--ng-click="model.updateUser(model.user)">-->
-                    <!--<span class="glyphicon glyphicon-ok"></span>-->
-                <!--</a>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</nav>-->
     <div ng-include="'views/common/header-common.view.client.html'"></div>
 
     <div class="container-fluid">
 
-        <div class="row taj-bottom-margin taj-top-margin">
+        <div class="row taj-bottom-margin taj-top-margin"
+             id="topPage">
 
             <div class="col-md-3 col-xs-9">
                 <div class="panel panel-default">
@@ -102,7 +79,6 @@
             <div class="col-md-3 col-xs-3">
                 <!--<img class="img-responsive" alt="Responsive image" src="uploads/heart-pulse.jpeg"/>-->
                 <img class="img-responsive" alt="Responsive image" ng-src="{{model.user.profile.image_url}}"/>
-                {{model.user.profile.image_url}}
             </div>
         </div>
 
@@ -160,8 +136,7 @@
                             {{appointment.time}}
                         </div>
                         <div class="col-xs-2">
-                            <a   ng-click="model.rescheduleAppointment(appointment._id)"
-                                 class="navbar-link pull-right">
+                            <a   class="navbar-link pull-right">
                                 <span class="glyphicon glyphicon-cog"></span>
                             </a>
                         </div>

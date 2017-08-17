@@ -16,6 +16,7 @@
         var uId = $routeParams["userId"];
         var detailId = $routeParams["detailId"];
 
+
         model.logout = logout;
         model.cancel = cancel;
         model.postReview = postReview;
@@ -32,6 +33,11 @@
         }
 
         function init() {
+            var uId = $routeParams["userId"];
+            var detailId = $routeParams["detailId"];
+
+            console.log("detailId");
+            console.log(detailId);
             //alert("inside profile service!")
             model.user={};
 
@@ -90,13 +96,15 @@
 
             if ($routeParams["userId"]) {
                 //console.log("User Online");
-                console.log($routeParams["userId"]);
-                console.log($routeParams["detailId"]);
+                //console.log($routeParams["userId"]);
+                //console.log($routeParams["detailId"]);
+
+                console.log(model.user.username);
 
                 appointment = {
                     patient_name:"Your Name...",
                     patientId:$routeParams["userId"],
-                    doctor_name:model.user.username,
+                    doctor_name:model.user.profile.first_name + " " + model.user.profile.last_name,
                     doctorId:$routeParams["detailId"],
                     date:Date.now(),
                     time:"12:00 PM"
@@ -136,7 +144,7 @@
         }
 
         function cancel() {
-            $location.url("/user/" + uId + "/details/" + detailId);
+            $location.url("/user/" + uId + "/doctor/" + detailId);
         }
 
         function postReview(review) {
@@ -165,7 +173,13 @@
                             .updateUserByUserId(user, detailId)
                             .then(function (status) {
                                 //console.log(status);
-                                $location.url("/user/" + uId + "/details/" + detailId);
+                                userService
+                                    .findAllAppointmentsByUserId(detailId)
+                                    .then(function (response) {
+                                        var user = response.data;
+                                        model.user = user;
+                                        $location.url("/user/" + uId + "/doctor/" + detailId + "/#topPage");
+                                    });
                             });
                     });
             }
@@ -178,19 +192,19 @@
 
         function searchInsurances() {
             if($rootScope.currentUser)    {
-                $location.url("/user/" + $rootScope.currentUser._id + "/insurance-search/#searchHere");
+                $location.url("/user/" + $rootScope.currentUser._id + "/insurance-search/#searchInsurance");
             }
             else {
-                $location.url("/insurance-search/#searchHere");
+                $location.url("/insurance-search/#searchInsurance");
             }
         }
 
         function searchDoctor() {
             if($rootScope.currentUser)    {
-                $location.url("/user/" + $rootScope.currentUser._id + "/doctor/#searchHere");
+                $location.url("/user/" + $rootScope.currentUser._id + "/doctor/#searchDoctor");
             }
             else {
-                $location.url("/doctor/#searchHere");
+                $location.url("/doctor/#searchDoctor");
             }
         }
 

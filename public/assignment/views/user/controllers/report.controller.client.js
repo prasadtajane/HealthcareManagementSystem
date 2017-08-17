@@ -47,7 +47,7 @@
                     }
                     report.date = new Date(report.date);
                     model.report = report;
-                    $location.url('/user/'+ model.userId + "/appointment/"+model.appointmentId);
+                    $location.url('/user/'+ model.userId);
                 });
         }
 

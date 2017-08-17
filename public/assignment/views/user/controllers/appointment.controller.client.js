@@ -47,6 +47,8 @@
                 return appointment;
                 });
 
+            model.isPatient;
+
             userService
                 .findUserById(uId)
                 .then(function (response) {
@@ -54,6 +56,7 @@
                     model.button = "Approve";
                     if (model.user.userType === 'patient')    {
                         model.button = "Save";
+                        model.isPatient = "True";
                     }
                 });
         }
@@ -78,7 +81,7 @@
                     //console.log("inside appointment controller then - createAppointment");
                     appointmentId = appointmentOut.data._id;
                     //console.log();
-                    $location.url("/user/" + uId + "/appointment/" + appointmentId);
+                    $location.url("/user/" + uId);
                 });
             alert("Values have been updated successfully!");
 

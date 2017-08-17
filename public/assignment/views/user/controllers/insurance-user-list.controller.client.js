@@ -56,7 +56,7 @@
             insuranceService
                 .removeInsuranceFromUser(model.userId,insuranceId)
                 .then(function (status){
-                    $location.url('/user/'+ model.userId + "/patient");
+                    $location.url('/user/'+ model.userId);
                 });
         }
 

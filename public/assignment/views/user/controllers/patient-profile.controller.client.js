@@ -15,8 +15,8 @@
         model.userId = $routeParams["userId"];
         model.updateUser = updateUser;
         model.deleteUser = deleteUser;
-        model.firstname = {}
-        model.lastname = {}
+        model.firstname;
+        model.lastname;
 
         model.updateUser = updateUser;
         model.addNewDegree = addNewDegree;
@@ -76,7 +76,7 @@
                 .then(function (response) {
                     suCode = response.data;
                     if (suCode === "200") {
-                        // alert("Thank you for your patience, user with username '" + user.username + "' has been removed!");
+                        alert("Thank you for your patience, user has been removed!");
                         $location.url("/login");
                     }
                 });
@@ -97,7 +97,16 @@
                         .updateUserByUserId(user, model.userId)
                         .then(function (status) {
                             console.log(status);
-                            $location.url("/user/" + model.userId + "/edit");
+                            userService
+                                .findUserById(model.userId)
+                                .then(function (response) {
+                                    model.user = user;
+                                    model.firstname = model.user.profile.first_name;
+                                    model.lastname = model.user.profile.last_name;
+                                    user.physic.birthday = new Date(user.physic.birthday);
+                                    user.smokeStatus = user.smokeStatus.toString();
+                                    $location.url("/user/" + model.userId + "/edit");
+                                });
                         });
                 });
         }
@@ -115,7 +124,16 @@
                         .updateUserByUserId(user, model.userId)
                         .then(function (status) {
                             console.log(status);
-                            $location.url("/user/" + model.userId + "/edit");
+                            userService
+                                .findUserById(model.userId)
+                                .then(function (response) {
+                                    model.user = user;
+                                    model.firstname = model.user.profile.first_name;
+                                    model.lastname = model.user.profile.last_name;
+                                    user.physic.birthday = new Date(user.physic.birthday);
+                                    user.smokeStatus = user.smokeStatus.toString();
+                                    $location.url("/user/" + model.userId + "/edit");
+                                });
                         });
                 });
         }
@@ -123,6 +141,7 @@
         function removeSpecialty(oldSpecialty) {
             //console.log("in");
             //console.log(newDegree);
+            console.log(oldSpecialty);
             userService
                 .findUserById(model.userId)
                 .then(function (response) {
@@ -142,7 +161,16 @@
                         .updateUserByUserId(user, model.userId)
                         .then(function (status) {
                             console.log(status);
-                            $location.url("/user/" + model.userId + "/edit");
+                            userService
+                                .findUserById(model.userId)
+                                .then(function (response) {
+                                    model.user = user;
+                                    model.firstname = model.user.profile.first_name;
+                                    model.lastname = model.user.profile.last_name;
+                                    user.physic.birthday = new Date(user.physic.birthday);
+                                    user.smokeStatus = user.smokeStatus.toString();
+                                    $location.url("/user/" + model.userId + "/edit");
+                                });
                         });
                 });
         }
@@ -169,7 +197,16 @@
                         .updateUserByUserId(user, model.userId)
                         .then(function (status) {
                             console.log(status);
-                            $location.url("/user/" + model.userId + "/edit");
+                            userService
+                                .findUserById(model.userId)
+                                .then(function (response) {
+                                    model.user = user;
+                                    model.firstname = model.user.profile.first_name;
+                                    model.lastname = model.user.profile.last_name;
+                                    user.physic.birthday = new Date(user.physic.birthday);
+                                    user.smokeStatus = user.smokeStatus.toString();
+                                    $location.url("/user/" + model.userId + "/edit");
+                                });
                         });
                 });
         }

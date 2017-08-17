@@ -1,67 +1,5 @@
 
-
-<!--<nav class="navbar taj-navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-
-        <div class="navbar-text pull-left ">
-            <a class="navbar-link" >
-                <span class="glyphicon glyphicon-chevron-left"></span>
-            </a>
-        </div>
-
-        <div class="navbar-header col-xs-11 col-sm-5">
-            <a class="navbar-brand">
-                Insurance Details
-            </a>
-        </div>
-
-        <div class="navbar-text pull-right">
-            <a class="navbar-link"
-               ng-click="model.updateUser(model.user)">
-                <span class="glyphicon glyphicon-ok"></span>
-            </a>
-        </div>
-    </div>
-</nav>-->
-
 <div ng-include="'views/common/header-common.view.client.html'"></div>
-
-<!--<section class="navs">-->
-    <!--<nav class="navbar navbar-fixed-top taj-navbar-default" role="navigation">-->
-        <!--<div class="container-fluid">-->
-            <!--&lt;!&ndash; Brand and toggle get grouped for better mobile display &ndash;&gt;-->
-            <!--<div class="navbar-header"-->
-                 <!--id="logo">-->
-                <!--<button type="button"-->
-                        <!--class="navbar-toggle collapsed"-->
-                        <!--data-toggle="collapse"-->
-                        <!--data-target="#bs-example-navbar-collapse-1">-->
-                        <!--<span class="glyphicon glyphicon-align-justify"-->
-                              <!--id="menucollapse">-->
-                        <!--</span>-->
-
-                <!--</button>-->
-                <!--<a class="navbar-brand"-->
-                   <!--href="index.html">-->
-                    <!--<span><i class="fa fa-stethoscope"></i></span>-->
-                    <!--HealthCare-->
-                <!--</a>-->
-            <!--</div>-->
-
-            <!--&lt;!&ndash; Collect the nav links, forms, and other content for toggling &ndash;&gt;-->
-            <!--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">-->
-                <!--<ul class="nav navbar-nav navbar-right">-->
-                    <!--<li><a href="#">Home</a></li>-->
-                    <!--<li><a href="#!/#services">Services</a></li>-->
-                    <!--<li><a href="#!/doctor">Doctors</a></li>-->
-                    <!--<li><a href="#!/#blog">Blog</a></li>-->
-                    <!--<li><a href="#about-us">About Us</a></li>-->
-                    <!--<li><a href="#!/login">Sign In</a></li>-->
-                <!--</ul>-->
-            <!--</div>&lt;!&ndash; navbar-collapse &ndash;&gt;-->
-        <!--</div>&lt;!&ndash; container-fluid &ndash;&gt;-->
-    <!--</nav>-->
-<!--</section>-->
 
 
 <div class="container-fluid">
@@ -109,7 +47,7 @@
                         <h4 class="service-heading">Search Top Qualified Doctors</h4>
                         <p>Find your doctor. Manage your health.<br/>
                             Verified doctors to choose from. Your health records when you need them.</p>
-                        <a href="#!/doctor" class="rm-btn btn btn-primary">
+                        <a href="#!/doctor/#searchDoctor" class="rm-btn btn btn-primary">
                             <i class="fa fa-user-md fa-3x" aria-hidden="true"></i>
                             <i class="icon-on-btn fa fa-long-arrow-right fa-2x"></i>
                         </a>
@@ -127,7 +65,7 @@
                         <p>Choosing a health insurance plan can be complicated.<br/>
                             Knowing just a few things before you compare plans can make it simpler.
                         </p>
-                        <a href="#!/agent" class="rm-btn btn btn-primary">
+                        <a href="#!/insurance-search/#searchInsurance" class="rm-btn btn btn-primary">
                             <i class="fa fa-medkit fa-3x" aria-hidden="true"></i>
                             <i class="icon-on-btn fa fa-long-arrow-right fa-2x"></i>
                         </a>
@@ -144,7 +82,7 @@
                         <h4 class="service-heading">Book An Appointment</h4>
                         <p>Let us help you find the physician that’s right for you and your family
                             The physicians found in this list specialize in family medicine, internal medicine and pediatrics.</p>
-                        <a href="#!/appointment" class="rm-btn btn btn-primary">
+                        <a ng-click="model.goToAppointment()" class="rm-btn btn btn-primary">
                             <i class="fa fa-calendar fa-3x" aria-hidden="true"></i>
                             <i class="icon-on-btn fa fa-long-arrow-right fa-2x"></i>
                         </a>

@@ -7,7 +7,7 @@
         .module("WamApp")
         .controller("registerController", registerController);
 
-    function registerController($location, userService)   {
+    function registerController($location, $rootScope, userService)   {
 
         var model = this;
         model.register  = register;
@@ -20,19 +20,23 @@
 
 
         function createUser(user) {
-            alert("Welcome " + user.username + " !!!");
+            //alert("Welcome " + user.username + " !!!");
             var newUser = {
                 password:user.password1,
 
                 userType:user.userType,
                 username:user.username,
-                last_name:user.last_name,
-                first_name:user.first_name
+                profile:{
+                    last_name:user.last_name,
+                    first_name:user.first_name,
+                    image_url:"uploads/heart-pulse.jpeg"
+                }
             };
             userService.createUser(newUser)
                 .then( function (response) {
                     newUser = response.data;
                     //alert("Hey, " + user.username + " your userId is " + newUser._id);
+                    $rootScope.currentUser = newUser;
                     $location.url("/user/" + newUser._id);
                 });
         }

@@ -102,11 +102,16 @@
         }
 
         function showUserReportById () {
-            $location.url("/user/" + uId + "/appointment/" + model.user._appointments_previous[0]._id + "/report/" + model.user._appointments_previous[0]._reports[0]);
+            if(model.user._appointments_previous[0] && model.user._appointments_previous[0]._reports[0])    {
+                $location.url("/user/" + uId + "/appointment/" + model.user._appointments_previous[0]._id + "/report/" + model.user._appointments_previous[0]._reports[0]);
+            }
+
         }
 
         function rescheduleAppointment (appointmentId) {
-            $location.url("/user/" + uId + "/appointment/" + appointmentId);
+            if (appointmentId !== 'undefined' && appointmentId !== null && typeof appointmentId !== 'undefined')    {
+                $location.url("/user/" + uId + "/appointment/" + appointmentId);
+            }
         }
 
         function searchInsurances() {

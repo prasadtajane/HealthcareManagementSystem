@@ -68,7 +68,7 @@
                         if(response.data)   {
                             console.log("Doctor Found!");
                             appointment.doctorId = response.data._id;
-                            $location.url("/user/" + uId + "/doctor/" + appointment.doctorId);
+                            $location.url("/user/" + $routeParams["userId"] + "/doctor/" + appointment.doctorId);
                         }
                         else    {
                             console.log("Creating a Doctor!");
