@@ -23,6 +23,10 @@
         model.approveAppointment = approveAppointment;
         model.function = selectFunction;
         model.editReport = editReport;
+        model.searchDoctor = searchDoctor;
+        model.searchInsurances = searchInsurances;
+
+
 
         function logout() {
             $rootScope.currentUser = null;
@@ -126,6 +130,25 @@
         function editReport(appointment, reportId) {
             $location.url("/user/" + uId + "/appointment/" + appointmentId + "/report/" + reportId);
         }
+
+        function searchInsurances() {
+            if($rootScope.currentUser)    {
+                $location.url("/user/" + $rootScope.currentUser._id + "/insurance-search/#searchHere");
+            }
+            else {
+                $location.url("/insurance-search/#searchHere");
+            }
+        }
+
+        function searchDoctor() {
+            if($rootScope.currentUser)    {
+                $location.url("/user/" + $rootScope.currentUser._id + "/doctor/#searchHere");
+            }
+            else {
+                $location.url("/doctor/#searchHere");
+            }
+        }
+
     }
 
 })();

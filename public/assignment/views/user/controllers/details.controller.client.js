@@ -19,6 +19,8 @@
         model.logout = logout;
         model.cancel = cancel;
         model.postReview = postReview;
+        model.searchDoctor = searchDoctor;
+        model.searchInsurances = searchInsurances;
         model.createAppointment = createAppointment;
         model.showInsuranceById = showInsuranceById;
         model.showUserReportById = showUserReportById;
@@ -173,6 +175,25 @@
             }
 
         }
+
+        function searchInsurances() {
+            if($rootScope.currentUser)    {
+                $location.url("/user/" + $rootScope.currentUser._id + "/insurance-search/#searchHere");
+            }
+            else {
+                $location.url("/insurance-search/#searchHere");
+            }
+        }
+
+        function searchDoctor() {
+            if($rootScope.currentUser)    {
+                $location.url("/user/" + $rootScope.currentUser._id + "/doctor/#searchHere");
+            }
+            else {
+                $location.url("/doctor/#searchHere");
+            }
+        }
+
 
     }
 
