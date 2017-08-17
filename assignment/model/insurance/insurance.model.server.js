@@ -39,8 +39,9 @@ function findInsuranceById(insuranceId){
 }
 
 function updateInsurance(insuranceId,insurance){
-    //console.log(insuranceId);
-    //console.log(insurance);
+    console.log("model update insurance");
+    console.log(insuranceId);
+    console.log(insurance);
     return insuranceModel.update({_id : insuranceId},{$set : insurance});
 }
 
