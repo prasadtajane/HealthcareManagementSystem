@@ -33,11 +33,6 @@ User = userModel;
 
 
 
-
-var api = {
-    findUserByFacebookId: findUserByGoogle,
-};
-
 function findUserByGoogleId(googleId) {
     return User.findOne({'google.id': googleId});
 }
