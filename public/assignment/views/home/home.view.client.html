@@ -24,44 +24,44 @@
     </div>
 </nav>-->
 
+<div ng-include="'views/common/header-common.view.client.html'"></div>
 
+<!--<section class="navs">-->
+    <!--<nav class="navbar navbar-fixed-top taj-navbar-default" role="navigation">-->
+        <!--<div class="container-fluid">-->
+            <!--&lt;!&ndash; Brand and toggle get grouped for better mobile display &ndash;&gt;-->
+            <!--<div class="navbar-header"-->
+                 <!--id="logo">-->
+                <!--<button type="button"-->
+                        <!--class="navbar-toggle collapsed"-->
+                        <!--data-toggle="collapse"-->
+                        <!--data-target="#bs-example-navbar-collapse-1">-->
+                        <!--<span class="glyphicon glyphicon-align-justify"-->
+                              <!--id="menucollapse">-->
+                        <!--</span>-->
 
-<section class="navs">
-    <nav class="navbar navbar-fixed-top taj-navbar-default" role="navigation">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header"
-                 id="logo">
-                <button type="button"
-                        class="navbar-toggle collapsed"
-                        data-toggle="collapse"
-                        data-target="#bs-example-navbar-collapse-1">
-                        <span class="glyphicon glyphicon-align-justify"
-                              id="menucollapse">
-                        </span>
+                <!--</button>-->
+                <!--<a class="navbar-brand"-->
+                   <!--href="index.html">-->
+                    <!--<span><i class="fa fa-stethoscope"></i></span>-->
+                    <!--HealthCare-->
+                <!--</a>-->
+            <!--</div>-->
 
-                </button>
-                <a class="navbar-brand"
-                   href="index.html">
-                    <span><i class="fa fa-stethoscope"></i></span>
-                    HealthCare
-                </a>
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#!/#services">Services</a></li>
-                    <li><a href="#!/doctor">Doctors</a></li>
-                    <li><a href="#!/#blog">Blog</a></li>
-                    <li><a href="#about-us">About Us</a></li>
-                    <li><a href="#!/login">Sign In</a></li>
-                </ul>
-            </div><!-- navbar-collapse -->
-        </div><!-- container-fluid -->
-    </nav>
-</section>
+            <!--&lt;!&ndash; Collect the nav links, forms, and other content for toggling &ndash;&gt;-->
+            <!--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">-->
+                <!--<ul class="nav navbar-nav navbar-right">-->
+                    <!--<li><a href="#">Home</a></li>-->
+                    <!--<li><a href="#!/#services">Services</a></li>-->
+                    <!--<li><a href="#!/doctor">Doctors</a></li>-->
+                    <!--<li><a href="#!/#blog">Blog</a></li>-->
+                    <!--<li><a href="#about-us">About Us</a></li>-->
+                    <!--<li><a href="#!/login">Sign In</a></li>-->
+                <!--</ul>-->
+            <!--</div>&lt;!&ndash; navbar-collapse &ndash;&gt;-->
+        <!--</div>&lt;!&ndash; container-fluid &ndash;&gt;-->
+    <!--</nav>-->
+<!--</section>-->
 
 
 <div class="container-fluid">
@@ -250,19 +250,4 @@
 </div>
 
 
-<nav class="navbar taj-navbar-default navbar-fixed-bottom">
-    <div class="container-fluid">
-        <div class="navbar-text pull-left">
-            <a class="navbar-link"
-               ng-click="model.update(model.user)">
-                <span class="glyphicon glyphicon-phone-alt taj-navbar-default"></span>
-            </a>
-        </div>
-        <div class="navbar-text pull-right">
-            <a class="navbar-link"
-               ng-click="model.update(model.user)">
-                <span class="glyphicon glyphicon-user taj-navbar-default"></span>
-            </a>
-        </div>
-    </div>
-</nav>
+<div ng-include="'views/common/footer-common.view.client.html'"></div>
