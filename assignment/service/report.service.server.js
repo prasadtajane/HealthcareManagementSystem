@@ -5,6 +5,8 @@
 
 var app = require("../../express");
 var reportModel = require("../model/report/report.model.server");
+var multer = require('multer'); // npm install multer --save
+var upload = multer({ dest: __dirname+'/../../public/assignment/uploads' });
 
 // var pages=[
 //     { "_id": "321", "name": "Post 1", "websiteId": "456", "description": "Lorem" },
@@ -18,6 +20,65 @@ app.get("/api/user/:userId/appointment/:appointmentId/report/:reportId",findRepo
 app.put("/api/user/:userId/appointment/:appointmentId/report/:reportId",updateReport);
 app.delete("/api/user/:userId/appointment/:appointmentId/report/:reportId",deleteReport);
 app.get("/api/user/:userId/allreports",findAllReport);
+app.post("/api/upload/report",upload.single('myFile'), uploadImage);
+
+function uploadImage(req, res) {
+
+    var myFile        = req.file;
+
+    var userId        = req.body.userId;
+    var appointmentId = req.body.appointmentId;
+    var reportId      = req.body.reportId;
+
+    var originalname  = myFile.originalname; // file name on user's computer
+    var filename      = myFile.filename;     // new file name in upload folder
+    var path          = myFile.path;         // full path of uploaded file
+    var destination   = myFile.destination;  // folder where file is saved to
+    var size          = myFile.size;
+    var mimetype      = myFile.mimetype;
+    var photourl     = '/assignment/uploads/'+filename;
+
+
+    return reportModel
+        .findReportById(reportId)
+        .then(function (report) {
+            report.imageurl=photourl;
+            report.imagename = filename;
+            reportModel
+                .updateReport(reportId, report)
+                .then(function (status) {
+                    var callbackUrl = "/assignment/#!/user/"+userId+"/appointment/"+appointmentId+"/report/"+reportId;
+                    res.redirect(callbackUrl);
+                }, function (err) {
+                    console.log(err);
+                    return err;
+                });
+        });
+    // widget.url = '/uploads/'+filename;
+
+    // console.log(widget);
+    // user.url = '/assignment/uploads/'+myFile.filename ;
+    // widget.myFile = myFile;
+    // widget.name = name;
+    // widget.width = width;
+    // widget.text = text;
+    // console.log("widget service - after setting property");
+    // console.log(widget);
+
+    // widgetModel
+    //     .updateWidget(widgetId, widget)
+    //     .then(function (widget) {
+    //         return widget;
+    //     }, function (err) {
+    //         console.log(err);
+    //         return err;
+    //     });
+    // var callbackUrl   = "/assignment/#/user/"+userId+"/website/"+websiteId;
+    // var callbackUrl = "/assignment/#!/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId;
+    // var callbackUrl = "/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId;
+
+    // res.redirect(callbackUrl);
+}
 
 function findAllReport(req,res){
     var userId= req.params.userId;

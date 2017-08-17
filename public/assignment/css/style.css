@@ -271,3 +271,7 @@ body {
 #padding-remove{
 padding: 1px;
 }
+
+.padding-add{
+    padding: 5px;
+}
