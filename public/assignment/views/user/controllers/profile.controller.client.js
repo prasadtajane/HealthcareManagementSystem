@@ -15,6 +15,9 @@
         var model = this;
         var uId = $routeParams["userId"];
 
+        var user;
+        var userWithInsurance;
+
         model.logout = logout;
         model.searchDoctor = searchDoctor;
         model.createInsurance = createInsurance;
@@ -36,7 +39,8 @@
             userService
                 .findAllAppointmentsByUserId(uId)
                 .then(function (response) {
-                    var user = response.data;
+                    user = response.data;
+                    userWithInsurance =response.data;
                     //console.log(user);
 
                     var _appointments_future = [];
@@ -144,16 +148,26 @@
 
         function createInsurance() {
             var newInsurance = {
-                uid:"",
-                name:"",
-                plans:[{uid:"",name:"",category:[""]}]
+                uid:$routeParams["userId"],
+                name:(model.user.profile.first_name + " " + model.user.profile.last_name),
+                plans:[{
+                    name:"",
+                    uid:"",
+                    category:[]
+                }]
             };
-            insuranceService
-                .createInsurance($routeParams["userId"], newInsurance)
-                .then(function (responce) {
-                    var insurance = responce;
-                    $location.url("/user/" + $routeParams["userId"] + "/insurance/" + insurance._id);
-                });
+            if(userWithInsurance._insurances[0])    {
+                //console.log(userWithInsurance._insurances[0]);
+                $location.url("/user/" + $routeParams["userId"] + "/insurance/" + userWithInsurance._insurances[0]);
+            }
+            else    {
+                insuranceService
+                    .createInsurance($routeParams["userId"], newInsurance)
+                    .then(function (responce) {
+                        var insurance = responce;
+                        $location.url("/user/" + $routeParams["userId"] + "/insurance/" + insurance._id);
+                    });
+            }
 
 
         }
