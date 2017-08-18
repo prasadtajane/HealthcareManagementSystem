@@ -165,12 +165,18 @@
             .when("/admin", {
                 templateUrl: "./views/user/templates/admin.view.client.html",
                 controller: "adminController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve:{
+                    userobject:checkLogin
+                }
             })
             .when("/admin/user/:editId/edit", {
                 templateUrl: "./views/user/templates/patient-profile.view.client.html",
-                controller: "adminController",
-                controllerAs: "model"
+                controller: "patientProfileController",
+                controllerAs: "model",
+                resolve:{
+                    userobject:checkLogin
+                }
             })
 
 

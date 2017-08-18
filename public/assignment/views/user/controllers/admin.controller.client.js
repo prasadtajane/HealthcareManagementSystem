@@ -9,11 +9,11 @@
         .module("WamApp")
         .controller("adminController", adminController);
 
-    function adminController($routeParams, $location, userService, $rootScope) {
+    function adminController($routeParams, $location, userService, $rootScope, userobject) {
 
 
         var model = this;
-        var uId = $routeParams["userId"];
+        var uId = userobject._id;
 
         var user;
         var userWithInsurance;
@@ -22,7 +22,7 @@
         model.logout = logout;
         model.editUser = editUser;
         model.deleteUser = deleteUser;
-        model.createNewuser = createNewuser;
+        model.createNewUser = createNewUser;
         model.changeUserType = changeUserType;
 
         function logout() {
@@ -70,16 +70,19 @@
             $location("/admin/user/" + userId +"/edit");
         }
 
-        function createNewuser(newUser) {
+        function createNewUser(newUser) {
+            console.log("create");
             var newUser = {
                 username:newUser.username,
                 password:newUser.password,
                 userType:newUser.userType
             } ;
+            console.log(newUser);
             userService
                 .createUser(newUser)
                 .then(function (response) {
                     var user = response.data;
+                    console.log("created");
                     console.log(user);
                     alert("Created user sucessfully.");
                     $location("/admin/user/" + user._id +"/edit");
@@ -88,17 +91,26 @@
         }
 
         function changeUserType(userId, uType) {
+            console.log(userId, uType);
             userService
                 .findUserById(userId)
                 .then(function (response) {
                     console.log(response);
                     var newUser = response.data;
                     newUser.userType = uType;
+                    if (uType === 'admin')   {
+                        newUser.isAdmin ="True";
+                    }
                     userService
                         .updateUserByUserId(newUser, userId)
                         .then(function (status) {
                             console.log(status);
                             alert("Updated user sucessfully.");
+                            userService
+                                .findAllUsers()
+                                .then(function (response) {
+                                    model.userList =response.data;
+                                });
                         });
                 });
         }
@@ -109,6 +121,12 @@
                 .then(function (status) {
                     console.log(status);
                     alert("Deleted user sucessfully.");
+
+                    userService
+                        .findAllUsers()
+                        .then(function (response) {
+                            model.userList =response.data;
+                        });
                 });
         }
 

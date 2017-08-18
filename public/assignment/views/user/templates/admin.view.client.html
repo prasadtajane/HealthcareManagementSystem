@@ -46,7 +46,7 @@
                             <!--{{user.userType}}-->
                         </div>
                         <div class="col-xs-1">
-                            <a   ng-click="model.changeUserType(user._id)"
+                            <a   ng-click="model.changeUserType(user._id, user.userType)"
                                  class="navbar-link pull-right">
                                 <span class="glyphicon glyphicon-ok"></span>
                             </a>
@@ -88,8 +88,8 @@
                         </select>
                     </div>
                     <div class="col-xs-3">
-                        <a   ng-click="model.createUser(model.newUser)"
-                             class="btn btn-default btn-block btn-success">Create
+                        <a ng-click="model.createNewUser(model.newUser)"
+                           class="btn btn-default btn-block btn-success">Create
                         </a>
                     </div>
                 </div>
