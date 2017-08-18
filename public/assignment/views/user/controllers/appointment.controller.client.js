@@ -17,7 +17,6 @@
         var uId = userobject._id;
         var appointmentId = $routeParams["appointmentId"];
 
-        model.logout = logout;
         model.createReport = createReport;
         model.updateAppointment = updateAppointment;
         model.deleteAppointment = deleteAppointment;
@@ -26,13 +25,8 @@
         model.editReport = editReport;
         model.searchDoctor = searchDoctor;
         model.searchInsurances = searchInsurances;
+        model.curretLoggedUser = userobject;
 
-
-
-        function logout() {
-            $rootScope.currentUser = null;
-            $location.url("/login");
-        }
 
         function init() {
             //alert("inside profile service!")

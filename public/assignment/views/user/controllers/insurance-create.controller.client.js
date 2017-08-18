@@ -12,6 +12,7 @@
         var model = this;
         // model.userId = $routeParams.userId;
         model.userId = userobject._id;
+        model.curretLoggedUser = userobject;
         model.insuranceId= $routeParams.insuranceId;
         model.updateInsurance = updateInsurance;
         model.addNewPlan=addNewPlan;
@@ -121,5 +122,6 @@
                     $location.url("/insurance");
                 });
         }
+
     }
 })();

@@ -135,9 +135,17 @@ app.post("/api/upload",upload.single('myFile'), uploadImage);
 app.delete("/api/user/:userId", deleteUser);
 app.post("/api/login",passport.authenticate('local'), login);
 app.get("/api/checkLogin",checkLogin);
+app.get("/logout", logout);
+
+
+function logout(req, res){
+    req.session.destroy(function (err) {
+        res.redirect('/assignment/#!/');
+    });
+}
 
 function checkLogin(req,res) {
-    res.send(req.isAuthenticated() ? req.user : '0');
+    res.send(req.isAuthenticated() ? req.user: undefined);
 }
 
 

@@ -3,12 +3,12 @@
         .module("WamApp")
         .controller("homeController", homeController);
 
-    function homeController($location, $rootScope) {
+    function homeController($location, $rootScope,userobject) {
 
         var model = this;
-        model.logout = logout;
         model.searchDoctor = searchDoctor;
         model.searchInsurances = searchInsurances;
+        model.curretLoggedUser = userobject;
         // model.profile = profile;
 
         function init() {
@@ -21,10 +21,15 @@
             // }
         // }
 
-        function logout() {
-            // $rootScope.currentUser = null;
 
-            $location.url("/login");
+        function checklog(){
+            if (!userobject){
+                return false;
+            }
+            else {
+                return true;
+            }
+
         }
 
         function searchInsurances() {

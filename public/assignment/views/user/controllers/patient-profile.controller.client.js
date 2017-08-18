@@ -13,7 +13,7 @@
 
         var model = this;
         // model.userId = $routeParams["userId"];
-
+        model.curretLoggedUser = userobject;
         model.updateUser = updateUser;
         model.deleteUser = deleteUser;
         model.firstname;
@@ -88,6 +88,7 @@
                     }
                 });
         }
+
 
         function addNewDegree(newDegree) {
             //console.log("in");
