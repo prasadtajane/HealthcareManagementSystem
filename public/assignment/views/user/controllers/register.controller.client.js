@@ -32,11 +32,14 @@
                     image_url:"uploads/heart-pulse.jpeg"
                 }
             };
+            if (user.userType === 'admin'){
+            newUser.isAdmin = "True";
+            }
             userService.createUser(newUser)
                 .then( function (response) {
                     newUser = response.data;
                     //alert("Hey, " + user.username + " your userId is " + newUser._id);
-                    $rootScope.currentUser = newUser;
+                    // $rootScope.currentUser = newUser;
                     // $location.url("/user/" + newUser._id);
                     $location.url("/user");
                 });

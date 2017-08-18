@@ -65,14 +65,34 @@
             //alert("inside update of controller");
             userService.updateUserByUserId(user, model.userId)
                 .then(function (response){
+                    userService
+                        .findUserById(model.userId)
+                        .then(function (response) {
+                            var user = response.data;
+                            //console.log(user);
+                            user.physic.birthday = new Date(user.physic.birthday);
+                            user.smokeStatus = user.smokeStatus.toString();
+                            // model.location = user.practices[0].visit_address;
+                            // model.address = model.location.street + "," + model.location.street2 + "," + model.location.city + ","+ model.location.state + "," + model.location.zip
+                            // model.phone = user.practices[0].phones[0]
+                            // model.email = user.email
+                            //console.log(model.user);
+                            model.user = user;
+                            model.firstname = model.user.profile.first_name;
+                            model.lastname = model.user.profile.last_name;
+                            //alert(user.isAdmin);
+                            var status = response.status;
+                            if (status === 200){
+                                model.message = "Update Successfull";
+                            }else{
+                                model.message = "Update not successfull";
+                            }
+                            $location.url("/edit");
+                            //console.log(model.user.educations);
+                        });
                 // console.log(model.user);
                 // var usr = response.data;
-                var status = response.status;
-                if (status === 200){
-                    model.message = "Update Successfull";
-                }else{
-                    model.message = "Update not successfull";
-                }
+
                 // console.log(usr);
                 // usr.dob = new Date(usr.dob);
                 // model.user = usr;

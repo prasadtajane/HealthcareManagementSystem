@@ -13,6 +13,7 @@ var multer = require('multer'); // npm install multer --save
 var upload = multer({ dest: __dirname+'/../../public/assignment/uploads' });
 //var passport      = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+
 passport.use(new LocalStrategy(localStrategy));
 passport.serializeUser(serializeUser);
 passport.deserializeUser(deserializeUser);
@@ -393,6 +394,7 @@ function createUser(request, response) {
         .then(function (user){
             console.log(user);
             response.json(user);
+            // $http.post("/api/login", {username:user.data.username, password:user.data.password});
         });
     //return;
 }
