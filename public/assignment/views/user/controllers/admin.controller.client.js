@@ -18,6 +18,7 @@
         var user;
         var userWithInsurance;
 
+        model.newUser;
         model.logout = logout;
         model.editUser = editUser;
         model.deleteUser = deleteUser;
@@ -32,8 +33,22 @@
         function init() {
             //alert("inside profile service!")
             model.users;
+            /*userService
+                .findAllUsers()
+                .then(function (response) {
+                    //model.userList =response.data;
+                    model.userList = [
+                        {"username":"a","userType":"agent"},
+                        {"username":"b","userType":"doctor"},
+                        {"username":"c","userType":"patient"}
+                    ];
 
-
+                });*/
+            model.userList = [
+                {"username":"a","userType":"agent"},
+                {"username":"b","userType":"doctor"},
+                {"username":"c","userType":"patient"}
+            ];
 
 
         }
