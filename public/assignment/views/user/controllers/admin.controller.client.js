@@ -78,7 +78,7 @@
         }*/
 
         function editUser(userId) {
-            $location("/admin/user/" + user._id +"/edit");
+            $location("/admin/user/" + userId +"/edit");
         }
 
         function createNewuser(newUser) {

@@ -12,7 +12,13 @@
     function patientProfileController($routeParams, $location, userService, $rootScope) {
 
         var model = this;
-        model.userId = $routeParams["userId"];
+
+        if($routeParams["editId"])    {
+            model.userId = $routeParams["editId"];
+        }
+        else    {
+            model.userId = $routeParams["userId"];
+        }
         model.updateUser = updateUser;
         model.deleteUser = deleteUser;
         model.firstname;
@@ -77,7 +83,9 @@
                     suCode = response.data;
                     if (suCode === "200") {
                         // alert("Thank you for your patience, user with username '" + user.username + "' has been removed!");
-                        $location.url("/login");
+                        if(!$routeParams["editId"])    {
+                            $location.url("/login");
+                        }
                     }
                 });
         }
@@ -105,7 +113,9 @@
                                     model.lastname = model.user.profile.last_name;
                                     user.physic.birthday = new Date(user.physic.birthday);
                                     user.smokeStatus = user.smokeStatus.toString();
-                                    $location.url("/user/" + model.userId + "/edit");
+                                    if(!$routeParams["editId"])    {
+                                        $location.url("/user/" + model.userId + "/edit");
+                                    }
                                 });
                         });
                 });
@@ -132,7 +142,9 @@
                                     model.lastname = model.user.profile.last_name;
                                     user.physic.birthday = new Date(user.physic.birthday);
                                     user.smokeStatus = user.smokeStatus.toString();
-                                    $location.url("/user/" + model.userId + "/edit");
+                                    if(!$routeParams["editId"])    {
+                                        $location.url("/user/" + model.userId + "/edit");
+                                    }
                                 });
                         });
                 });
@@ -169,7 +181,9 @@
                                     model.lastname = model.user.profile.last_name;
                                     user.physic.birthday = new Date(user.physic.birthday);
                                     user.smokeStatus = user.smokeStatus.toString();
-                                    $location.url("/user/" + model.userId + "/edit");
+                                    if(!$routeParams["editId"])    {
+                                        $location.url("/user/" + model.userId + "/edit");
+                                    }
                                 });
                         });
                 });
@@ -205,7 +219,9 @@
                                     model.lastname = model.user.profile.last_name;
                                     user.physic.birthday = new Date(user.physic.birthday);
                                     user.smokeStatus = user.smokeStatus.toString();
-                                    $location.url("/user/" + model.userId + "/edit");
+                                    if(!$routeParams["editId"])    {
+                                        $location.url("/user/" + model.userId + "/edit");
+                                    }
                                 });
                         });
                 });
