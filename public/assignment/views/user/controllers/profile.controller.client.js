@@ -73,7 +73,14 @@
 
                     for(d in user._appointments)   {
                         if (new Date(user._appointments[d].date) >= new Date(date)) {
-                            _appointments_future.push(user._appointments[d]);
+                            apt = user._appointments[d];
+                            if (model.curretLoggedUser.userType === 'doctor' || model.curretLoggedUser.userType === 'admin' )   {
+                                apt.withUser = user._appointments[d].patient_name;
+                            }
+                            else    {
+                                apt.withUser = user._appointments[d].doctor_name;
+                            }
+                            _appointments_future.push(apt);
                         }
                     };
                     //model.user._appointments_future = _appointments_future.slice(0,3);
@@ -82,7 +89,14 @@
                     for(d in user._appointments)   {
 
                         if (new Date(user._appointments[d].date) < new Date(date)) {
-                            _appointments_previous.push(user._appointments[d]);
+                            apt = user._appointments[d];
+                            if (model.curretLoggedUser.userType === 'doctor' || model.curretLoggedUser.userType === 'admin' )   {
+                                apt.withUser = user._appointments[d].patient_name;
+                            }
+                            else    {
+                                apt.withUser = user._appointments[d].doctor_name;
+                            }
+                            _appointments_previous.push(apt);
                         }
                     };
                     model.user._appointments_previous = _appointments_previous.slice(0,3);

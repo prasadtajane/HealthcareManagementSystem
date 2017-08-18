@@ -54,11 +54,13 @@
             <div class="col-xs-6">
                 <div class="form-group taj-bottom-margin taj-top-margin">
                     <label for="doctorName">Id</label>
-                    <input class="form-control"
-                           readonly
-                           id="doctorId"
-                           name="doctorId"
-                           ng-model="model.appointment.doctorId"/>
+                    <a href="#!/doctor/{{model.appointment.doctorId}}">
+                        <input class="form-control"
+                               readonly
+                               id="doctorId"
+                               name="doctorId"
+                               ng-model="model.appointment.doctorId"/>
+                    </a>
                 </div>
             </div>
         </div>
@@ -77,11 +79,13 @@
             <div class="col-xs-6">
                 <div class="form-group taj-bottom-margin taj-top-margin">
                     <label for="doctorName">Id</label>
-                    <input class="form-control"
-                           readonly
-                           id="patientId"
-                           name="doctorId"
-                           ng-model="model.appointment.patientId"/>
+                    <a href="#!/patient/{{model.appointment.patientId}}">
+                        <input class="form-control"
+                               readonly
+                               id="patientId"
+                               name="doctorId"
+                               ng-model="model.appointment.patientId"/>
+                    </a>
                 </div>
             </div>
         </div>
@@ -240,7 +244,7 @@
         </div>
     </div>
 
-    <div class="taj-bottom-margin taj-top-margin">
+    <div class="taj-bottom-margin">
         <a class="btn btn-default btn-info btn-block"
            ng-click="model.createReport(model.appointment)"
            ng-show="!model.isPatient"
@@ -248,7 +252,7 @@
         </a>
     </div>
 
-    <div class="list-group taj-bottom-margin taj-top-margin">
+    <div class="list-group taj-bottom-margin ">
         <div class="list-group-item active">
             <div class="row">
                 <!--title-->
@@ -268,7 +272,9 @@
             <div class="list-group-item">
                 <div class="row">
                     <div class="col-xs-10">
-                        {{reports}}
+                        <a ng-click="model.editReport(model.appointment, reports)">
+                            {{reports}}
+                        </a>
                     </div>
                     <div class="col-xs-2">
                         <a   ng-click="model.editReport(model.appointment, reports)"

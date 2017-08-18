@@ -150,7 +150,7 @@
                 <div class="list-group-item">
                     <div class="row">
                         <div class="col-xs-6 col-sm-5">
-                            {{appointment.doctor_name}}
+                            {{appointment.withUser}}
                         </div>
                         <div class="col-xs-4 col-sm-3">
                             {{appointment.date | date : 'shortDate'}}
@@ -193,7 +193,7 @@
                 <div class="list-group-item">
                     <div class="row">
                         <div class="col-xs-6 col-sm-5">
-                            {{appointments.doctor_name}}
+                            {{appointments.withUser}}
                         </div>
                         <div class="col-xs-4 col-sm-3">
                             {{appointments.date | date : 'shortDate'}}
