@@ -22,7 +22,7 @@
         model.logout = logout;
         model.editUser = editUser;
         model.deleteUser = deleteUser;
-        model.createNewuser = createNewuser;
+        model.createNewUser = createNewUser;
         model.changeUserType = changeUserType;
 
         function logout() {
@@ -70,16 +70,19 @@
             $location("/admin/user/" + userId +"/edit");
         }
 
-        function createNewuser(newUser) {
+        function createNewUser(newUser) {
+            console.log("create");
             var newUser = {
                 username:newUser.username,
                 password:newUser.password,
                 userType:newUser.userType
             } ;
+            console.log(newUser);
             userService
                 .createUser(newUser)
                 .then(function (response) {
                     var user = response.data;
+                    console.log("created");
                     console.log(user);
                     alert("Created user sucessfully.");
                     $location("/admin/user/" + user._id +"/edit");

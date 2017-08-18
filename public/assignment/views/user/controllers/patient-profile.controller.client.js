@@ -18,10 +18,13 @@
         model.deleteUser = deleteUser;
         model.firstname;
         model.lastname;
+
         if($routeParams["editId"])    {
+            alert("if");
             model.userId = $routeParams["editId"];
         }
         else    {
+            alert("esle");
             model.userId = userobject._id;
         }
 

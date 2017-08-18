@@ -35,8 +35,8 @@
 
         function init() {
             //alert("inside profile service!");
-            console.log("rootScope");
-            console.log($rootScope.currentUser);
+            //console.log("rootScope");
+            //console.log($rootScope.currentUser);
 
             model.user={};
 
