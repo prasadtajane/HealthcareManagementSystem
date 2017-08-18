@@ -256,7 +256,7 @@ function uploadImage(req, res) {
             userModel
                 .updateUser(userId, user)
                 .then(function (status) {
-                    var callbackUrl = "/assignment/#!/patient";
+                    var callbackUrl = "/assignment/#!/edit";
                     res.redirect(callbackUrl);
                 }, function (err) {
                     console.log(err);
