@@ -20,11 +20,11 @@
         model.lastname;
 
         if($routeParams["editId"])    {
-            alert("if");
+            //alert("if");
             model.userId = $routeParams["editId"];
         }
         else    {
-            alert("esle");
+            //alert("esle");
             model.userId = userobject._id;
         }
 

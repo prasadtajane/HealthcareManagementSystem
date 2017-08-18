@@ -23,9 +23,9 @@ var users = [];
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 var googleConfig = {
-    clientID     : "127136052951-0fjksqo0mt624fevn7l000r8t03k540k.apps.googleusercontent.com",//process.env.GOOGLE_CLIENT_ID,
-    clientSecret : "fw9DK7mEIOMqfB9ZuzjTSyaF",//process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL  : "http://127.0.0.1:3000/auth/google/callback"//process.env.GOOGLE_CALLBACK_URL
+    clientID     : process.env.GOOGLE_CLIENT_ID,//"127136052951-0fjksqo0mt624fevn7l000r8t03k540k.apps.googleusercontent.com",
+    clientSecret : process.env.GOOGLE_CLIENT_SECRET,//"fw9DK7mEIOMqfB9ZuzjTSyaF",//
+    callbackURL  : process.env.GOOGLE_CALLBACK_URL//"http://127.0.0.1:3000/auth/google/callback"//
 };
 
 passport.use(new GoogleStrategy(googleConfig, googleStrategy));
@@ -87,8 +87,8 @@ app.get('/auth/facebook/callback',
         failureRedirect: '/assignment/#!/login'
     }));
 var facebookConfig = {
-    clientID     : '1425528574208033',
-    clientSecret : '76bf04432777c2953eb9f5a142e07d47',
+    clientID     : process.env.FACEBOOK_CLIENT_ID,//'1425528574208033',//
+    clientSecret : process.env.FACEBOOK_CLIENT_SECRET,//'76bf04432777c2953eb9f5a142e07d47',//
     callbackURL  : process.env.FACEBOOK_CALLBACK_URL || 'http://localhost:3000/auth/facebook/callback'
 };
 passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
