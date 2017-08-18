@@ -9,7 +9,7 @@
         .module("WamApp")
         .controller("patientProfileController", patientProfileController)
 
-    function patientProfileController($routeParams, $location, userService, $rootScope) {
+    function patientProfileController($routeParams, $location, userService, $rootScope,userobject) {
 
         var model = this;
         // model.userId = $routeParams["userId"];
