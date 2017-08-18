@@ -94,7 +94,28 @@
                 });
         }
 
-        function addNewPlan(newPlan) {
+        function addNewPlan(newPlan)    {
+
+            var newInsurance = {
+                uid:model.userId,
+                name:(userobject.profile.first_name + " " + userobject.profile.last_name),
+                plans:[{
+                    name: newPlan.name,
+                    uid: newPlan.uid,
+                    category: newPlan.category
+                }]
+            };
+            console.log("creating insurance");
+            insuranceService
+                .createInsurance(model.userId, newInsurance)
+                .then(function (responce) {
+                    var insurance = responce;
+                    // $location.url("/user/" + uId + "/insurance/" + insurance._id);
+                    $location.url("/insurance");
+                });
+        }
+
+        /*function addNewPlan(newPlan) {
             console.log("Creating new Plan");
             p = {
                 name: newPlan.name,
@@ -110,7 +131,7 @@
                 .updateInsurance(model.userId,model.insuranceId,presentInsurances)
                 .then(function (insurance){
                     console.log(insurance);
-                    /*userInsurance.id = insurance.uid;
+                    /!*userInsurance.id = insurance.uid;
                     userInsurance.title = insurance.name;
                     for (j in insurance.plans)  {
                         userInsurance.name = insurance.plans[j].name;
@@ -118,10 +139,10 @@
                         userInsurance.category = insurance.plans[j].category;
                     }
                     console.log(userInsurance);
-                    model.userInsurance = userInsurance;*/
+                    model.userInsurance = userInsurance;*!/
                     $location.url("/insurance");
                 });
-        }
+        }*/
 
     }
 })();
