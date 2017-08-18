@@ -7,7 +7,7 @@
         .module("WamApp")
         .controller("reviewController", reviewController);
 
-    function reviewController($location, $rootScope, userService)   {
+    function reviewController($location, $rootScope, userService,userobject)   {
 
         var model = this;
         model.searchDoctor = searchDoctor;
@@ -61,21 +61,21 @@
         });
 
         function searchInsurances() {
-            if($rootScope.currentUser)    {
-                $location.url("/user/" + $rootScope.currentUser._id + "/insurance-search/#searchHere");
-            }
-            else {
+            // if($rootScope.currentUser)    {
+            //     $location.url("/user/" + $rootScope.currentUser._id + "/insurance-search/#searchHere");
+            // }
+            // else {
                 $location.url("/insurance-search/#searchHere");
-            }
+            // }
         }
 
         function searchDoctor() {
-            if($rootScope.currentUser)    {
-                $location.url("/user/" + $rootScope.currentUser._id + "/doctor/#searchHere");
-            }
-            else {
+            // if($rootScope.currentUser)    {
+            //     $location.url("/user/" + $rootScope.currentUser._id + "/doctor/#searchHere");
+            // }
+            // else {
                 $location.url("/doctor/#searchHere");
-            }
+            // }
         }
 
     }

@@ -15,13 +15,19 @@ passport.deserializeUser(deserializeUser);
 var users = [];
 
 app.post("/api/user", getUsers);
+// app.get("/api/user/:userId",findUserById);
 app.get("/api/user/:userId",findUserById);
 app.get("/api/user/:userId/populateappointments",findAllAppointmentsByUserId);
-app.post("/api/user", createUser);
+app.post("/api/user/create", createUser);
 app.put("/api/user/:userId", updateUser);
 app.post("/api/upload",upload.single('myFile'), uploadImage);
 app.delete("/api/user/:userId", deleteUser);
 app.post("/api/login",passport.authenticate('local'), login);
+app.get("/api/checkLogin",checkLogin);
+
+function checkLogin(req,res) {
+    res.send(req.isAuthenticated() ? req.user : '0');
+}
 
 function localStrategy(username, password, done) {
     userModel
@@ -140,7 +146,7 @@ function callback(err, result) {
 }
 
 function getUsers(request, response) {
-    var body =req.body;
+    var body =request.body;
     var npi = body.npi;
     var username = body.username;
     var password = body.password;
@@ -149,10 +155,10 @@ function getUsers(request, response) {
     // var username = request.query.username;
     // var password = request.query.password;
     // var userType = request.query.userType;
-    if (username && password)   {
-        findUserByCredentials(request, response);
-    }
-    else if (username && userType)  {
+    // if (username && password)   {
+    //     findUserByCredentials(request, response);
+    // }
+    if (username && userType)  {
         //findUserByUsernameAndUserType(name, uType)
         findUserByUsernameAndUserType(request, response);
     }
@@ -166,24 +172,24 @@ function getUsers(request, response) {
     }
 }
 
-function findUserByCredentials(request, response)  {
-    userModel
-        .findUserByCredentials(
-            request.query.username
-            , request.query.password)
-        .then(function (user) {
-            console.log(user);
-            response.json(user);
-            return;
-        }, function (err) {
-            response.sendStatus(404).send(err);
-            return;
-        });
-}
+// function findUserByCredentials(request, response)  {
+//     userModel
+//         .findUserByCredentials(
+//             request.query.username
+//             , request.query.password)
+//         .then(function (user) {
+//             console.log(user);
+//             response.json(user);
+//             return;
+//         }, function (err) {
+//             response.sendStatus(404).send(err);
+//             return;
+//         });
+// }
 
 function findUserByUsername(request, response) {
     userModel
-        .findUserByUsername(request.query.username)
+        .findUserByUsername(request.body.username)
         .then(function (user) {
             console.log(user);
             response.json(user);
@@ -196,7 +202,7 @@ function findUserByUsername(request, response) {
 
 function findUserByNPI(request, response) {
     userModel
-        .findUserByNPI(request.query.npi)
+        .findUserByNPI(request.body.npi)
         .then(function (user) {
             //console.log(user);
             response.json(user);
@@ -210,7 +216,7 @@ function findUserByNPI(request, response) {
 
 function findUserByUsernameAndUserType(request, response) {
     userModel
-        .findUserByUsernameAndUserType(request.query.username, request.query.us)
+        .findUserByUsernameAndUserType(request.body.username, request.body.us)
         .then(function (user) {
             console.log(user);
             response.json(user);

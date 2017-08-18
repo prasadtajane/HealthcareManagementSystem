@@ -37,7 +37,8 @@
                     newUser = response.data;
                     //alert("Hey, " + user.username + " your userId is " + newUser._id);
                     $rootScope.currentUser = newUser;
-                    $location.url("/user/" + newUser._id);
+                    // $location.url("/user/" + newUser._id);
+                    $location.url("/user");
                 });
         }
 

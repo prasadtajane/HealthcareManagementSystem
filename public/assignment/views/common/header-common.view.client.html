@@ -28,7 +28,8 @@
                     <li><a href="#!/doctor">Doctors</a></li>
                     <li><a href="#!/#blog">Blog</a></li>
                     <li><a href="#about-us">About Us</a></li>
-                    <li><a ng-show="currentUser" href="#!/user/{{currentUser._id}}/edit">Edit</a></li>
+                    <!--<li><a ng-show="currentUser" href="#!/user/{{currentUser._id}}/edit">Edit</a></li>-->
+                    <li><a ng-show="currentUser" href="#!/edit">Edit</a></li>
                     <!--<li><a ng-show="currentUser" href="#!/user/{{currentUser._id}}">Profile</a></li>-->
                     <li><a ng-show="!currentUser" href="#!/login">Sign In</a></li>
                     <li><a ng-show="currentUser" ng-click="model.logout()">Sign Out</a></li>

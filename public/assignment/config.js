@@ -21,24 +21,28 @@
                 controller: "homeController",
                 controllerAs: "model"
             })
-
-
-
-
             .when("/login", {
                 templateUrl: "./views/user/templates/login.view.client.html",
                 controller: "loginController",
                 controllerAs: "model"
             })
-            .when("/user/:userId", {
+            // .when("/user/:userId", {
+            .when("/user", {
                 templateUrl: "./views/user/templates/profile.view.client.html",
                 controller: "profileController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve:{
+                    userobject:checkLogin
+                }
             })
-            .when("/user/:userId/doctor/:detailId", {
+            // .when("/user/:userId/doctor/:detailId", {
+            .when("/doctor/:detailId", {
                 templateUrl: "./views/user/templates/details.view.client.html",
                 controller: "detailsController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve:{
+                    userobject:checkLogin
+                }
             })/*
             .when("/user/:userId/doctor/:doctorId", {
                 templateUrl: "./views/user/templates/profile.view.client.html",
@@ -60,60 +64,97 @@
              controller: "doctorProfileController",
              controllerAs: "model"
              })*/
-            .when("/user/:userId/edit", {
+            // .when("/user/:userId/edit", {
+            .when("/edit", {
                 templateUrl: "./views/user/templates/patient-profile.view.client.html",
                 controller: "patientProfileController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve:{
+                    userobject:checkLogin
+                }
             })
             .when("/register", {
                 templateUrl: "./views/user/templates/register.view.client.html",
                 controller: "registerController",
                 controllerAs: "model"
             })
+            // .when("/doctor", {
+            //     templateUrl: "./views/user/templates/doctor-list.view.client.html",
+            //     controller: "doctorListController",
+            //     controllerAs: "model",
+            //     resolve:{
+            //         userobject: checkNoUser
+            //     }
+            // })
+            // .when("/user/:userId/doctor", {
             .when("/doctor", {
                 templateUrl: "./views/user/templates/doctor-list.view.client.html",
                 controller: "doctorListController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve:{
+                    userobject:retrieveUser
+                }
             })
-            .when("/user/:userId/doctor", {
-                templateUrl: "./views/user/templates/doctor-list.view.client.html",
-                controller: "doctorListController",
-                controllerAs: "model"
-            })
-            .when("/user/:userId/insurance", {
+            // .when("/user/:userId/insurance", {
+            .when("/insurance", {
                 templateUrl: "./views/user/templates/insurance-user-list.view.client.html",
                 controller: "insuranceController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve:{
+                    userobject:retrieveUser
+                }
             })
-                .when("/user/:userId/insurance/:insuranceId", {
+                // .when("/user/:userId/insurance/:insuranceId", {
+            .when("/insurance/:insuranceId", {
                 templateUrl: "./views/user/templates/insurance-create.view.client.html",
                 controller: "insuranceNewController",
-                controllerAs: "model"
+                controllerAs: "model",
+                    resolve:{
+                        userobject:checkLogin
+                    }
             })
-            .when("/user/:userId/insurance-search", {
-                templateUrl: "./views/user/templates/insurance-search-list.view.client.html",
-                controller: "searchInsuranceController",
-                controllerAs: "model"
-            })
+            // .when("/user/:userId/insurance-search", {
             .when("/insurance-search", {
                 templateUrl: "./views/user/templates/insurance-search-list.view.client.html",
                 controller: "searchInsuranceController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve:{
+                    userobject:checkLogin
+                }
             })
-            .when("/user/:userId/appointment/:appointmentId/report/:reportId", {
+            // .when("/insurance-search", {
+            //     templateUrl: "./views/user/templates/insurance-search-list.view.client.html",
+            //     controller: "searchInsuranceController",
+            //     controllerAs: "model",
+            //     resolve:{
+            //         userobject: checkNoUser
+            //     }
+            // })
+            .when("/appointment/:appointmentId/report/:reportId", {
                 templateUrl: "./views/user/templates/report.view.client.html",
                 controller: "reportController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve:{
+                    userobject:checkLogin
+                }
             })
-            .when("/user/:userId/appointment/:appointmentId", {
+            // .when("/user/:userId/appointment/:appointmentId", {
+            .when("/appointment/:appointmentId", {
                 templateUrl: "./views/user/templates/appointment.view.client.html",
                 controller: "appointmentController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve:{
+                    userobject:checkLogin
+                }
             })
-            .when("/user/:userId/review", {
+            .when("/review", {
+            // .when("/user/:userId/review", {
                 templateUrl: "./views/user/templates/review-list.view.client.html",
                 controller: "reviewController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve:{
+                    userobject:checkLogin
+                }
             })
 
 
@@ -179,4 +220,51 @@
             })
 
     }
+
+    function checkLogin(userService,$q,$location){
+        var deferred = $q.defer();
+        userService
+            .checkLogin()
+            .then(function(user){
+                if(user === '0'){
+                    deferred.reject();
+                    $location.url("/login");
+                } else {
+                    deferred.resolve(user);
+                }
+            });
+        return deferred.promise;
+    }
+
+    function retrieveUser(userService,$q){
+        var deferred = $q.defer();
+
+        userService
+            .checkLogin()
+            .then(function(user){
+                if(user === '0'){
+                    user._id = undefined;
+                    // deferred.reject();
+                    // $location.url("/login");
+                    deferred.resolve(user);
+                } else {
+                    deferred.resolve(user);
+                }
+            });
+        return deferred.promise;
+    }
+
+    // function checkNoLogin($q){
+    //     var deferred = $q.defer();
+    //     deferred.resolve();
+    //     return deferred.promise;
+    // }
+
+    // function checkNoUser($q){
+    //     var user ={_id:false}
+    //     var deferred = $q.defer();
+    //     deferred.resolve(user);
+    //     return deferred.promise;
+    // }
+
 })();

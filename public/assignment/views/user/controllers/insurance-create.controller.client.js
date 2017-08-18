@@ -7,10 +7,11 @@
         .module("WamApp")
         .controller("insuranceNewController", insuranceNewController);
 
-    function insuranceNewController($location, insuranceService, userService, $routeParams)   {
+    function insuranceNewController($location, insuranceService, userService, $routeParams,userobject)   {
 
         var model = this;
-        model.userId = $routeParams.userId;
+        // model.userId = $routeParams.userId;
+        model.userId = userobject._id;
         model.insuranceId= $routeParams.insuranceId;
         model.updateInsurance = updateInsurance;
         model.addNewPlan=addNewPlan;
@@ -76,7 +77,8 @@
                     }
                     console.log(userInsurance);
                     model.userInsurance = userInsurance;
-                    $location.url('/user/'+ model.userId + "/insurance");
+                    // $location.url('/user/'+ model.userId + "/insurance");
+                    $location.url("/insurance");
                     return userInsurance;
                 });
         }
@@ -86,7 +88,7 @@
             insuranceService
                 .deleteInsuranceByAgent(model.userId,model.insuranceId,planId)
                 .then(function (insurances){
-                    $location.url('/user/'+ model.userId + "/insurance");
+                    $location.url("/insurance");
                     // removeInsuranceFromUser(insuranceId);
                 });
         }
@@ -116,7 +118,7 @@
                     }
                     console.log(userInsurance);
                     model.userInsurance = userInsurance;*/
-                    $location.url('/user/'+ model.userId + "/insurance");
+                    $location.url("/insurance");
                 });
         }
     }

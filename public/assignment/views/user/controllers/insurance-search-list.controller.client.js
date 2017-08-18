@@ -7,10 +7,11 @@
         .module("WamApp")
         .controller("searchInsuranceController", searchInsuranceController);
 
-    function searchInsuranceController($location, $routeParams, $rootScope, insuranceService)   {
+    function searchInsuranceController($location, $routeParams, $rootScope, insuranceService,userobject)   {
 
         var model = this;
-        model.userId = $routeParams.userId;
+        // model.userId = $routeParams.userId;
+        model.userId = userobject._id;
         model.searchInsurances = searchInsurances;
         model.addInsuranceInUser = addInsuranceInUser;
         model.findAllInsurancesByName = findAllInsurancesByName;
@@ -75,30 +76,37 @@
             // console.log(input);
             // console.log(insurance);
 
-            plan.name = input.name;
-            plan.uid = input.planuid;
-            insurance.uid = input.uid;
-            insurance.name = input.title;
-            plan.category = input.category;
-            insurance.plans.push(plan);
+            if(!model.userId)    {
+                $location.url("/login");
+            }
 
-            // console.log(insurance);
+           else {
+                plan.name = input.name;
+                plan.uid = input.planuid;
+                insurance.uid = input.uid;
+                insurance.name = input.title;
+                plan.category = input.category;
+                insurance.plans.push(plan);
 
-            insuranceService
-                .addInsuranceInUser(input._id, model.userId)
-                .then(function (status){
-                    model.status = status;
-                    $location.url("/user/" + model.userId);
-                });
+                // console.log(insurance);
+
+                insuranceService
+                    .addInsuranceInUser(input._id, model.userId)
+                    .then(function (status){
+                        model.status = status;
+                        $location.url("/user");
+                        // $location.url("/user/" + model.userId);
+                    });
+            }
         }
 
         function searchInsurances() {
-            if($rootScope.currentUser)    {
-                $location.url("/user/" + $rootScope.currentUser._id + "/doctor/#searchHere");
-            }
-            else {
+            // if($rootScope.currentUser)    {
+            //     $location.url("/user/" + $rootScope.currentUser._id + "/doctor/#searchHere");
+            // }
+            // else {
                 $location.url("/doctor/#searchHere");
-            }
+            // }
         }
     }
 })();

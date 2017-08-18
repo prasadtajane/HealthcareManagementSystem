@@ -9,11 +9,12 @@
         .module("WamApp")
         .controller("profileController", profileController);
 
-    function profileController($routeParams, $location, userService, insuranceService, appointmentService, $rootScope) {
+    function profileController($routeParams, $location, userService, insuranceService, appointmentService, $rootScope,userobject) {
 
 
         var model = this;
-        var uId = $routeParams["userId"];
+        // var uId = $routeParams["userId"];
+        var uId = userobject._id;
 
         var user;
         var userWithInsurance;
@@ -109,46 +110,51 @@
         }*/
 
         function createAppointment() {
-            $location.url("/user/" + uId + "/doctor");}
-
+            // $location.url("/user/" + uId + "/doctor");}
+            $location.url("/doctor");}
         function showInsuranceById () {
-            $location.url("/user/" + uId + "/insurance");
+            // $location.url("/user/" + uId + "/insurance");
+            $location.url("/insurance");
         }
 
         function showUserReportById () {
             if(model.user._appointments_previous[0] && model.user._appointments_previous[0]._reports[0])    {
-                $location.url("/user/" + uId + "/appointment/" + model.user._appointments_previous[0]._id + "/report/" + model.user._appointments_previous[0]._reports[0]);
+                // $location.url("/user/" + uId + "/appointment/" + model.user._appointments_previous[0]._id + "/report/" + model.user._appointments_previous[0]._reports[0]);
+                $location.url("/appointment/" + model.user._appointments_previous[0]._id + "/report/" + model.user._appointments_previous[0]._reports[0]);
             }
 
         }
 
         function rescheduleAppointment (appointmentId) {
             if (appointmentId !== 'undefined' && appointmentId !== null && typeof appointmentId !== 'undefined')    {
-                $location.url("/user/" + uId + "/appointment/" + appointmentId);
+                // $location.url("/user/" + uId + "/appointment/" + appointmentId);
+                $location.url("/appointment/" + appointmentId);
             }
         }
 
         function searchInsurances() {
-            if($rootScope.currentUser)    {
-                $location.url("/user/" + $rootScope.currentUser._id + "/insurance-search/#searchHere");
-            }
-            else {
+            // if(userobject)    {
+                // $location.url("/user/" + $rootScope.currentUser._id + "/insurance-search/#searchHere");
                 $location.url("/insurance-search/#searchHere");
-            }
+
+            // }
+            // else {
+            //     $location.url("/insurance-search/#searchHere");
+            // }
         }
 
         function searchDoctor() {
-            if($rootScope.currentUser)    {
-                $location.url("/user/" + $rootScope.currentUser._id + "/doctor/#searchHere");
-            }
-            else {
+            // if(userobject)    {
+            //     $location.url("/user/" + $rootScope.currentUser._id + "/doctor/#searchHere");
+            // }
+            // else {
                 $location.url("/doctor/#searchHere");
-            }
+            // }
         }
 
         function createInsurance() {
             var newInsurance = {
-                uid:$routeParams["userId"],
+                uid:uId,
                 name:(model.user.profile.first_name + " " + model.user.profile.last_name),
                 plans:[{
                     name:"",
@@ -158,14 +164,16 @@
             };
             if(userWithInsurance._insurances[0])    {
                 //console.log(userWithInsurance._insurances[0]);
-                $location.url("/user/" + $routeParams["userId"] + "/insurance/" + userWithInsurance._insurances[0]);
+                // $location.url("/user/" + uId + "/insurance/" + userWithInsurance._insurances[0]);
+                $location.url("/insurance/" + userWithInsurance._insurances[0]);
             }
             else    {
                 insuranceService
-                    .createInsurance($routeParams["userId"], newInsurance)
+                    .createInsurance(uId, newInsurance)
                     .then(function (responce) {
                         var insurance = responce;
-                        $location.url("/user/" + $routeParams["userId"] + "/insurance/" + insurance._id);
+                        // $location.url("/user/" + uId + "/insurance/" + insurance._id);
+                        $location.url("/insurance/" + insurance._id);
                     });
             }
 

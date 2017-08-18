@@ -9,11 +9,12 @@
         .module("WamApp")
         .controller("appointmentController", appointmentController);
 
-    function appointmentController($routeParams, $location, appointmentService, reportService, userService, $rootScope) {
+    function appointmentController($routeParams, $location, appointmentService, reportService, userService, $rootScope,userobject) {
 
         var model = this;
 
-        var uId = $routeParams["userId"];
+        // var uId = $routeParams["userId"];
+        var uId = userobject._id;
         var appointmentId = $routeParams["appointmentId"];
 
         model.logout = logout;
@@ -81,7 +82,7 @@
                     //console.log("inside appointment controller then - createAppointment");
                     appointmentId = appointmentOut.data._id;
                     //console.log();
-                    $location.url("/user/" + uId);
+                    $location.url("/user");
                 });
             alert("Values have been updated successfully!");
 
@@ -96,7 +97,7 @@
                     //console.log("inside appointment controller then - createAppointment");
                     appointmentId = appointmentOut.data._id;
                     //console.log();
-                    $location.url("/user/" + uId + "/appointment/" + appointmentId);
+                    $location.url("/appointment/" + appointmentId);
                 });
             alert("Appointment approved successfully!");
 
@@ -109,7 +110,7 @@
                     suCode = response.data;
                     if (suCode === "200") {
                         alert("Appointment has been removed!");
-                        $location.url("/user/" + uId);
+                        $location.url("/user");
                     }
                 });
         }
@@ -126,30 +127,30 @@
             reportService
                 .createReport(uId, appointmentId, report)
                 .then(function (report) {
-                    $location.url("/user/" + uId + "/appointment/" + appointmentId + "/report/" + report._id);
+                    $location.url("/appointment/" + appointmentId + "/report/" + report._id);
                 });
         }
 
         function editReport(appointment, reportId) {
-            $location.url("/user/" + uId + "/appointment/" + appointmentId + "/report/" + reportId);
+            $location.url("/appointment/" + appointmentId + "/report/" + reportId);
         }
 
         function searchInsurances() {
-            if($rootScope.currentUser)    {
-                $location.url("/user/" + $rootScope.currentUser._id + "/insurance-search/#searchHere");
-            }
-            else {
+            // if($rootScope.currentUser)    {
+            //     $location.url("/user/" + $rootScope.currentUser._id + "/insurance-search/#searchHere");
+            // }
+            // else {
                 $location.url("/insurance-search/#searchHere");
-            }
+            // }
         }
 
         function searchDoctor() {
-            if($rootScope.currentUser)    {
-                $location.url("/user/" + $rootScope.currentUser._id + "/doctor/#searchHere");
-            }
-            else {
+            // if($rootScope.currentUser)    {
+            //     $location.url("/user/" + $rootScope.currentUser._id + "/doctor/#searchHere");
+            // }
+            // else {
                 $location.url("/doctor/#searchHere");
-            }
+            // }
         }
 
     }

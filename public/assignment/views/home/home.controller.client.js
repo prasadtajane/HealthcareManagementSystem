@@ -22,26 +22,27 @@
         // }
 
         function logout() {
-            $rootScope.currentUser = null;
+            // $rootScope.currentUser = null;
+
             $location.url("/login");
         }
 
         function searchInsurances() {
-            if($rootScope.currentUser)    {
-                $location.url("/user/" + $rootScope.currentUser._id + "/insurance-search/#searchHere");
-            }
-            else {
+            // if($rootScope.currentUser)    {
+            //     $location.url("/user/" + $rootScope.currentUser._id + "/insurance-search/#searchHere");
+            // }
+            // else {
                 $location.url("/insurance-search/#searchHere");
-            }
+            // }
         }
 
         function searchDoctor() {
-            if($rootScope.currentUser)    {
-                $location.url("/user/" + $rootScope.currentUser._id + "/doctor/#searchHere");
-            }
-            else {
+            // if($rootScope.currentUser)    {
+            //     $location.url("/user/" + $rootScope.currentUser._id + "/doctor/#searchHere");
+            // }
+            // else {
                 $location.url("/doctor/#searchHere");
-            }
+            // }
         }
 
     }

@@ -19,9 +19,18 @@
             "findUserByUsername": findUserByUsername,
             "findAllAppointmentsByUserId": findAllAppointmentsByUserId,
             findUserByUsernameAndUserType:findUserByUsernameAndUserType,
-            "findUserByUsernameAndPassword": findUserByUsernameAndPassword
+            "findUserByUsernameAndPassword": findUserByUsernameAndPassword,
+            "checkLogin" : checkLogin
+
         };
         return api;
+
+        function checkLogin(){
+            return $http.get("/api/checkLogin")
+                .then(function (response) {
+                    return response.data;
+                });
+        }
 
         function findUserByUsernameAndPassword(username, password) {
             var host = "/api/user?";
@@ -65,7 +74,7 @@
 
         function createUser(newuser)   {
             //console.log(newuser);
-            return $http.post("/api/user/", newuser);
+            return $http.post("/api/user/create", newuser);
         }
 
         function findAllAppointmentsByUserId(userId)    {

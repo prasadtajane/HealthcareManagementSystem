@@ -7,7 +7,7 @@
         .module("WamApp")
         .controller("doctorListController", doctorListController);
 
-    function doctorListController($location, $routeParams, userService, doctorService, appointmentService)   {
+    function doctorListController($location, $routeParams, userService, doctorService, appointmentService,userobject)   {
 
         var model = this;
 
@@ -50,11 +50,11 @@
         }
         
         function showDoctorDetails(doctor) {
-            if ($routeParams["userId"])   {
+            if (userobject._id)   {
                 console.log("User Online");
                 var appointment = {
                     patient_name:"Your Name",
-                    patientId:$routeParams["userId"],
+                    patientId:userobject._id,
                     doctor_name:doctor.profile.first_name+", "+doctor.profile.last_name,
                     doctorId:doctor._id,
                     date:Date.now(),
@@ -68,7 +68,8 @@
                         if(response.data)   {
                             console.log("Doctor Found!");
                             appointment.doctorId = response.data._id;
-                            $location.url("/user/" + $routeParams["userId"] + "/doctor/" + appointment.doctorId);
+                            // $location.url("/user/" + userobject._id + "/doctor/" + appointment.doctorId);
+                            $location.url("/doctor/" + appointment.doctorId);
                         }
                         else    {
                             console.log("Creating a Doctor!");
@@ -80,7 +81,7 @@
                                 .then(function (response) {
                                     var user = response.data;
                                     appointment.doctorId = user._id;
-                                    create($routeParams["userId"], appointment);
+                                    create(userobject._id, appointment);
                                 });
                         };
                     });
@@ -101,16 +102,16 @@
                     //console.log("inside profile controller then - createAppointment");
                     //console.log(appointmentOut.data);
                     appointmentId = appointmentOut.data._id;
-                    $location.url("/user/" + uId + "/appointment/" + appointmentId);
+                    $location.url("/appointment/" + appointmentId);
                 })
         }
 
         function createAppointment(doctor) {
-            if ($routeParams["userId"])   {
+            if (userobject._id)   {
                 //console.log("User Online");
                 var appointment = {
                     patient_name:"Your Name",
-                    patientId:$routeParams["userId"],
+                    patientId:userobject._id,
                     doctor_name:doctor.profile.first_name+", "+doctor.profile.last_name,
                     doctorId:doctor._id,
                     date:Date.now(),
@@ -124,7 +125,7 @@
                         if(response.data)   {
                             console.log("Doctor Found!");
                             appointment.doctorId = response.data._id;
-                            create($routeParams["userId"], appointment);
+                            create(userobject._id, appointment);
                         }
                         else    {
                             console.log("Creating a Doctor!");
@@ -136,7 +137,7 @@
                                 .then(function (response) {
                                     var user = response.data;
                                     appointment.doctorId = user._id;
-                                    create($routeParams["userId"], appointment);
+                                    create(userobject._id, appointment);
                                 });
                         };
                     });

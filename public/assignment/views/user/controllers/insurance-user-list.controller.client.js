@@ -7,11 +7,11 @@
         .module("WamApp")
         .controller("insuranceController", insuranceController);
 
-    function insuranceController($location, insuranceService, userService, $routeParams)   {
+    function insuranceController($location, insuranceService, userService, $routeParams,userobject)   {
 
         var model = this;
-        model.userId = $routeParams.userId;
-
+        // model.userId = $routeParams.userId;
+        model.userId = userobject._id;
         model.removePlan = removePlan;
         model.removeInsurance = removeInsurance;
         model.deleteInsurance = deleteInsurance;
@@ -61,7 +61,8 @@
             insuranceService
                 .removeInsuranceFromUser(model.userId,insuranceId)
                 .then(function (status){
-                    $location.url('/user/'+ model.userId);
+                    // $location.url('/user/'+ model.userId);
+                    $location.url('/user');
                 });
         }
 
@@ -102,7 +103,8 @@
         }
 
         function searchInsurances() {
-            $location.url("/user/" + model.userId + "/insurance-search/#searchHere");
+            // $location.url("/user/" + model.userId + "/insurance-search/#searchHere");
+            $location.url("/insurance-search/#searchHere");
         }
 
         function removePlan(insuranceIn, plan) {

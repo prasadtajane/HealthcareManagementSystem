@@ -10,10 +10,11 @@
         .module("WamApp")
         .controller("reportController", reportController);
 
-    function reportController($location,$routeParams, userService, reportService)   {
+    function reportController($location,$routeParams, userService, reportService,userobject)   {
 
         var model = this;
-        model.userId = $routeParams.userId;
+        // model.userId = $routeParams.userId;
+        model.userId = userobject._id;
         model.appointmentId = $routeParams.appointmentId;
         model.reportId = $routeParams.reportId;
         model.updateReport=updateReport;
@@ -61,7 +62,8 @@
                     }
                     report.date = new Date(report.date);
                     model.report = report;
-                    $location.url('/user/'+ model.userId);
+                    // $location.url('/user/'+ model.userId);
+                    $location.url('/user');
                 });
         }
 
@@ -69,7 +71,8 @@
             reportService
                 .deleteReport(model.userId,model.appointmentId ,model.reportId)
                 .then(function (status){
-                    $location.url('/user/'+ model.userId + "/appointment/"+model.appointmentId);
+                    // $location.url('/user/'+ model.userId + "/appointment/"+model.appointmentId);
+                    $location.url("/appointment/"+model.appointmentId);
                 });
         }
     }

@@ -28,7 +28,8 @@
                     model.message = "Welcome back " + inuser.username + " !!!";
                     $rootScope.currentUser = inuser;
                     //alert("user is " + inuser.username +" "+inuser.password+inuser._id);
-                    $location.url("/user/" + inuser._id);
+                    // $location.url("/user/" + inuser._id);
+                    $location.url("/user");
                 }
             });
 

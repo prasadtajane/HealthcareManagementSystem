@@ -9,14 +9,21 @@
         .module("WamApp")
         .controller("patientProfileController", patientProfileController)
 
-    function patientProfileController($routeParams, $location, userService, $rootScope) {
+    function patientProfileController($routeParams, $location, userService, $rootScope,userobject) {
 
         var model = this;
-        model.userId = $routeParams["userId"];
+        // model.userId = $routeParams["userId"];
+
         model.updateUser = updateUser;
         model.deleteUser = deleteUser;
         model.firstname;
         model.lastname;
+        if($routeParams["editId"])    {
+            model.userId = $routeParams["editId"];
+        }
+        else    {
+            model.userId = userobject._id;
+        }
 
         model.updateUser = updateUser;
         model.addNewDegree = addNewDegree;
@@ -105,7 +112,8 @@
                                     model.lastname = model.user.profile.last_name;
                                     user.physic.birthday = new Date(user.physic.birthday);
                                     user.smokeStatus = user.smokeStatus.toString();
-                                    $location.url("/user/" + model.userId + "/edit");
+                                    // $location.url("/user/" + model.userId + "/edit");
+                                    $location.url("/edit");
                                 });
                         });
                 });
@@ -132,7 +140,8 @@
                                     model.lastname = model.user.profile.last_name;
                                     user.physic.birthday = new Date(user.physic.birthday);
                                     user.smokeStatus = user.smokeStatus.toString();
-                                    $location.url("/user/" + model.userId + "/edit");
+                                    // $location.url("/user/" + model.userId + "/edit");
+                                    $location.url("/edit");
                                 });
                         });
                 });
@@ -169,7 +178,8 @@
                                     model.lastname = model.user.profile.last_name;
                                     user.physic.birthday = new Date(user.physic.birthday);
                                     user.smokeStatus = user.smokeStatus.toString();
-                                    $location.url("/user/" + model.userId + "/edit");
+                                    // $location.url("/user/" + model.userId + "/edit");
+                                    $location.url("/edit");
                                 });
                         });
                 });
@@ -205,7 +215,8 @@
                                     model.lastname = model.user.profile.last_name;
                                     user.physic.birthday = new Date(user.physic.birthday);
                                     user.smokeStatus = user.smokeStatus.toString();
-                                    $location.url("/user/" + model.userId + "/edit");
+                                    // $location.url("/user/" + model.userId + "/edit");
+                                    $location.url("/edit");
                                 });
                         });
                 });
