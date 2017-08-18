@@ -102,6 +102,8 @@
         }
 
         function updateInsurance(userId,insuranceId,insurance){
+            console.log("insurance service client");
+            console.log(insurance);
             var url = "/api/user/"+userId+ "/insurance/"+insuranceId;
             //console.log(url);
             //console.log(insurance);

@@ -160,21 +160,23 @@
         }
 
         function createInsurance() {
-            var newInsurance = {
-                uid:uId,
-                name:(model.user.profile.first_name + " " + model.user.profile.last_name),
-                plans:[{
-                    name:"",
-                    uid:"",
-                    category:[]
-                }]
-            };
             if(userWithInsurance._insurances[0])    {
                 //console.log(userWithInsurance._insurances[0]);
                 // $location.url("/user/" + uId + "/insurance/" + userWithInsurance._insurances[0]);
+                console.log("insurance exists");
                 $location.url("/insurance/" + userWithInsurance._insurances[0]);
             }
             else    {
+                var newInsurance = {
+                    uid:uId,
+                    name:(model.user.profile.first_name + " " + model.user.profile.last_name),
+                    plans:[{
+                        name:"",
+                        uid:"",
+                        category:[]
+                    }]
+                };
+                console.log("creating insurance");
                 insuranceService
                     .createInsurance(uId, newInsurance)
                     .then(function (responce) {

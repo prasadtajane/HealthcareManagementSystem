@@ -90,7 +90,7 @@
                 .then(function (user) {
                     console.log(user.data.userType);
                     if(user.data.userType === 'agent' || user.data.userType === 'admin')    {
-                        console.log(insuranceId);
+                        console.log(insuranceIn);
                         console.log(planId);
                         removePlan(insuranceIn, plan);
                         return;
