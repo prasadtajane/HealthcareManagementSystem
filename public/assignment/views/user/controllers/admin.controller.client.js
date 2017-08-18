@@ -33,22 +33,11 @@
         function init() {
             //alert("inside profile service!")
             model.users;
-            /*userService
+            userService
                 .findAllUsers()
                 .then(function (response) {
-                    //model.userList =response.data;
-                    model.userList = [
-                        {"username":"a","userType":"agent"},
-                        {"username":"b","userType":"doctor"},
-                        {"username":"c","userType":"patient"}
-                    ];
-
-                });*/
-            model.userList = [
-                {"username":"a","userType":"agent"},
-                {"username":"b","userType":"doctor"},
-                {"username":"c","userType":"patient"}
-            ];
+                    model.userList =response.data;
+                });
 
 
         }

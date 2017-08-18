@@ -34,7 +34,7 @@ app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'e
 
 app.get('/auth/google/callback',
     passport.authenticate('google', {
-        successRedirect: '/assignment/#!/profile',
+        successRedirect: '/assignment/#!/user',
         failureRedirect: '/assignment/#!/login'
     }));
 
@@ -83,8 +83,8 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 app.get ('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
 app.get('/auth/facebook/callback',
     passport.authenticate('facebook', {
-        successRedirect: '/#/user',
-        failureRedirect: '/#/login'
+        successRedirect: '/assignment/#!/user',
+        failureRedirect: '/assignment/#!/login'
     }));
 var facebookConfig = {
     clientID     : '1425528574208033',
@@ -126,7 +126,7 @@ function facebookStrategy(token, refreshToken, profile, done) {
 
 
 app.post("/api/user", getUsers);
-// app.get("/api/user/:userId",findUserById);
+app.get("/api/user",findAll);
 app.get("/api/user/:userId",findUserById);
 app.get("/api/user/:userId/populateappointments",findAllAppointmentsByUserId);
 app.post("/api/user/create", createUser);
