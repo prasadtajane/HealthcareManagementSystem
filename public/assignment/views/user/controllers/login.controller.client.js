@@ -18,6 +18,11 @@
 
         function login(user) {
             //alert("Hi from login controller");
+            if(!user) {
+                model.message = "Please input user";
+                alert(model.message);
+                return;
+            }
             var promise = userService.findUserByUsernameAndPassword(user.username, user.password)
             promise.then(function (response)    {
                 // console.log(error);
@@ -25,19 +30,19 @@
                 //alert(inuser);
                 if (inuser === null ) {
                     model.message = "Incorrect credentials for user '" + user.username + "' !!!";
-                    alert(model.message);
+                    // alert(model.message);
                 }
                 else {
-                    model.message = "Welcome back " + inuser.username + " !!!";
+                    // model.message = "Welcome back " + inuser.username + " !!!";
                     // $rootScope.currentUser = inuser;
                     //alert("user is " + inuser.username +" "+inuser.password+inuser._id);
                     // $location.url("/user/" + inuser._id);
                     $location.url("/user");
                 }
             },function(err) {
-                console.log(err);
+                // console.log(err);
                 model.message = "Incorrect credentials for user '" + user.username + "' !!!";
-                alert(model.message);
+                // alert(model.message);
             });
 
         }
