@@ -17,20 +17,43 @@
                 </div>
             </div>
         </div>
-        <div class="panel-body"
-             ng-repeat="plan in model.insurance.plans">
+        <div class="panel-body">
             <div class="row">
                 <div class="row container-fluid">
                     <div class="col-md-3 col-lg-2">Insurance Plan:</div>
-                    <div class="col-md-9 col-lg-10">{{plan.name}}</div>
+                    <div class="col-md-9 col-lg-10">
+                        <div class="col-md-3 col-xs-12">
+                            <input class="form-control"
+                                   id="name"
+                                   name="name"
+                                   ng-model="model.insurance.newPlan.name"
+                                   placeholder="Plan Name"/>
+                        </div>
+                    </div>
                 </div>
                 <div class="row container-fluid">
                     <div class="col-md-3 col-lg-2">Insurance Uid:</div>
-                    <div class="col-md-9 col-lg-10">{{plan.uid}}</div>
+                    <div class="col-md-9 col-lg-10">
+                        <div class="col-md-3 col-xs-12">
+                            <input class="form-control"
+                                   id="uid"
+                                   name="uid"
+                                   ng-model="model.insurance.newPlan.uid"
+                                   placeholder="Plan Uid"/>
+                        </div>
+                    </div>
                 </div>
                 <div class="row container-fluid">
                     <div class="col-md-3 col-lg-2">Insurance Category:</div>
-                    <div class="col-md-9 col-lg-10">{{plan.category}}</div>
+                    <div class="col-md-9 col-lg-10">
+                        <div class="col-md-3 col-xs-12">
+                            <input class="form-control"
+                                   id="category"
+                                   name="category"
+                                   ng-model="model.insurance.newPlan.category"
+                                   placeholder="Plan Category"/>
+                        </div>
+                    </div>
                 </div>
                 <div class="white"></div>
             </div>
@@ -39,35 +62,10 @@
         <div class="panel-body"></div>
 
         <div class="panel-body">
-            <div class="row">
-                <div class="col-md-3 col-xs-12">
-                    <input class="form-control"
-                           id="name"
-                           name="name"
-                           ng-model="model.insurance.newPlan.name"
-                           placeholder="Plan Name"/>
-                </div>
-                <div class="col-md-3 col-xs-12">
-                    <input class="form-control"
-                           id="uid"
-                           name="uid"
-                           ng-model="model.insurance.newPlan.uid"
-                           placeholder="Plan Uid"/>
-                </div>
-                <div class="col-md-3 col-xs-12">
-                    <input class="form-control"
-                           id="category"
-                           name="category"
-                           ng-model="model.insurance.newPlan.category"
-                           placeholder="Plan Category"/>
-                </div>
-                <div class="col-md-3 col-xs-12">
-                    <a class="btn btn-block btn-default"
-                       ng-click="model.addNewPlan(model.insurance.newPlan)">
-                        Add Plan
-                    </a>
-                </div>
-            </div>
+            <a class="btn btn-block btn-default btn-success"
+               ng-click="model.addNewPlan(model.insurance.newPlan)">
+                Add Plan
+            </a>
         </div>                  <!--Edit-->
     </div>
 

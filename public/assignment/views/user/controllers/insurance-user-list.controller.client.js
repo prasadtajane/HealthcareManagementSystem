@@ -72,7 +72,9 @@
                 .findUserById(model.userId)
                 .then(function (user) {
                     console.log(user.data.userType);
-                    if(user.data.userType === 'agent')    {
+                    removeInsuranceFromUser(insuranceId);
+                    return;
+                    /*if(user.data.userType === 'agent')    {
                         console.log(insuranceId);
                         console.log(planId);
                         deleteInsuranceByAgent(insuranceId,planId);
@@ -81,7 +83,7 @@
                     else    {
                         removeInsuranceFromUser(insuranceId);
                         return;
-                    }
+                    }*/
                 });
         }
 
@@ -91,14 +93,25 @@
                 .then(function (user) {
                     console.log(user.data.userType);
                     if(user.data.userType === 'agent' || user.data.userType === 'admin')    {
-                        console.log(insuranceId);
-                        console.log(planId);
-                        removePlan(insuranceIn, plan);
-                        return;
+                        console.log(insuranceIn);
+                        console.log(plan);
+                        //removePlan(insuranceIn, plan);
+                        removeInsuranceFromUser(insuranceIn._id);
+                        insuranceService
+                            .findAllInsurancesByUserId(model.userId)
+                            .then(function (insurances) {
+                                model.insurances = insurances;
+                                $location.url("/user");
+                            });
                     }
                     else    {
                         removeInsuranceFromUser(insuranceIn._id);
-                        return;
+                        insuranceService
+                            .findAllInsurancesByUserId(model.userId)
+                            .then(function (insurances) {
+                                model.insurances = insurances;
+                                $location.url("/user");
+                            });
                     }
                 });
         }

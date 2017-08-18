@@ -14,21 +14,17 @@
 
         var model = this;
         var uId = userobject._id;
+        model.curretLoggedUser = userobject;
 
         var user;
         var userWithInsurance;
 
         model.newUser;
-        model.logout = logout;
         model.editUser = editUser;
         model.deleteUser = deleteUser;
         model.createNewUser = createNewUser;
         model.changeUserType = changeUserType;
 
-        function logout() {
-            $rootScope.currentUser = null;
-            $location.url("/login");
-        }
 
         function init() {
             //alert("inside profile service!")

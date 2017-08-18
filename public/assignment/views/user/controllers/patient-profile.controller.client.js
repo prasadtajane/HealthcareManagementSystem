@@ -51,6 +51,7 @@
                     model.user = user;
                     model.firstname = model.user.profile.first_name;
                     model.lastname = model.user.profile.last_name;
+                    //alert(user.isAdmin);
 
 
                     //console.log(model.user.educations);

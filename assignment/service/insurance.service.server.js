@@ -96,6 +96,9 @@ function updateInsurance(req,res){
     var insurance = req.body;
     //console.log(insurance);
     //console.log(insuranceId);
+    console.log("insurance server");
+    console.log(insurance);
+    console.log(insurance.plans);
     insuranceModel
         .updateInsurance(insuranceId,insurance)
         .then(function(status){
