@@ -69,17 +69,22 @@
 
         function updateAppointment(appointment) {
             //alert("inside update of controller");
-            appointmentService
-                .updateappointment(uId, appointmentId, appointment)
-                .then(function (appointmentOut) {
-                    //console.log("************");
-                    //console.log("inside appointment controller then - createAppointment");
-                    appointmentId = appointmentOut.data._id;
-                    //console.log();
-                    $location.url("/user");
-                });
-            alert("Values have been updated successfully!");
 
+            if (new Date(appointment.date) < new Date(Date.now())) {
+                alert("Sorry, cannot book appointment for same date\nPlease contact us over phone.");
+            }
+            else    {
+                appointmentService
+                    .updateappointment(uId, appointmentId, appointment)
+                    .then(function (appointmentOut) {
+                        //console.log("************");
+                        //console.log("inside appointment controller then - createAppointment");
+                        appointmentId = appointmentOut.data._id;
+                        //console.log();
+                        $location.url("/user");
+                    });
+                alert("Values have been updated successfully!");
+            }
         }
 
         function approveAppointment(appointment) {

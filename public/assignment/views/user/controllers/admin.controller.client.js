@@ -80,8 +80,14 @@
                     var user = response.data;
                     console.log("created");
                     console.log(user);
+                    model.users;
+                    userService
+                        .findAllUsers()
+                        .then(function (response) {
+                            model.userList = response.data;
+                            $location("/admin/user/" + user._id +"/edit");
+                        });
                     alert("Created user sucessfully.");
-                    $location("/admin/user/" + user._id +"/edit");
                 });
 
         }
@@ -96,6 +102,9 @@
                     newUser.userType = uType;
                     if (uType === 'admin')   {
                         newUser.isAdmin ="True";
+                    }
+                    else {
+                        newUser.isAdmin ="False";
                     }
                     userService
                         .updateUserByUserId(newUser, userId)

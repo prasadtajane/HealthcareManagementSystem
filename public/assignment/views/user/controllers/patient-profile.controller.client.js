@@ -21,10 +21,13 @@
 
         if($routeParams["editId"])    {
             //alert("if");
+            var adminL="True";
+            var editId=$routeParams["editId"];
             model.userId = $routeParams["editId"];
         }
         else    {
             //alert("esle");
+            var adminL="False";
             model.userId = userobject._id;
         }
 
@@ -87,7 +90,13 @@
                             }else{
                                 model.message = "Update not successfull";
                             }
-                            $location.url("/edit");
+                            if($routeParams["editId"])    {
+                                ///admin/user/598baabf833d3e0004a891e6/edit
+                                $location.url("/admin/user/" + $routeParams["editId"] + "/edit");
+                            }
+                            else    {
+                                $location.url("/edit");
+                            }
                             //console.log(model.user.educations);
                         });
                 // console.log(model.user);
@@ -137,7 +146,13 @@
                                     model.lastname = model.user.profile.last_name;
                                     user.physic.birthday = new Date(user.physic.birthday);
                                     user.smokeStatus = user.smokeStatus.toString();
-                                    if(!$routeParams["editId"])    {
+                                    if($routeParams["editId"])    {
+                                        ///admin/user/598baabf833d3e0004a891e6/edit
+                                        $location.url("/admin/user/" + $routeParams["editId"] + "/edit");
+                                        console.log("Not editId");
+                                    }
+                                    else    {
+                                        console.log("Not editId");
                                         $location.url("/edit");
                                     }
                                     // $location.url("/user/" + model.userId + "/edit");
@@ -168,7 +183,11 @@
                                     model.lastname = model.user.profile.last_name;
                                     user.physic.birthday = new Date(user.physic.birthday);
                                     user.smokeStatus = user.smokeStatus.toString();
-                                    if(!$routeParams["editId"])    {
+                                    if($routeParams["editId"])    {
+                                        ///admin/user/598baabf833d3e0004a891e6/edit
+                                        $location.url("/admin/user/" + $routeParams["editId"] + "/edit");
+                                    }
+                                    else    {
                                         $location.url("/edit");
                                     }
                                 });
@@ -207,7 +226,11 @@
                                     model.lastname = model.user.profile.last_name;
                                     user.physic.birthday = new Date(user.physic.birthday);
                                     user.smokeStatus = user.smokeStatus.toString();
-                                    if(!$routeParams["editId"])    {
+                                    if($routeParams["editId"])    {
+                                        ///admin/user/598baabf833d3e0004a891e6/edit
+                                        $location.url("/admin/user/" + $routeParams["editId"] + "/edit");
+                                    }
+                                    else    {
                                         $location.url("/edit");
                                     }
                                 });
@@ -245,7 +268,11 @@
                                     model.lastname = model.user.profile.last_name;
                                     user.physic.birthday = new Date(user.physic.birthday);
                                     user.smokeStatus = user.smokeStatus.toString();
-                                    if(!$routeParams["editId"])    {
+                                    if($routeParams["editId"])    {
+                                        ///admin/user/598baabf833d3e0004a891e6/edit
+                                        $location.url("/admin/user/" + $routeParams["editId"] + "/edit");
+                                    }
+                                    else    {
                                         $location.url("/edit");
                                     }
                                 });

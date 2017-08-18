@@ -68,8 +68,11 @@
                     //console.log(new Date(Date.now()));
                     //console.log(user);
 
+                    var date = new Date();
+                    date.setDate(date.getDate() - 1);
+
                     for(d in user._appointments)   {
-                        if (new Date(user._appointments[d].date) >= new Date(Date.now())) {
+                        if (new Date(user._appointments[d].date) >= new Date(date)) {
                             _appointments_future.push(user._appointments[d]);
                         }
                     };
@@ -77,7 +80,8 @@
                     model.user._appointments_future = _appointments_future;
 
                     for(d in user._appointments)   {
-                        if (new Date(user._appointments[d].date) < new Date(Date.now())) {
+
+                        if (new Date(user._appointments[d].date) < new Date(date)) {
                             _appointments_previous.push(user._appointments[d]);
                         }
                     };
