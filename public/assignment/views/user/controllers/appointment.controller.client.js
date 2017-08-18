@@ -70,10 +70,10 @@
         function updateAppointment(appointment) {
             //alert("inside update of controller");
 
-            if (new Date(appointment.date) < new Date(Date.now())) {
+            /*if (new Date(appointment.date) < new Date(Date.now())) {
                 alert("Sorry, cannot book appointment for same date\nPlease contact us over phone.");
             }
-            else    {
+            else    {*/
                 appointmentService
                     .updateappointment(uId, appointmentId, appointment)
                     .then(function (appointmentOut) {
@@ -84,7 +84,7 @@
                         $location.url("/user");
                     });
                 alert("Values have been updated successfully!");
-            }
+            //}
         }
 
         function approveAppointment(appointment) {
