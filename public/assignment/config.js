@@ -19,12 +19,18 @@
             .when("/", {
                 templateUrl: "./views/home/home.view.client.html",
                 controller: "homeController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve:{
+                    userobject:retrieveUser
+                }
             })
             .when("/login", {
                 templateUrl: "./views/user/templates/login.view.client.html",
                 controller: "loginController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve:{
+                    userobject:retrieveUser
+                }
             })
             // .when("/user/:userId", {
             .when("/user", {
@@ -242,7 +248,7 @@
         userService
             .checkLogin()
             .then(function(user){
-                if(user === '0'){
+                if(!user){
                     deferred.reject();
                     $location.url("/login");
                 } else {
@@ -258,7 +264,7 @@
         userService
             .checkLogin()
             .then(function(user){
-                if(user === '0'){
+                if(!user){
                     user._id = undefined;
                     // deferred.reject();
                     // $location.url("/login");

@@ -15,6 +15,7 @@
         model.searchInsurances = searchInsurances;
         model.addInsuranceInUser = addInsuranceInUser;
         model.findAllInsurancesByName = findAllInsurancesByName;
+        model.curretLoggedUser = userobject;
 
         function init() {
             var listInsurance=[];

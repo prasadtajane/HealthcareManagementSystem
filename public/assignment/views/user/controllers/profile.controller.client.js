@@ -19,7 +19,6 @@
         var user;
         var userWithInsurance;
 
-        model.logout = logout;
         model.searchDoctor = searchDoctor;
         model.createInsurance = createInsurance;
         model.searchInsurances = searchInsurances;
@@ -27,11 +26,8 @@
         model.showInsuranceById = showInsuranceById;
         model.showUserReportById = showUserReportById;
         model.rescheduleAppointment = rescheduleAppointment;
+        model.curretLoggedUser = userobject;
 
-        function logout() {
-            $rootScope.currentUser = null;
-            $location.url("/login");
-        }
 
         function init() {
             //alert("inside profile service!");
@@ -187,6 +183,11 @@
             }
 
 
+        }
+
+        function logout() {
+            model.user = null;
+            $location.url("/login");
         }
 
     }

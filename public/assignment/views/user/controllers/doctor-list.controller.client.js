@@ -10,10 +10,11 @@
     function doctorListController($location, $routeParams, userService, doctorService, appointmentService,userobject)   {
 
         var model = this;
-
         model.showDoctorDetails = showDoctorDetails;
         model.createAppointment = createAppointment;
         model.searchDoctorByName = searchDoctorByName;
+        model.curretLoggedUser = userobject;
+
 
         function init() {
             /*

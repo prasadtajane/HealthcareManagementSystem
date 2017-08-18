@@ -18,6 +18,7 @@
         model.searchInsurances = searchInsurances;
         model.deleteInsuranceByAgent = deleteInsuranceByAgent;
         model.removeInsuranceFromUser = removeInsuranceFromUser;
+        model.curretLoggedUser = userobject;
 
         function init() {
             listInsurance=[];
@@ -147,5 +148,6 @@
                     }
                 });
         }
+
     }
 })();

@@ -12,7 +12,8 @@
         var model = this;
         model.searchDoctor = searchDoctor;
         model.searchInsurances = searchInsurances;
-
+        model.logout = logout;
+        model.curretLoggedUser = userobject;
 
         function init() {
 

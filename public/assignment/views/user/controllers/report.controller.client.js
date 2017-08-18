@@ -19,6 +19,7 @@
         model.reportId = $routeParams.reportId;
         model.updateReport=updateReport;
         model.deleteReport = deleteReport;
+        model.curretLoggedUser = userobject;
 
         function init() {
             isEditable = "False";

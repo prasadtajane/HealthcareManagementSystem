@@ -12,7 +12,7 @@
         var model = this;
         model.register  = register;
         model.createUser= createUser;
-
+        model.curretLoggedUser = userobject;
         function init() {
 
         }
@@ -79,5 +79,6 @@
                 alert("Hi " + user.username + ", two passwords do not match!")
             }
         }
+
     }
 })();

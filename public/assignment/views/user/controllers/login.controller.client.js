@@ -9,10 +9,12 @@
         .module("WamApp")
         .controller("loginController", loginController)
 
-    function loginController($location, userService, $rootScope) {
+    function loginController($location, userService,userobject) {
 
         var model = this;
         model.login = login;
+        // model.currentLoggedUser = userobject;
+        model.curretLoggedUser = userobject;
 
         function login(user) {
             //alert("Hi from login controller");
@@ -26,7 +28,7 @@
                 }
                 else {
                     model.message = "Welcome back " + inuser.username + " !!!";
-                    $rootScope.currentUser = inuser;
+                    // $rootScope.currentUser = inuser;
                     //alert("user is " + inuser.username +" "+inuser.password+inuser._id);
                     // $location.url("/user/" + inuser._id);
                     $location.url("/user");

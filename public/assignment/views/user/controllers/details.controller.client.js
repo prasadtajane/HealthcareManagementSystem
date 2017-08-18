@@ -16,9 +16,8 @@
         // var uId = $routeParams["userId"];
         var detailId = $routeParams["detailId"];
         var uId = userobject._id;
+        model.curretLoggedUser = userobject;
 
-
-        model.logout = logout;
         model.cancel = cancel;
         model.postReview = postReview;
         model.searchDoctor = searchDoctor;
@@ -27,11 +26,6 @@
         model.showInsuranceById = showInsuranceById;
         model.showUserReportById = showUserReportById;
         model.rescheduleAppointment = rescheduleAppointment;
-
-        function logout() {
-            $rootScope.currentUser = null;
-            $location.url("/login");
-        }
 
         function init() {
             var uId = uId;
