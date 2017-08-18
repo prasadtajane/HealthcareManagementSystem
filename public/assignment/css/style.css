@@ -91,6 +91,9 @@ input, textarea, select   {
     margin-top: 10px;
 }
 
+.red    {
+    color: #b73349;
+}
 
 .taj-top-margin-25 {
     margin-top: 25px;

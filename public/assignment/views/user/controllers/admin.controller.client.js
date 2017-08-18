@@ -85,7 +85,7 @@
                         .findAllUsers()
                         .then(function (response) {
                             model.userList = response.data;
-                            $location("/admin/user/" + user._id +"/edit");
+                            $location.url("/admin/user/" + user._id +"/edit");
                         });
                     alert("Created user sucessfully.");
                 });
