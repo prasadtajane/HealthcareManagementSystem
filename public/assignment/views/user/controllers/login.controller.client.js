@@ -20,9 +20,10 @@
             //alert("Hi from login controller");
             var promise = userService.findUserByUsernameAndPassword(user.username, user.password)
             promise.then(function (response)    {
+                // console.log(error);
                 inuser = response.data;
                 //alert(inuser);
-                if (inuser === null) {
+                if (inuser === null ) {
                     model.message = "Incorrect credentials for user '" + user.username + "' !!!";
                     alert(model.message);
                 }
@@ -33,6 +34,10 @@
                     // $location.url("/user/" + inuser._id);
                     $location.url("/user");
                 }
+            },function(err) {
+                console.log(err);
+                model.message = "Incorrect credentials for user '" + user.username + "' !!!";
+                alert(model.message);
             });
 
         }

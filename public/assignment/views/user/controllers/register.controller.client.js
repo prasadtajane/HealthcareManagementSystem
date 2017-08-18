@@ -7,7 +7,7 @@
         .module("WamApp")
         .controller("registerController", registerController);
 
-    function registerController($location, $rootScope, userService)   {
+    function registerController($location, $rootScope, userService,userobject)   {
 
         var model = this;
         model.register  = register;
@@ -72,6 +72,9 @@
                                 alert("Welcome " + user.username + " !!!");
                                 createUser(user);
                             }
+                        }, function (err) {
+                            console.log(err);
+                            alert("Sorry username '" + model.inuser.username + "' already exists !");
                         });
                 }
             }

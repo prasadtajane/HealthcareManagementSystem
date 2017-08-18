@@ -82,7 +82,10 @@
             .when("/register", {
                 templateUrl: "./views/user/templates/register.view.client.html",
                 controller: "registerController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve:{
+                    userobject:retrieveUser
+                }
             })
             // .when("/doctor", {
             //     templateUrl: "./views/user/templates/doctor-list.view.client.html",

@@ -47,7 +47,7 @@ function uploadImage(req, res) {
             reportModel
                 .updateReport(reportId, report)
                 .then(function (status) {
-                    var callbackUrl = "/assignment/#!/user/"+userId+"/appointment/"+appointmentId+"/report/"+reportId;
+                    var callbackUrl = "/assignment/#!/appointment/"+appointmentId+"/report/"+reportId;
                     res.redirect(callbackUrl);
                 }, function (err) {
                     console.log(err);
