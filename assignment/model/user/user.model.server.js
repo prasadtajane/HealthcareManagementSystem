@@ -25,12 +25,22 @@ userModel.findAllAppointmentsByUserId = findAllAppointmentsByUserId;
 userModel.findUserByUsernameAndUserType = findUserByUsernameAndUserType;
 //userModel.findAppointmentReportByUserId = findAppointmentReportByUserId;
 
+userModel.findUserByGoogleId = findUserByGoogleId;
+userModel.findUserByFacebookId = findUserByFacebookId;
+
 module.exports = userModel;
 
 User = userModel;
 
 
+function findUserByFacebookId(facebookId) {
+    return User.findOne({'facebook.id': facebookId});
+}
 
+function findUserByGoogleId(googleId) {
+    return userModel
+        .findOne({'google.id': googleId})
+}
 
 function createUser(user) {
     //console.log(user);

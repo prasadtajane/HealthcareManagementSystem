@@ -3,16 +3,127 @@
  */
 
 var app = require("../../express");
+
+var cookie = require('cookie-parser');
+var session = require('express-session');
+var passport         = require('passport');
+
 var userModel = require("../model/user/user.model.server");
 var multer = require('multer'); // npm install multer --save
 var upload = multer({ dest: __dirname+'/../../public/assignment/uploads' });
-var passport      = require('passport');
+//var passport      = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 passport.use(new LocalStrategy(localStrategy));
 passport.serializeUser(serializeUser);
 passport.deserializeUser(deserializeUser);
 
 var users = [];
+
+
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+
+var googleConfig = {
+    clientID     : "127136052951-0fjksqo0mt624fevn7l000r8t03k540k.apps.googleusercontent.com",//process.env.GOOGLE_CLIENT_ID,
+    clientSecret : "fw9DK7mEIOMqfB9ZuzjTSyaF",//process.env.GOOGLE_CLIENT_SECRET,
+    callbackURL  : "http://127.0.0.1:3000/auth/google/callback"//process.env.GOOGLE_CALLBACK_URL
+};
+
+passport.use(new GoogleStrategy(googleConfig, googleStrategy));
+
+app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
+
+app.get('/auth/google/callback',
+    passport.authenticate('google', {
+        successRedirect: '/assignment/#!/profile',
+        failureRedirect: '/assignment/#!/login'
+    }));
+
+function googleStrategy(token, refreshToken, profile, done) {
+    userModel
+        .findUserByGoogleId(profile.id)
+        .then(
+            function(user) {
+                if(user) {
+                    return done(null, user);
+                } else {
+                    var email = profile.emails[0].value;
+                    var emailParts = email.split("@");
+                    var newGoogleUser = {
+                        username:  emailParts[0],
+                        profile:{
+                            first_name:profile.name.givenName,
+                            last_name:profile.name.familyName
+                        },
+                        email:     email,
+                        google: {
+                            id:    profile.id,
+                            token: token
+                        }
+                    };
+                    return userModel.createUser(newGoogleUser);
+                }
+            },
+            function(err) {
+                if (err) { return done(err); }
+            }
+        )
+        .then(
+            function(user){
+                return done(null, user);
+            },
+            function(err){
+                if (err) { return done(err); }
+            }
+        );
+}
+
+
+
+var FacebookStrategy = require('passport-facebook').Strategy;
+app.get ('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
+app.get('/auth/facebook/callback',
+    passport.authenticate('facebook', {
+        successRedirect: '/#/user',
+        failureRedirect: '/#/login'
+    }));
+var facebookConfig = {
+    clientID     : '1425528574208033',
+    clientSecret : '76bf04432777c2953eb9f5a142e07d47',
+    callbackURL  : process.env.FACEBOOK_CALLBACK_URL || 'http://localhost:3000/auth/facebook/callback'
+};
+passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
+function facebookStrategy(token, refreshToken, profile, done) {
+
+    userModel
+        .findUserByFacebookId(profile.id)
+        .then(function (user) {
+            if (user) {
+                return done(null, user);
+            }
+            else {
+                var userDetails = {};
+                userDetails.username = profile.displayName.replace(/ /g, '');
+                userDetails.profile = {
+                    first_name:profile.displayName.split(' ')[0],
+                    last_name:profile.displayName.split(' ')[1]
+                };
+                userDetails.facebook = {id: profile.id, token: token};
+                return userModel.createUser(userDetails);
+            }
+        }, function (err) {
+            return done(err);
+        })
+        .then(function (user) {
+            if (user) {
+                return done(null, user);
+            }
+        }, function (err) {
+            return  done(err);
+        });
+
+}
+
+
 
 app.post("/api/user", getUsers);
 // app.get("/api/user/:userId",findUserById);
@@ -28,6 +139,49 @@ app.get("/api/checkLogin",checkLogin);
 function checkLogin(req,res) {
     res.send(req.isAuthenticated() ? req.user : '0');
 }
+
+
+
+
+
+
+/*function googleStrategy(token, refreshToken, profile, done) {
+ userModel
+ .findUserByGoogleId(profile.id)
+ .then(function (user) {
+ if(user)    {
+ return done(null,user);
+ }
+ else    {
+ var gemail = profile.emails[0].value;
+ var parts = gemail.split('@');
+ var newGoogleUser = {
+ username:parts[0],
+ email:gemail,
+ profile:{
+ first_name:profile.name.givenName,
+ last_name:profile.name.familyName
+ },
+ google: {
+ id:    profile.id,
+ token: token
+ }};
+ return userModel.createUser(newGoogleUser);
+ }
+ }, function (err) {
+ console.log(err);
+ if(err) {
+ return done(err);
+ }
+ })
+ .then(function (user) {
+ return done(null, user);
+ }, function (err) {
+ if(err) {
+ return done(err);
+ }
+ })
+ }*/
 
 function localStrategy(username, password, done) {
     userModel
@@ -67,19 +221,11 @@ function deserializeUser(user, done) {
 function login(request, response){
     var user =request.user;
     response.json(user);
-    // userModel
-    //     .findUserByCredentials(
-    //         request.query.username
-    //         , request.query.password)
-    //     .then(function (user) {
-    //         console.log(user);
-    //         response.json(user);
-    //         return;
-    //     }, function (err) {
-    //         response.sendStatus(404).send(err);
-    //         return;
-    //     });
 }
+
+
+
+
 
 function uploadImage(req, res) {
 
@@ -109,30 +255,6 @@ function uploadImage(req, res) {
                     return err;
                 });
         });
-    // widget.url = '/uploads/'+filename;
-
-    // console.log(widget);
-    // user.url = '/assignment/uploads/'+myFile.filename ;
-    // widget.myFile = myFile;
-    // widget.name = name;
-    // widget.width = width;
-    // widget.text = text;
-    // console.log("widget service - after setting property");
-    // console.log(widget);
-
-    // widgetModel
-    //     .updateWidget(widgetId, widget)
-    //     .then(function (widget) {
-    //         return widget;
-    //     }, function (err) {
-    //         console.log(err);
-    //         return err;
-    //     });
-    // var callbackUrl   = "/assignment/#/user/"+userId+"/website/"+websiteId;
-    // var callbackUrl = "/assignment/#!/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId;
-    // var callbackUrl = "/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId;
-
-    // res.redirect(callbackUrl);
 }
 
 function callback(err, result) {

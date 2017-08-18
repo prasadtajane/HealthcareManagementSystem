@@ -1,9 +1,4 @@
-<!--<nav class="navbar taj-navbar-default navbar-fixed-top"-->
-     <!--xmlns="http://www.w3.org/1999/html">-->
-        <!--<div class="navbar-brand">-->
-            <!--Login-->
-        <!--</div>-->
-    <!--</nav>-->
+
 
 <div ng-include="'views/common/header-common.view.client.html'"></div>
 
@@ -55,13 +50,18 @@
             <a class="btn btn-default btn-success btn-block"
                href="#!/register"
                role="button">Register</a>
+
+            <a href="/auth/google" class="btn btn-danger btn-block">
+                <span class="fa fa-google-plus"></span>
+                Google
+            </a>
+
+            <a href="/auth/facebook" class="btn btn-primary btn-block">
+                <span class="fa fa-facebook"></span>
+                Facebook
+            </a>
         </div>
     </div>
 
-    <!--<nav class="navbar taj-navbar-default navbar-fixed-bottom">-->
-        <!--<div class="navbar-brand">-->
-            <!--Track Your Health-->
-        <!--</div>-->
-    <!--</nav>-->
 
 <div ng-include="'views/common/footer-common.view.client.html'"></div>

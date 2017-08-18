@@ -53,11 +53,11 @@
                     model.user._appointments_future = [];
                     model.user._appointments_previous = [];
 
-                    model.isAgent = "False";
-                    console.log("outside if");
-                    console.log(model.user.userType);
+                    model.isAgent;
+                    //console.log("outside if");
+                    //console.log(model.user.userType);
                     if(model.user.userType === "agent" || model.user.userType === "admin")    {
-                        console.log("inside if");
+                        //console.log("inside if");
                         model.isAgent = "True";
                     }
                     // console.log(model.isNotAgent);

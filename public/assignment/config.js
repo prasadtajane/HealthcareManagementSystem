@@ -156,6 +156,16 @@
                     userobject:checkLogin
                 }
             })
+            .when("/admin", {
+                templateUrl: "./views/user/templates/admin.view.client.html",
+                controller: "adminController",
+                controllerAs: "model"
+            })
+            .when("/admin/user/:editId/edit", {
+                templateUrl: "./views/user/templates/admin.view.client.html",
+                controller: "adminController",
+                controllerAs: "model"
+            })
 
 
             .when("/profile/:userId/website", {

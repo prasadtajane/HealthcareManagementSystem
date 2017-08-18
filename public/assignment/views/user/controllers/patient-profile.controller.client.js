@@ -9,7 +9,7 @@
         .module("WamApp")
         .controller("patientProfileController", patientProfileController)
 
-    function patientProfileController($routeParams, $location, userService, $rootScope,userobject) {
+    function patientProfileController($routeParams, $location, userService, $rootScope) {
 
         var model = this;
         // model.userId = $routeParams["userId"];
@@ -112,8 +112,11 @@
                                     model.lastname = model.user.profile.last_name;
                                     user.physic.birthday = new Date(user.physic.birthday);
                                     user.smokeStatus = user.smokeStatus.toString();
+                                    if(!$routeParams["editId"])    {
+                                        $location.url("/edit");
+                                    }
                                     // $location.url("/user/" + model.userId + "/edit");
-                                    $location.url("/edit");
+
                                 });
                         });
                 });
@@ -140,8 +143,9 @@
                                     model.lastname = model.user.profile.last_name;
                                     user.physic.birthday = new Date(user.physic.birthday);
                                     user.smokeStatus = user.smokeStatus.toString();
-                                    // $location.url("/user/" + model.userId + "/edit");
-                                    $location.url("/edit");
+                                    if(!$routeParams["editId"])    {
+                                        $location.url("/edit");
+                                    }
                                 });
                         });
                 });
@@ -178,8 +182,9 @@
                                     model.lastname = model.user.profile.last_name;
                                     user.physic.birthday = new Date(user.physic.birthday);
                                     user.smokeStatus = user.smokeStatus.toString();
-                                    // $location.url("/user/" + model.userId + "/edit");
-                                    $location.url("/edit");
+                                    if(!$routeParams["editId"])    {
+                                        $location.url("/edit");
+                                    }
                                 });
                         });
                 });
@@ -215,8 +220,9 @@
                                     model.lastname = model.user.profile.last_name;
                                     user.physic.birthday = new Date(user.physic.birthday);
                                     user.smokeStatus = user.smokeStatus.toString();
-                                    // $location.url("/user/" + model.userId + "/edit");
-                                    $location.url("/edit");
+                                    if(!$routeParams["editId"])    {
+                                        $location.url("/edit");
+                                    }
                                 });
                         });
                 });

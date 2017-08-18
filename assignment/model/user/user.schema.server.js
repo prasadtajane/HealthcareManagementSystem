@@ -21,6 +21,15 @@ var userSchema = new mongoose.Schema({
         graduation_year:String,
         school:String}],
 
+    google: {
+        id:    String,
+        token: String
+    },
+    facebook: {
+        id:    String,
+        token: String
+    },
+
     profile:{
         first_name:String,
         last_name:String,
