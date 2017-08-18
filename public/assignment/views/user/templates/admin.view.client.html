@@ -1,0 +1,56 @@
+
+    <div ng-include="'views/common/header-common.view.client.html'"></div>
+
+
+    <div class="container-fluid">
+
+        <div class="list-group taj-bottom-margin taj-top-margin">
+            <div class="list-group-item active">
+                <div class="row">
+                    <div class="col-xs-7">
+                        Users
+                    </div>
+                    <div class="col-xs-3">
+                        Type
+                    </div>
+                    <div class="col-xs-2">
+                        <a ng-click="model.createNewuser()"
+                           class="navbar-link pull-right">
+                            <span class="glyphicon glyphicon-plus white"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div ng-repeat="user in model.user.userList">
+                <div class="list-group-item">
+                    <div class="row">
+                        <div class="col-xs-7">
+                            {{user.username}}
+                        </div>
+                        <div class="col-xs-3">
+                            {{user.userType}}
+                        </div>
+                        <div class="col-xs-2">
+                            <a   ng-click="model.deleteUser(user._id)"
+                                 class="navbar-link pull-right">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+    <div ng-include="'views/common/footer-common.view.client.html'"></div>
+
+
+
+
+
+
+

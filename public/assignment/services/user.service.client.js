@@ -13,6 +13,7 @@
         var api =  {
             createUser:createUser,
             findUserById:findUserById,
+            "findAllUsers":findAllUsers,
             "findUserByNPI":findUserByNPI,
             updateUserByUserId:updateUserByUserId,
             deleteUserByUserId:deleteUserByUserId,
@@ -32,6 +33,11 @@
             return $http.post(url,{username: username,password:password});
             //alert(response);
             //return res;
+        }
+
+        function findAllUsers() {
+            ///api/user
+            return $http.get("/api/user");
         }
 
         function findUserById(userId) {
