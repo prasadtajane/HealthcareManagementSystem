@@ -110,6 +110,9 @@ body {
     color: floralwhite;
 }
 
+#setHeight{
+    height: 300px;
+}
 /*.header-navbar-back-image {
     !*background-color:  #09bde8;*!
     border-color: #18f306;

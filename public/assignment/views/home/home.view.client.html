@@ -44,32 +44,20 @@
 
     <div class="taj-bottom-margin taj-top-margin">
         <div class="input-group">
-            <input type="text"
-                   class="form-control"
-                   placeholder="Search Doctor Here ...">
-
-            <span class="input-group-btn">
-                    <button class="btn btn-default"
-                            ng-click="model.searchDoctor()"
-                            type="button">Search
-                    </button>
-            </span>
         </div><!-- /input-group -->
+        <a class="btn btn-default btn-block"
+           ng-click="model.searchDoctor()"
+           type="button">Search Doctor
+        </a>
     </div>
 
     <div class="taj-bottom-margin taj-top-margin">
         <div class="input-group">
-            <input type="text"
-                   class="form-control"
-                   placeholder="Search Insurance Here ...">
-
-            <span class="input-group-btn">
-                    <button class="btn btn-default"
-                            ng-click="model.searchInsurances()"
-                            type="button">Search
-                    </button>
-            </span>
         </div><!-- /input-group -->
+        <a class="btn btn-default btn-block"
+           ng-click="model.searchInsurances()"
+           type="button">Search insurance
+        </a>
     </div>
 
     <div class="services"
@@ -137,7 +125,7 @@
             <div class="col-md-12 col-lg-4">
                 <div class="hservice">
                     <div class="service-img">
-                        <img class="img-responsive center-block" src="uploads/service5.jpg" alt="">
+                        <img class="img-responsive center-block" id ="setHeight" src="uploads/service5.jpg" alt="">
                     </div>
                     <div class="service-description text-center">
                         <h4 class="service-heading">Regular Health Checkup</h4>
