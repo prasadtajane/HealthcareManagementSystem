@@ -9,11 +9,11 @@
         .module("WamApp")
         .controller("adminController", adminController);
 
-    function adminController($routeParams, $location, userService, $rootScope) {
+    function adminController($routeParams, $location, userService, $rootScope, userobject) {
 
 
         var model = this;
-        var uId = $routeParams["userId"];
+        var uId = userobject._id;
 
         var user;
         var userWithInsurance;
@@ -88,17 +88,26 @@
         }
 
         function changeUserType(userId, uType) {
+            console.log(userId, uType);
             userService
                 .findUserById(userId)
                 .then(function (response) {
                     console.log(response);
                     var newUser = response.data;
                     newUser.userType = uType;
+                    if (uType === 'admin')   {
+                        newUser.isAdmin ="True";
+                    }
                     userService
                         .updateUserByUserId(newUser, userId)
                         .then(function (status) {
                             console.log(status);
                             alert("Updated user sucessfully.");
+                            userService
+                                .findAllUsers()
+                                .then(function (response) {
+                                    model.userList =response.data;
+                                });
                         });
                 });
         }
@@ -109,6 +118,12 @@
                 .then(function (status) {
                     console.log(status);
                     alert("Deleted user sucessfully.");
+
+                    userService
+                        .findAllUsers()
+                        .then(function (response) {
+                            model.userList =response.data;
+                        });
                 });
         }
 

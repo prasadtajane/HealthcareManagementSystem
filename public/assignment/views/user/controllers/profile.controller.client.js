@@ -34,7 +34,10 @@
         }
 
         function init() {
-            //alert("inside profile service!")
+            //alert("inside profile service!");
+            console.log("rootScope");
+            console.log($rootScope.currentUser);
+
             model.user={};
 
             userService
@@ -54,11 +57,15 @@
                     model.user._appointments_previous = [];
 
                     model.isAgent;
+                    model.previligedUser;
                     //console.log("outside if");
                     //console.log(model.user.userType);
                     if(model.user.userType === "agent" || model.user.userType === "admin")    {
                         //console.log("inside if");
                         model.isAgent = "True";
+                    }if(model.user.userType === "admin")    {
+                        //console.log("inside if");
+                        model.previligedUser = "True";
                     }
                     // console.log(model.isNotAgent);
 
