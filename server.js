@@ -19,7 +19,7 @@ app.use(passport.session());
 app.use(express.static(__dirname + '/public'));
 
 //require("./test/app");
-require("./assignment/app")
+require("./system/app")
 
 var port = process.env.PORT || 3000;
 
