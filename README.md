@@ -15,5 +15,15 @@ Git        :-  https://github.com/prasadtajane/tajane-prasad-web-dev
 
 
 Project    :-  https://tajane-prasad-web-dev.herokuapp.com/project/index.html
+    UAT    :-  https://healthcare-management-app.herokuapp.com/system/#!/
 
 Assignment :-  https://tajane-prasad-web-dev.herokuapp.com/assignment/
+
+
+Following are the user types and their credentials -
+USERNAME : ROLE
+alice    :    Patient
+bob      :    Doctor
+charlie  :    Agent
+admin    :    Admin
+nouser   :    Anonymous
